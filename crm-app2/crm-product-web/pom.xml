@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.krawler.baseline</groupId>
+		<artifactId>crm-baseline</artifactId>
+		<version>2.29-SNAPSHOT</version>
+	</parent>
+	
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.krawler.crm</groupId>
+  <artifactId>crm-web-lib</artifactId>
+  <packaging>jar</packaging>
+  <version>2.29-SNAPSHOT</version>
+  <name>CRM Web Library</name>
+  <description>CRM Web Library</description>
+    <dependencies>
+    
+    	<dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-common-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.krawler.common</groupId>
+            <artifactId>deskera-notification-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-account-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-campaign-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-case-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-opportunity-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-activity-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-lead-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-product-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.krawler.crm</groupId>
+            <artifactId>crm-contact-lib</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.krawler.workflow</groupId>
+            <artifactId>bpm-bizlogic</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.krawler.workflow</groupId>
+            <artifactId>modulebuilder</artifactId>
+            <version>2.29-SNAPSHOT</version>
+        </dependency>
+        
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-mock</artifactId>
+            <version>2.0.8</version>
+        </dependency>
+
+    </dependencies>
+
+ </project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.CustomerDocs" table="customer_docs">
+    <id name="id" type="java.lang.String">
+    	 <generator class="uuid"></generator>
+    </id>
+    <many-to-one name="customer" class="com.krawler.crm.database.tables.CrmCustomer" >
+    	<column name="customerid" not-null="true"/>
+    </many-to-one>
+    <many-to-one name="doc" class="com.krawler.common.admin.Docs">
+        <column name="docid" not-null="true" />
+    </many-to-one>
+    <many-to-one name="crmCase" class="com.krawler.crm.database.tables.CrmCase">
+        <column name="caseid" not-null="true" />
+    </many-to-one>
+    
+  </class>
+</hibernate-mapping>

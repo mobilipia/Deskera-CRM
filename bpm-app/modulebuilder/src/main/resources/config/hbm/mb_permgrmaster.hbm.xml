@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.mb_permgrmaster" table="mb_permgrmaster">
+    <id name="permgrid" type="int">
+      <generator class="increment"/>
+    </id>
+    <property name="description" type="java.lang.String"/>
+    <property name="permgrname" type="java.lang.String"/>
+    <property name="num" type="java.lang.Integer"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_reportlist" column="reportid" name="reportid"/>
+    <!--many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.pm_taskmaster" column="taskid" name="taskid"/-->
+    <property name="taskflag">
+      <column default="0" name="taskflag" sql-type="INTEGER"/>
+    </property>
+  </class>
+</hibernate-mapping>

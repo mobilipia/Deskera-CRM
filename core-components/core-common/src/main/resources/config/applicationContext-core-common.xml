@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="propertyConfiguration"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true"></property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:config/default-deskera-config.properties</value>
+                <value>file:${com.krawler.config.location}/deskera-config.properties</value>
+            </list>
+        </property>
+	</bean>
+
+     <!--  C3P0 config -->
+	<bean id="parentDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" abstract="true">
+  		<!-- Pool properties -->
+		<property name="minPoolSize" value="${jdbc.minPoolSize}" />
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+		<property name="maxStatements" value="${jdbc.maxStatements}" />
+		<property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />
+		<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+		<property name="maxIdleTime" value="${jdbc.maxIdleTime}" />
+		<property name="numHelperThreads" value="${jdbc.numHelperThreads}" />
+		<property name="unreturnedConnectionTimeout" value="${jdbc.unreturnedConnectionTimeout}" />
+		<property name="maxIdleTimeExcessConnections" value="${jdbc.maxIdleTimeExcessConnections}" />
+     </bean>
+
+	<bean id="ds1" parent="parentDataSource">
+		<property name="driverClass" value="${ds1.jdbc.driver}" />
+		<property name="jdbcUrl" value="${ds1.jdbc.url}"/>
+		<property name="user" value="${ds1.jdbc.user}" />
+		<property name="password" value="${ds1.jdbc.password}" />	
+	</bean>
+
+	<bean id="ds2" parent="parentDataSource">
+		<property name="driverClass" value="${ds2.jdbc.driver}" />
+		<property name="jdbcUrl" value="${ds2.jdbc.url}"/>
+		<property name="user" value="${ds2.jdbc.user}" />
+		<property name="password" value="${ds2.jdbc.password}" />	
+	</bean>
+
+	<bean id="ds3" parent="parentDataSource">
+		<property name="driverClass" value="${ds3.jdbc.driver}" />
+		<property name="jdbcUrl" value="${ds3.jdbc.url}"/>
+		<property name="user" value="${ds3.jdbc.user}" />
+		<property name="password" value="${ds3.jdbc.password}" />	
+	</bean>
+
+	<bean id="defaultDataSource" parent="parentDataSource">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />	
+	</bean>
+
+    <bean id="dataSource" class="com.krawler.esp.utils.CompanyRoutingDataSource">
+   		<property name="targetDataSources">
+			<map>
+				<entry key="ds1" value-ref="ds1"/>
+         		<entry key="ds2" value-ref="ds2"/>
+         		<entry key="ds3" value-ref="ds3"/>
+   			</map>
+ 		</property>
+       <property name="defaultTargetDataSource" ref="defaultDataSource"/>
+	</bean>
+
+    <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="txProxyTemplate" abstract="true" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="txManager" />
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="crmDBcontroller" class="com.krawler.spring.common.DataBaseController">
+    	<property name="routingDataSource"><ref bean="dataSource"/></property>
+    </bean>
+    
+    <bean id="croncontroller" class="com.krawler.spring.common.CronController">
+    	<property name="routingDataSource"><ref bean="dataSource"/></property>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource"><ref bean="dataSource"/></property>
+        <property name="mappingLocations"><value>classpath*:config/hbm/*.hbm.xml</value></property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">com.krawler.crm.exhibernate.ExMySQLInnoDBDialect</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.connection.useUnicode">true</prop>
+                <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+                <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+          <property name="basenames">
+ 			<list>
+				<value>msgs/messages</value>
+				<value>msgs/wtf</value>
+			</list>
+          </property>
+	</bean>
+</beans>

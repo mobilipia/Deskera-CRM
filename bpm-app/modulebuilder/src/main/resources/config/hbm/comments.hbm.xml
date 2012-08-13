@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.esp.hibernate.impl.comments" table="mb__comments">
+    <id column="id" name="id" type="string">
+      <generator class="uuid"/>
+    </id>
+    <property name="comment">
+      <column name="comment"/>
+    </property>
+    <property name="recordid">
+      <column name="recordid"/>
+    </property>
+    <property name="reftable">
+      <column name="reftable"/>
+    </property>
+    <property name="addedby">
+      <column name="addedby"/>
+    </property>
+    <property name="createddate">
+      <column default="now()" name="createddate" sql-type="TIMESTAMP"/>
+    </property>
+    <property name="deleteflag">
+      <column name="deleteflag" sql-type="INTEGER"/>
+    </property>
+  </class>
+</hibernate-mapping>

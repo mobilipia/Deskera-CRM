@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.esp.hibernate.impl.mb_stdConfigs" table="mb_stdConfigs">
+    <id column="configid" name="configid" type="integer">
+      <generator class="increment"/>
+    </id>
+    <property name="configname">
+      <column name="configname"/>
+    </property>
+    <property name="configimg">
+      <column name="configimg"/>
+    </property>
+  </class>
+</hibernate-mapping>

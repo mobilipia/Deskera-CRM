@@ -1,0 +1,165 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+   <class name="com.krawler.crm.database.tables.CrmLead" table="crm_lead" >
+        <id name="leadid" type="string">
+            <column name="leadid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usersByUpdatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="updatedbyid"     default="' '" />
+        </many-to-one>
+        <many-to-one name="usersByCreatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="createdbyid"     default="' '" />
+        </many-to-one>
+        <property name="leadstatusID" type="string" insert="false" update="false">
+            <column name="leadstatusid"   default="' '" ></column>
+        </property>
+        <property name="leadsourceID" type="string" insert="false" update="false">
+            <column name="leadsourceid"   default="' '" ></column>
+        </property>
+        <property name="industryID" type="string" insert="false" update="false">
+            <column name="industryid"   default="' '" ></column>
+        </property>
+        <property name="ratingID" type="string" insert="false" update="false">
+            <column name="ratingid"   default="' '" ></column>
+        </property>
+        <many-to-one name="crmCombodataByLeadstatusid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="leadstatusid"    default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmCombodataByLeadsourceid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="leadsourceid"  default="' '" />
+        </many-to-one>
+        <many-to-one name="crmProduct" class="com.krawler.crm.database.tables.CrmProduct" fetch="select">
+            <column name="productid"  default="' '" />
+        </many-to-one>
+        <many-to-one name="crmCombodataByIndustryid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="industryid"    default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmCombodataByRatingid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="ratingid"     default="' '"/>
+        </many-to-one>
+        <property name="companyid" type="string" insert="false" update="false">
+            <column name="companyid"  ></column>
+        </property>
+        <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+            <column name="companyid"     default="' '" />
+        </many-to-one>
+        <many-to-one name="usersByPersonassigned" class="com.krawler.common.admin.User" fetch="select">
+            <column name="personassigned"      default="' '" />
+        </many-to-one>
+        <property name="lastname" type="string">
+            <column name="lastname" length="40"      default="' '" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" length="40"      default="' '" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="80"     default="' '" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="30"      default="' '" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="80"       default="' '"/>
+        </property>
+        <property name="website" type="string">
+            <column name="website" length="80"      default="' '" />
+        </property>
+        <property name="mobileno" type="string">
+            <column name="mobileno" length="80"      default="' '" />
+        </property>
+        <property name="fax" type="string">
+            <column name="fax" length="80"       default="' '"/>
+        </property>
+        <property name="addstreet" type="string">
+            <column name="addstreet"      default="' '" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="40"      default="' '" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="40"       default="' '"/>
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="40"      default="' '" />
+        </property>
+        <property name="zip" type="string">
+            <column name="zip" length="40"      default="' '" />
+        </property>
+        <property name="revenue" type="string">
+            <column name="revenue"       default="' '"/>
+        </property>
+        <property name="revenuenum" type="java.lang.Double" insert="false" update="false">
+            <column name="revenue"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description"   />
+        </property>
+        <!--property name="createdon" type="java.util.Date">
+            <column name="createdon" length="19"     />
+        </property>
+        <property name="updatedon" type="timestamp">
+            <column name="updatedon" length="19"    />
+        </property-->
+        <property name="createdOn" type="long">
+            <column name="createdon" />
+        </property>
+         <property name="convertedOn" type="long">
+            <column name="convertedon" />
+        </property>
+        <property name="updatedOn" type="long">
+            <column name="updatedon" />
+        </property>
+        <property name="isconverted" type="string">
+            <column name="isconverted" length="10"     default="' '" />
+        </property>
+        <property name="isarchive" type="true_false">
+            <column name="isarchive" default="false" not-null="true" />
+        </property>
+        <property name="istransfered" type="string">
+            <column name="istransfered" length="10"     default="' '" />
+        </property>
+        <property name="deleteflag" type="integer">
+            <column name="deleteflag"     default='0' />
+        </property>
+        <property name="potrevenue" type="string">
+            <column name="potrevenue"       default="' '"/>
+        </property>
+        <property name="nextstep" type="string">
+            <column name="nextstep"      default="' '" />
+        </property>
+        <property name="conversiontype" type="string">
+            <column name="conversiontype" length="10"     default="' '" />
+        </property>
+        <property name="validflag" type="integer">
+            <column name="validflag"     default='0' />
+        </property>
+        <property name="type" type="string">
+            <column name="type"     default="' '" />
+        </property>
+        <property name="cellstyle" type="string">
+            <column length="2000" name="cellstyle"/>
+        </property>
+        <property name="price" type="string">
+            <column name="price" length="10" />
+        </property>
+        <property name="pricenum" type="java.lang.Double" insert="false" update="false">
+            <column name="price"/>
+        </property>
+        <property name="ownerconfirm" type="true_false">
+            <column name="ownerconfirm" default="true" not-null="true" />
+        </property>
+        <set name="leadOwners" inverse="true" cascade="all,delete-orphan" lazy="true">
+            <key column="leadid"  />
+            <one-to-many class="com.krawler.crm.database.tables.LeadOwners" />
+        </set>
+        <many-to-one column="crmleadcustomdataref" class="com.krawler.crm.database.tables.CrmLeadCustomData"  name="CrmLeadCustomDataobj" />
+        <set cascade="all,delete-orphan" inverse="true" name="crmProducts" lazy="true" order-by="numbering asc">
+            <key column="leadid"/>
+            <one-to-many class="com.krawler.crm.database.tables.LeadProducts"/>
+        </set>
+    </class>
+</hibernate-mapping>

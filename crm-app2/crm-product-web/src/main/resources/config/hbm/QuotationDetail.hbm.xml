@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.QuotationDetail" table="quotationdetails">
+    <id name="ID">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="srno" type="integer">
+      <column default="0" name="srno"/>
+    </property>
+    <property name="remark" type="string">
+      <column length="255" name="remark"/>
+    </property>
+    <property name="quantity" type="integer">
+      <column name="quantity" not-null="true"/>
+    </property>
+    <property name="rate" type="double">
+      <column name="rate" not-null="true"/>
+    </property>
+     <property name="discount" type="float">
+      <column name="discount" />
+    </property>
+     <property name="taxAmount" type="double">
+      <column name="taxamount" />
+    </property>
+    <many-to-one class="com.krawler.crm.database.tables.Tax" column="tax" name="tax"/>
+    <many-to-one class="com.krawler.crm.database.tables.Quotation" fetch="select" name="quotation">
+      <column name="quotation" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.crm.database.tables.CrmProduct" column="product" name="product" not-null="true"/>
+  </class>
+</hibernate-mapping>

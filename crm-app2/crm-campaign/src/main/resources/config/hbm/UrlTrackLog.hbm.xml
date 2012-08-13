@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.UrlTrackLog" table="url_track_log">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+
+    <many-to-one class="com.krawler.crm.database.tables.CampaignLog" name="campaignLog" column="campaignlog" not-null="true"/>
+
+    <property name="url" type="string">
+      <column name="url" length="255" />
+    </property>
+    <property name="clickedOn" type="long">
+      <column name="clickdate" length="20"/>
+    </property>
+   </class>
+</hibernate-mapping>

@@ -1,0 +1,12 @@
+{
+
+        data: [
+          {'accountname':'Krawler','primaryaccount':'None','accountowner':'John','revenue':'987','accountcreateddate':'5-04-2009','lastinteractiondate':'5-06-2009'},
+          {'accountname':'Google','primaryaccount':'None','accountowner':'Alice','revenue':'654','accountcreateddate':'6-04-2009','lastinteractiondate':'8-06-2009'},
+          {'accountname':'Apple','primaryaccount':'None','accountowner':'Diana','revenue':'321','accountcreateddate':'8-04-2009','lastinteractiondate':'10-06-2009'},
+          {'accountname':'IBM','primaryaccount':'Krawler','accountowner':'John','revenue':'123','accountcreateddate':'12-05-2009','lastinteractiondate':'13-06-2009'},
+          {'accountname':'MicroSoft','primaryaccount':'Google','accountowner':'Alice','revenue':'456','accountcreateddate':'13-05-2009','lastinteractiondate':'14-06-2009'},
+          {'accountname':'Pixar','primaryaccount':'Apple','accountowner':'Diana','revenue':'789','accountcreateddate':'15-05-2009','lastinteractiondate':'15-06-2009'}
+        ]
+
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+ 
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/action/*.do">crmTargetController</prop>
+                <prop key="/targetReport/*.do">targetReportController</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <ref bean="interceptors" />            
+        </property>
+    </bean>
+
+</beans>

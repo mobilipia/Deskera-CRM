@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.pm_conditionMaster" table="pm_conditionMaster">
+    <id name="ruleid" type="string">
+      <generator class="uuid"/>
+    </id>
+    <!--many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.pm_taskmaster" column="taskid" name="taskid"/-->
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.pm_taskderivationmap" column="taskderid" name="taskderid"/>
+    <property name="attribute" type="java.lang.String"/>
+    <property name="attributename" type="java.lang.String"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_gridconfig" name="attributeid"/>
+    <property name="ruletype" type="java.lang.Integer"/>
+    <property name="value1" type="java.lang.String"/>
+    <property name="value2" type="java.lang.String"/>
+    <property name="xtype" type="java.lang.String"/>
+    <property name="seq" type="java.lang.Integer"/>
+    <property name="conditiontype" type="java.lang.String"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.CrmCombomaster" table="crm_combomaster" >
+        <id name="masterid" type="string">
+            <column name="masterid" />
+            <generator class="assigned" />
+        </id>
+        <property name="comboname" type="string">
+            <column name="comboname" length="60"     default="' '"/>
+        </property>
+        <property name="parentid" type="string">
+            <column name="parentid"     default="' '"/>
+        </property>
+        
+    </class>
+</hibernate-mapping>

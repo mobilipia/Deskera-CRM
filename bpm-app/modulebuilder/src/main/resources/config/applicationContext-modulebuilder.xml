@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+   
+    <bean id="moduleBuilderService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.workflow.module.bizservice.ModuleBuilderServiceImpl">
+                <property name="moduleBuilderDao" ref="moduleBuilderDAO" />
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="reportBuilderDAO" class="com.krawler.formbuilder.servlet.ReportBuilderDaoImpl" parent="baseDAO">
+        <property name="SessionHandlerDao" ref="sessionHandlerdao"/>
+        <property name="accessRightDao" ref="accessRightDAO" />
+    </bean>
+
+    <bean id="masterComboDAO" class="com.krawler.formbuilder.servlet.MasterComboDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="reportBuilderController" class="com.krawler.formbuilder.servlet.ReportBuilderController">
+        <property name="reportDao" ref="reportBuilderDAO" />
+    </bean>
+    <bean id="accessRightDAO" class="com.krawler.formbuilder.servlet.AccessRightDaoImpl" parent="baseDAO"/>
+    
+    <bean id="accessRightController" class="com.krawler.formbuilder.servlet.AccessRightController">
+        <property name="accessRightDao" ref="accessRightDAO" />
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+    </bean>
+    <bean id="masterComboController" class="com.krawler.formbuilder.servlet.MasterComboController">
+        <property name="masterComboDao" ref="masterComboDAO" />
+    </bean>
+    
+    <bean id="moduleBuilderDAO" class="com.krawler.workflow.module.dao.ModuleBuilderDaoImpl" parent="baseDAO">
+        <property name="reportDao" ref="reportBuilderDAO" />
+        <property name="accessRightDao" ref="accessRightDAO" />
+        <property name="sessionHandlerDao" ref="sessionHandlerdao"/>
+        <property name="dataObjectOperationObj" ref="dataObjectOperations" />
+    </bean>
+
+    <bean id="dialectObject" class="com.krawler.crm.exhibernate.ExMySQLInnoDBDialect">
+        </bean>
+    <bean id="dataObjectOperations" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.workflow.module.bizservice.DataObjectOperationsImpl">
+                <property name="dataObjectOperationDAO" ref="dataObjectOperationDAO" />
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="dataObjectOperationDAO" class="com.krawler.workflow.module.dao.DataObjectOperationDAOImpl">
+        <property name="dataSource" ref="dataSource" />
+        <property name="dialectObject" ref="dialectObject"/>
+    </bean>
+    
+    <bean id="moduleBuilderController" class="com.krawler.formbuilder.servlet.ModuleBuilderController">
+        <property name="moduleDao" ref="moduleBuilderDAO" />
+        <property name="moduleBuilderService" ref="moduleBuilderService" />
+        <property name="txnManager" ref="txManager" />
+    </bean>
+    
+</beans>
+

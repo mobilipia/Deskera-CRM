@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlrewrite>
+	<rule>
+		<from>/a/([^\/]*)/(.*)</from>
+		<to>/$2?cdomain=$1</to>
+	</rule>
+	<rule>
+		<from>/b/([^\/]*)/(.*)</from>
+		<to>/$2?cdomain=$1</to>
+	</rule>
+</urlrewrite>

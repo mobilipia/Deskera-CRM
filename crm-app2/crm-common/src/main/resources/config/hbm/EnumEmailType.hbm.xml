@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.EnumEmailType" table="enum_email_type">
+    <id name="typeid" type="string">
+      <column name="typeid"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="name" type="string">
+      <column length="255" name="name"/>
+    </property>
+    <property name="description" type="text">
+      <column name="description"/>
+    </property>
+    <property name="subject" type="string">
+      <column length="255" name="subject"/>
+    </property>
+    <property name="body_html" type="text">
+      <column name="body_html"/>
+    </property>
+    <property name="plaintext" type="text">
+      <column name="plaintext"/>
+    </property>
+    <property name="createdOn" type="long">
+      <column name="createdon"/>
+    </property>
+    <property name="modifiedOn" type="long">
+      <column name="modifiedon"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.User" name="creator" not-null="true"/>
+    <many-to-one class="com.krawler.common.admin.User" name="modifier" not-null="true"/>
+    <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+        <column name="company"          />
+    </many-to-one>
+
+  </class>
+</hibernate-mapping>

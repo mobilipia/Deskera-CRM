@@ -1,0 +1,201 @@
+/**********CSS Added for form builder*********/
+
+.quickCreateForm {
+    background-color:#F6F6F6 !important;
+    padding:5px 5px 0;
+    margin-top :4px;
+    border-bottom : 1px solid #ABC3D7;
+    border-top : 2px solid #ABC3D7;/*#4E8CCF;*/
+    width : 97%;
+/*    height : 100%;*/
+}
+
+.fieldformpanel {
+    background-color:#F6F6F6 !important;
+    padding:5px 5px 0;
+}
+
+.fieldsetborder {
+    border : 0px solid !important;
+}
+
+.tempClass123{
+    position: relative !important;
+    float: left;
+    top: 0px !important;
+}
+
+.quickInsFrmPnl{
+    width: 95% !important;
+}
+.radioButton{
+    margin-right: 15px;
+}
+.configFormFieldset{
+    width: 80%;
+    margin: 10px auto 10px auto;
+}
+.configFormRadio{
+    float: left;
+    margin-left: 40px;
+    /*margin: 11px auto;*/
+}
+.configFormRadio label{
+    padding: 0px !important;
+}
+.deleteButtonConf{
+    height: 12px;
+    width: 12px;
+    margin-left: 10px;
+}
+.configForm{
+    margin: 11px 0px 10px 11px;
+}
+.gridHeader{
+    color: #15428B;
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    width: 50%;
+    border-bottom: 1px solid #D8DFFF;
+    margin: 5px 0px 10px 0px;
+    height: 15px;
+}
+.expanderContainer{
+    margin-left: 65px;
+}
+.headerRow{
+    width: 100px;
+    display: block;
+    float: left;
+    font-weight: bold;
+}
+.gridRow{
+    width: 100px;
+    display: block;
+    float: left;
+    /*font-weight: bold;*/
+}
+.gridRadio .x-form-check-wrap{
+    width: 30%;
+    float: left;
+    margin: 10px 0px 0px 15%;
+}
+
+.headercontent12{
+    border-color: #c1c1c1;
+    background-color: #ffffff !important;
+    height : 23px;
+    margin-top : 3px;
+/*    width: 100%;*/
+}
+
+.headercontent12 table{
+    float: left;
+    padding-right: 5px;
+}
+
+/*************************/
+.dashlinkspanel{
+/*    background: transparent url(../images/bullet2.gif) no-repeat scroll 0 0;*/
+    padding-left:15px;
+}
+
+.modName{
+    color: #307ab9;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px 5px;
+}
+table.servicesT {
+    border-spacing:0;
+    color:#404040;
+    width: 100%;
+    font-size:12px;
+    padding: 5px 10px;
+    font-weight:normal;
+}
+th.servHd {
+    border-bottom:2px solid #6699CC;
+    color:#404040;
+    font-family:verdana,tahoma,sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    text-align:left;
+}
+servBodL {
+    border-left:1px dotted #CEDCEA;
+}
+table.servicesT td {
+    border-bottom:1px dotted #6699CC;
+    color:#404040;
+    font-family:verdana,tahoma,sans-serif;
+    font-size:12px;
+    font-weight:normal;
+    padding-bottom:5px;
+    padding-left:3px;
+    padding-top:5px;
+}
+
+.portletField{
+    margin: 12px;
+}
+.portletcls {
+    padding:10px 0 0 10px;
+}
+.portlet-body {
+    background-color:#DFE8F6;
+    padding-top:9px;
+    padding-left:8px;
+    padding-bottom:8px;
+    float:left;
+    width:98%;
+    -moz-user-select:auto;
+}
+
+.dashlinkspanel li {
+    background:transparent url(../images/bullet2.gif) no-repeat scroll 0 0;
+    margin:4px;
+    padding-left:16px;
+}
+
+.dashfieldContainerClass {
+    padding-bottom: 6px;
+    /*padding-left: 120px !important;*/
+}
+.dashcompanyFieldSet .wtf-el-mask{
+    background-color: white !important;
+}
+.dashcompanyFieldSet {
+    border: 0px solid red !important;
+    margin-left: 20px !important;
+    margin-right: 10% !important;
+    margin-top: 16px !important;
+    width: 70%;
+}
+
+.dashholidaySpan{
+    float: left;
+    overflow:hidden;
+    margin-right: 3px;
+}
+.dashholidayDiv{
+    color: black;
+    display: block;
+    border-bottom: 1px solid #999999;
+    width: 300px;
+    float: left;
+}
+.dashholidayspanwidth {
+    width: 140px;
+}
+.dashholidayDelete{
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    float:left;
+    margin-top: 2px;
+}
+.red {
+    color:#c30000;
+}

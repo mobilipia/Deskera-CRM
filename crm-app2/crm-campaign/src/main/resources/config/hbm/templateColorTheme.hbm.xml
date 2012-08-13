@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.templateColorTheme" table="templatecolortheme">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+
+    <many-to-one class="com.krawler.crm.database.tables.colorThemeGroup" name="groupid" not-null="true"/>
+
+    <property name="theme" type="string">
+      <column name="theme" length="256" />
+    </property>
+    <property name="background" type="string">
+      <column name="background" length="6" />
+    </property>
+    <property name="headerbackground" type="string">
+      <column name="headerbackground" length="6" />
+    </property>
+    <property name="headertext" type="string">
+      <column name="headertext" length="6"/>
+    </property>
+    <property name="footerbackground" type="string">
+      <column name="footerbackground" length="6" />
+    </property>
+    <property name="footertext" type="string">
+      <column name="footertext" length="6"/>
+    </property>
+    <property name="bodybackground" type="string">
+      <column name="bodybackground" length="6"/>
+    </property>
+    <property name="bodytext" type="string">
+      <column name="bodytext" length="6"/>
+    </property>
+    <property name="deleted" type="integer">
+      <column name="deleted" default="0" length="2"/>
+    </property>
+  </class>
+</hibernate-mapping>

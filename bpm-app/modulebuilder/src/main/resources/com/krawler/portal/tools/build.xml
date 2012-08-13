@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="modulebuilder" default="buildmodulejar" basedir="/home/krawler/newmodules/">
+    <property name="build.classes" value="/home/krawler/crmspring/src/java/classes/"/>
+    <property name="build.lib" value="${basedir}/lib"/>
+   <!--property name="project-lib" value="${basedir}"/>
+   <property name="tomcat-lib" value="${webappcontainer}"/>
+
+    <property name="prefix" value="module"/>
+
+        <path id="classpath.path">
+            <fileset dir="${system-lib}">
+                <include name="*.jar"/>
+            </fileset>
+            <fileset dir="${project-lib}">
+                <include name="*.jar"/>
+            </fileset>
+        </path-->
+<macrodef name="build_jar">
+ <attribute name="name"/>
+    <sequential>
+        <delete>
+         <fileset dir="${build.classes}" includes="**"/>
+        </delete>
+        <javac srcdir="/home/krawler/crmspring/src/java/com/krawler/esp/hibernate/impl/" destdir="/home/krawler/crmspring/src/java/classes/" >
+                        <include name="mb_*_@{name}.java"/>
+        </javac>
+
+        <jar jarfile="${build.lib}/${prefix}-@{name}.jar">
+            <fileset dir="${build.classes}">
+                <include name="**"/>
+            </fileset>
+        </jar>
+    </sequential>
+</macrodef>
+
+<target name="buildmodulejar">
+    <build_jar name="${modulename}"/>
+</target>
+
+</project>

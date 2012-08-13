@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+ 
+    <!--Opportunity controller-->
+    <bean id="crmOpportunitydao" class="com.krawler.spring.crm.opportunityModule.crmOpportunityDAOImpl" parent="baseDAO"/>
+    <bean id="crmOpportunityController" class="com.krawler.spring.crm.opportunityModule.crmOpportunityController">
+        <property name="crmOpportunityDAO">
+            <ref bean="crmOpportunitydao"/>
+        </property>
+        <property name="NotificationManagementServiceDAO">
+            <ref bean="notifyManagementService"/>
+        </property>
+        <property name="opportunityManagementService">
+            <ref bean="opportunityManagementService"/>
+        </property>
+        <property name="crmCommonService">
+           <ref bean="crmCommonService"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="crmCommentDAO">
+            <ref bean="commentdao"/>
+        </property>
+        <property name="crmAccountDAO">
+            <ref bean="crmAccountdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="fieldDataManager">
+            <ref bean="fielddatamanager"/>
+        </property>
+        <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+        </property>
+        <property name="cometManagementService">
+            <ref bean="cometManagementService"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <!--Opportunity Report Controller-->
+    <bean id="opportunityReportdao" class="com.krawler.spring.crm.opportunityModule.crmOpportunityReportDAOImpl" parent="baseDAO"/>
+    <bean id="opportunityReportController" class="com.krawler.spring.crm.opportunityModule.crmOpportunityReportController">
+        <property name="crmOpportunityReportDAO">
+            <ref bean="opportunityReportdao"/>
+        </property>
+        <property name="crmProductDAO">
+            <ref bean="crmProductdao"/>
+        </property>
+        <property name="crmAccountDAO">
+            <ref bean="crmAccountdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="crmOpportunityDAO">
+            <ref bean="crmOpportunitydao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="crmCommonDAO">
+            <ref bean="crmCommondao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="chartService">
+            <ref bean="ChartService"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="opportunityManagementService">
+            <ref bean="opportunityManagementService"/>
+        </property>
+        <property name="fieldDataManager">
+            <ref bean="fielddatamanager"/>
+        </property>
+    </bean>
+    
+    <bean id="opportunityManagementService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.crm.opportunity.bizservice.OpportunityManagementServiceImpl">
+                <property name="crmOpportunityDAO">
+                    <ref bean="crmOpportunitydao"/>
+                </property>
+                <property name="kwlCommonTablesDAO">
+                    <ref bean="kwlCommonTablesdao"/>
+                </property>
+                <property name="crmCommentDAO">
+                    <ref bean="commentdao"/>
+                </property>
+                <property name="crmManagerDAO">
+                    <ref bean="crmManagerdao"/>
+                </property>
+                <property name="fieldDataManager">
+                    <ref bean="fielddatamanager"/>
+                </property>
+                <property name="fieldManagerDAO">
+                    <ref bean="fieldmanagerdao"/>
+                </property>
+                <property name="expressionManager">
+                    <ref bean="expressionManager"/>
+                </property>
+                <property name="crmCommonDAO">
+                    <ref bean="crmCommondao"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

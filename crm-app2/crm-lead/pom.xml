@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.krawler.baseline</groupId>
+		<artifactId>crm-baseline</artifactId>
+		<version>2.29-SNAPSHOT</version>
+	</parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.krawler.crm</groupId>
+  <artifactId>crm-lead-lib</artifactId>
+  <packaging>jar</packaging>
+  <version>2.29-SNAPSHOT</version>
+  <name>CRM Lead Library</name>
+  <description>CRM Lead Library</description>
+	<dependencies>
+                <dependency>
+			<groupId>com.krawler.crm</groupId>
+			<artifactId>crm-common-lib</artifactId>
+			<version>2.29-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.krawler.common</groupId>
+			<artifactId>deskera-common-comet</artifactId>
+			<version>2.29-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.krawler.crm</groupId>
+			<artifactId>crm-product-lib</artifactId>
+			<version>2.29-SNAPSHOT</version>
+		</dependency>
+
+  </dependencies>
+
+ </project>

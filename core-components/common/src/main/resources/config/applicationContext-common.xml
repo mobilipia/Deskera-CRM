@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <!--Widget controller-->
+    <bean id="dashboardWidgetdao" class="com.krawler.spring.dashboardWidget.widgetDAOImpl" parent="baseDAO">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+    <bean id="widgetController" class="com.krawler.spring.dashboardWidget.widgetController">
+        <property name="widgetDAO">
+            <ref bean="dashboardWidgetdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+    
+    <bean id="apiCallHandlerDAO" class="com.krawler.esp.handlers.APICallHandlerDAOImpl" parent="baseDAO"/>
+    
+   	<bean id="apiCallHandlerService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.esp.handlers.APICallHandlerServiceImpl">
+                <property name="apiCallHandlerDAO">
+    				<ref bean="apiCallHandlerDAO"/>
+    			</property>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="spreadSheetdao" class="com.krawler.spring.crm.spreadSheet.spreadSheetDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+    
+    <bean id="spreadsheetService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.crm.spreadsheet.bizservice.SpreadsheetServiceImpl">
+                <property name="spreadsheetDAO" ref="spreadSheetdao" />
+            </bean>
+        </property>
+    </bean> 
+    
+    <!--CRM Spreadsheet service-->
+    <bean id="crmspreadsheetService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.spring.crm.spreadsheet.CrmSpreadsheetServiceImpl">
+        		<property name="spreadsheetService">
+            		<ref bean="spreadsheetService"/>
+        		</property>
+        	 	<property name="fieldManagerDAO">
+                    <ref bean="fieldmanagerdao"/>
+                </property>
+                 <property name="crmdashboardHandler">
+            		<ref bean="crmdashboardhandler"/>
+        		</property>
+            </bean>
+        </property>
+     </bean> 
+    <!--CRM Spreadsheet controller-->
+    <bean id="spreadSheetController" class="com.krawler.spring.crm.spreadsheet.crmSpreadsheetController">
+        <property name="crmspreadsheetService">
+            <ref bean="crmspreadsheetService"/>
+        </property>
+        <property name="spreadsheetService">
+            <ref bean="spreadsheetService"/>
+        </property>
+        <property name="cometManagementService">
+            <ref bean="cometManagementService"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <!--property name="crmCommonDAO">
+            <ref bean="crmCommondao"/>
+        </property-->
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+    
+    <bean id="savesearchjson" class="com.krawler.crm.savedsearch.web.SavedSearchJson" />
+
+    <bean id="savesearchdao" class="com.krawler.crm.savedsearch.dao.SavedSearchDAOImpl" parent="baseDAO" />
+
+    <bean id="savesearchservice" class="com.krawler.crm.savedsearch.bizservice.SavedSearchServiceImpl">
+        <property name="saveSearchDAO">
+            <ref bean="savesearchdao"/>
+        </property>
+    </bean>
+
+    <bean id="savesearchcontroller" class="com.krawler.crm.savedsearch.web.SavedSearchController">
+        <property name="saveSearchService">
+            <ref bean="savesearchservice"/>
+        </property>
+        <property name="saveSearchJson">
+            <ref bean="savesearchjson"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+    </bean>
+    
+     <bean id="crmdashboardhandler" class="com.krawler.spring.crm.dashboard.CrmDashboardHandler">
+    </bean>
+</beans>

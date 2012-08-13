@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="notificationConfigService" class="com.krawler.common.notification.bizservice.NotificationConfigurationServiceImpl">        
+        <property name="mailSenderCache">
+            <ref bean="mailSenderCache"/>
+        </property>
+        <property name="notificationConfigDao">
+            <ref bean="notificationConfigDAO"/>
+        </property>
+ 	</bean>
+ 	<bean id="notificationConfigDAO" class="com.krawler.common.notification.dao.NotificationConfigurationDaoImpl" parent="baseDAO"/>
+      
+ 	<bean id="notificationConfigController" class="com.krawler.common.notification.web.NotificationConfigurationController">
+        <property name="notificationConfigService">
+            <ref bean="notificationConfigService"/>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+       <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+ 	</bean>
+ </beans>

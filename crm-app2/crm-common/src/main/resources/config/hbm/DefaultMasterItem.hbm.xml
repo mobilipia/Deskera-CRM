@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.DefaultMasterItem" table="defaultmasteritem">
+      <id name="ID" column="id">
+          <generator class="assigned"/>
+      </id>
+      <property name="value" type="string">
+          <column name="value" not-null="true" length="50"/>
+      </property>
+      <many-to-one class="com.krawler.crm.database.tables.CrmCombomaster" name="crmCombomaster">
+          <column name="crmCombomasterId"/>
+      </many-to-one>
+      <many-to-one class="com.krawler.crm.database.tables.CrmCombodata" name="crmCombodata">
+          <column name="crmCombodataId"/>
+      </many-to-one>
+      <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+          <column name="companyid"       default="' '" />
+      </many-to-one>
+      <property name="mainID" type="string">
+          <column name="mainID"      default="' '" />
+      </property>
+      <!--property name="aliasName" type="string">
+          <column name="aliasName"  default="' '" />
+      </property-->
+      <property name="isEdit" type="integer">
+            <column name="isEdit"/>
+      </property>
+      <property name="itemsequence" type="integer">
+            <column name="itemsequence" default="0"/>
+      </property>
+      <property name="percentStage" type="string">
+          <column name="percentStage" length="50"/>
+      </property>
+      <property name="validflag" type="integer">
+            <column name="validflag"     default='1' />
+      </property>
+       <property name="deleteflag" type="integer">
+            <column name="deleteflag"     default='0' />
+       </property>
+  </class>
+</hibernate-mapping>

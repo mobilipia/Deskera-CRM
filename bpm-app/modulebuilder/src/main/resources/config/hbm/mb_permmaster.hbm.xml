@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.mb_permmaster" table="mb_permmaster">
+    <id name="id" type="java.lang.String">
+      <generator class="uuid"/>
+    </id>
+    <property name="permid" type="int"/>
+    <property name="description" type="java.lang.String"/>
+    <property name="permname" type="java.lang.String"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_permactions" column="permaction" name="permaction"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_permgrmaster" column="permgrid" name="permgrid"/>
+  </class>
+</hibernate-mapping>

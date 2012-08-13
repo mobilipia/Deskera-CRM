@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <import resource="dispatcher-servlet.xml"/>
+    <!--Business Process related definitions-->
+    <bean id="msf" class="com.krawler.br.utils.XmlFactory" >
+        <constructor-arg index="0">
+            <props>
+                <prop key="path">logic/moduleEx.xml</prop>
+            </props>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <bean class="com.krawler.br.modules.XmlModuleDefinitionParser" />
+        </constructor-arg>
+    </bean>
+
+    <bean id="osf" class="com.krawler.br.utils.XmlFactory" >
+        <constructor-arg index="0">
+            <props>
+                <prop key="path">logic/operationEx.xml</prop>
+            </props>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <bean class="com.krawler.br.operations.XmlOperationDefinitionParser" />
+        </constructor-arg>
+    </bean>
+
+    <bean id="mb" class="com.krawler.br.modules.SimpleModuleBag" />
+
+    <bean id="beanloader" class="com.krawler.br.loader.KwlBeanLoader" />
+    <bean id="classloader" class="com.krawler.br.loader.KwlClassLoader" />
+
+
+    <bean id="ob" class="com.krawler.br.operations.SimpleOperationBag" >
+        <property name="moduleBag">
+            <ref bean="mb" />
+        </property>
+        <property name="loaders">
+            <map>
+                <entry key="bean" value-ref="beanloader" />
+                <entry key="class" value-ref="classloader"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="sessionScope" class="com.krawler.br.exp.SessionScope" >
+        <property name="sessionObject" ref="sessionHandlerdao" />
+    </bean>
+
+    <bean id="expParser" class="com.krawler.br.nodes.exp.TextExpressionParser" >
+        <property name="scopes">
+            <list>
+                <ref local="sessionScope" />
+            </list>
+        </property>
+        <property name="moduleBag" ref="mb" />
+    </bean>
+
+    <bean id="xopParser" class="com.krawler.br.nodes.xml.XmlExpressionParser" >
+        <constructor-arg><null /></constructor-arg>
+        <property name="expParser" ref="expParser" />
+    </bean>
+    <bean id="decoratorParser" class="com.krawler.br.decorators.xml.XmlArgsDecoratorParser">
+        <constructor-arg>
+            <bean class="com.krawler.br.decorators.xml.XmlResultDecoratorParser">
+                <constructor-arg>
+                    <bean class="com.krawler.br.decorators.xml.XmlRepetitiveDecoratorParser">
+                        <constructor-arg>
+                            <bean class="com.krawler.br.decorators.xml.XmlConditionalDecoratorParser">
+                                <constructor-arg>
+                                    <bean class="com.krawler.br.decorators.xml.XmlStatementDecoratorParser">
+                                        <constructor-arg>
+                                            <bean class="com.krawler.br.decorators.xml.XmlNextDecoratorParser">
+                                                <constructor-arg>
+                                                    <bean class="com.krawler.br.decorators.xml.XmlForkDecoratorParser">
+                                                        <constructor-arg><null /></constructor-arg>
+                                                        <property name="operandParser" ref="xopParser" />
+                                                    </bean>
+                                                </constructor-arg>
+                                                <property name="operandParser" ref="xopParser" />
+                                            </bean>
+                                        </constructor-arg>
+                                        <property name="operandParser" ref="xopParser" />
+                                    </bean>
+                                </constructor-arg>
+                                <property name="operandParser" ref="xopParser" />
+                            </bean>
+                        </constructor-arg>
+                        <property name="operandParser" ref="xopParser" />
+                    </bean>
+                </constructor-arg>
+                <property name="operandParser" ref="xopParser" />
+            </bean>
+        </constructor-arg>
+        <property name="operandParser" ref="xopParser"/>
+    </bean>
+    <bean id="xmlNodeParser" class="com.krawler.br.nodes.xml.XmlProcessNodeParser" >
+        <constructor-arg index="0" >
+            <bean class="com.krawler.br.nodes.xml.XmlSwitchNodeParser" >
+                <constructor-arg index="0" >
+                    <bean class="com.krawler.br.nodes.xml.XmlElIfLadderNodeParser" >
+                        <constructor-arg index="0" >
+                            <bean class="com.krawler.br.nodes.xml.XmlActivityNodeParser" >
+                                <constructor-arg index="0" >
+                                    <bean class="com.krawler.br.nodes.xml.XmlDummyNodeParser" >
+                                        <constructor-arg index="0" ><null /></constructor-arg>
+                                        <property name="operandParser" ref="xopParser" />
+                                        <property name="operationBag" ref="ob" />
+                                        <property name="decoratorParser" ref="decoratorParser" />
+                                    </bean>
+                                </constructor-arg>
+                                <property name="operandParser" ref="xopParser" />
+                                <property name="operationBag" ref="ob" />
+                                <property name="decoratorParser" ref="decoratorParser" />
+                            </bean>
+                        </constructor-arg>
+                        <property name="operandParser" ref="xopParser" />
+                        <property name="operationBag" ref="ob" />
+                        <property name="decoratorParser" ref="decoratorParser" />
+                    </bean>
+                </constructor-arg>
+                <property name="operandParser" ref="xopParser" />
+                <property name="operationBag" ref="ob" />
+                <property name="decoratorParser" ref="decoratorParser" />
+            </bean>
+        </constructor-arg>
+        <property name="operandParser" ref="xopParser" />
+        <property name="operationBag" ref="ob" />
+        <property name="decoratorParser" ref="decoratorParser" />
+    </bean>
+
+    <bean id="psf" class="com.krawler.br.utils.XmlFactory" >
+        <constructor-arg index="0">
+            <props>
+                <prop key="path">logic/businesslogicEx.xml</prop>
+            </props>
+        </constructor-arg>
+        <constructor-arg index="1" ref="xmlNodeParser" />
+    </bean>
+
+    <bean id="pbag" class="com.krawler.br.SimpleProcessBag" />
+
+    <bean class="com.krawler.br.spring.FactoryInitializer" init-method="init">
+        <property ref="mb" name="moduleBag"/>
+        <property ref="ob" name="operationBag"/>
+        <property ref="msf" name="moduleSourceFactory"/>
+        <property ref="osf" name="operationSourceFactory"/>
+    </bean>
+
+    <bean id="processController" class="com.krawler.br.spring.ProcessController">
+        <property name="converter">
+            <bean class="com.krawler.br.spring.RConverterImpl" >
+                <property name="moduleBag" ref="mb" />
+            </bean>
+        </property>
+        <property name="bag">
+            <ref bean="pbag"/>
+        </property>
+        <property name="defaultSourceFactory">
+            <ref bean="psf"/>
+        </property>
+        <property name="xmlParser">
+            <ref bean="xmlNodeParser"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao" />
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+    <!--Business Process related definitions-->
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/*.do">processController</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <list>
+                <ref bean="openSessionInViewInterceptor" />
+            </list>
+        </property>
+    </bean>
+</beans>

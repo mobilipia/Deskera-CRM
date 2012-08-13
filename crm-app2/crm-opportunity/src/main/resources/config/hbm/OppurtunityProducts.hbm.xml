@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.OppurtunityProducts" table="crm_oppurtunityProducts" >
+    <id name="id" type="java.lang.String">
+         <generator class="uuid"></generator>
+    </id>
+    <many-to-one name="productId" class="com.krawler.crm.database.tables.CrmProduct" fetch="select">
+        <column name="productid" not-null="true" />
+    </many-to-one>
+    <many-to-one name="oppid" class="com.krawler.crm.database.tables.CrmOpportunity" fetch="select">
+        <column name="oppid" not-null="true" />
+    </many-to-one>
+    <property name="opportunityId" type="string" insert="false" update="false">
+    	<column name="oppid" />
+    </property>
+  </class>
+</hibernate-mapping>

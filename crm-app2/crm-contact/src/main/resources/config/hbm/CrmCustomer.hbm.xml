@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.CrmCustomer" table="crm_customer">
+    <id name="id" type="java.lang.String">
+         <generator class="uuid"></generator>
+    </id>
+    <property name="email" type="string" >
+    	<column name="email" />
+    </property>
+    <property name="passwd" type="string">
+    	<column name="passwd" />
+    </property>
+    <many-to-one name="contact" class="com.krawler.crm.database.tables.CrmContact" fetch="select">
+        <column name="contactid" not-null="true" />
+    </many-to-one>
+    <property name="active" type="true_false">
+      <column name="active"/>
+    </property>
+    <many-to-one name="company" class="com.krawler.common.admin.Company"  fetch="select">
+        <column name="companyid" not-null="true" />
+    </many-to-one>
+    
+  </class>
+</hibernate-mapping>

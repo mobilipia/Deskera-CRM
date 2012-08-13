@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE operations PUBLIC "-//KRAWLER//DTD OPERATIONS//EN" "http://192.168.0.4/dtds/operation.dtd">
+<operations>
+    <operation id="disp" name="get C Operation" method-name="display">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="double" name="d" />
+        </in-vars>
+    </operation>
+    <operation id="getc" name="get C Operation" method-name="getValue4C">
+        <entity type="class" name="client.DummyActivity" />
+        <out-var module="object" name="val" />
+    </operation>
+    <operation id="geta" name="get A Operation" method-name="getValue4A">
+        <entity type="class" name="client.DummyActivity" />
+        <out-var module="int" name="val" />
+    </operation>
+    <operation id="getb" name="get B Operation" method-name="getValue4B">
+        <entity type="class" name="client.DummyActivity" />
+        <out-var module="int" name="val" />
+    </operation>
+    <operation id="add" name="Add Operation" method-name="add">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="int" name="a" />
+            <in-var module="int" name="b" />
+        </in-vars>
+        <out-var module="int" name="val" />
+    </operation>
+    <operation id="sub" name="Subtract Operation" method-name="sub">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="int" name="a" />
+            <in-var module="int" name="b" />
+        </in-vars>
+        <out-var module="int" name="val" />
+    </operation>
+    <operation id="mul" name="Multiplication Operation" method-name="mul">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="int" name="a" />
+            <in-var module="int" name="b" />
+        </in-vars>
+        <out-var module="long" name="val" />
+    </operation>
+     <operation id="div" name="Division Operation" method-name="div">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="int" name="a" />
+            <in-var module="int" name="b" />
+        </in-vars>
+        <out-var module="double" name="val" />
+    </operation>
+     <!--operation id="createInvoice" name="Create new Invoice" method-name="saveInvoice">
+        <entity type="bean" name="accInvoiceDao" />
+        <in-vars>
+            <in-var type="" name="@Request" />
+        </in-vars>
+        <out-var type="invoice" />
+        <affected-list>
+            <affected type="invoice" />
+            <affected type="je" />
+            <affected type="discount" />
+            <affected type="inventory" />
+            <affected type="po" />
+        </affected-list>
+    </operation-->
+
+    <!--operation id="createPOHM" name="Create new Purchase Order" method-name="savePurchaseOrder">
+        <entity type="bean" name="accPurchaseOrderDao" />
+        <in-vars>
+            <in-var type="" name="@Request"/>
+        </in-vars>
+        <out-var type="poHM"/>
+        <affected-list>
+            <affected type="po" />
+        </affected-list>
+    </operation-->
+
+    <!--operation id="createPO" name="Create new Purchase Order" method-name="savePurchaseOrder">
+        <entity type="bean" name="accPurchaseOrderDao" />
+        <in-vars>
+            <in-var type="poHM"/>
+        </in-vars>
+        <out-var type="po"/>
+        <affected-list>
+            <affected type="po" />
+        </affected-list>
+    </operation-->
+
+    <operation id="getInv" name="get Inventory Information" method-name="getInventory">
+        <entity type="bean" name="accInventoryDao" />
+        <in-vars>
+            <in-var index="1" module="date" name="d" />
+            <in-var module="string" name="company" index="0" />
+        </in-vars>
+        <out-var module="inventory" multi="list" />
+    </operation>
+
+    <operation id="getProd" name="get Products Information" method-name="getProducts">
+        <entity type="bean" name="accProductDao" />
+        <in-vars>
+            <in-var module="string" name="company" />
+        </in-vars>
+        <out-var module="product" name="product" multi="list" />
+    </operation>
+     <operation id="getManagers" name="Get Managers" method-name="getManagers">
+        <entity type="class" name="client.DummyActivity" />
+        <out-var module="person" name="mans" multi="list"/>
+    </operation>
+    <operation id="getCallers" name="Get Callers" method-name="getCallers">
+        <entity type="class" name="client.DummyActivity" />
+        <out-var module="person" name="cals" multi="list"/>
+    </operation>
+    <operation id="addTime" name="Add Time" method-name="addTime">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="date" name="date" />
+            <in-var module="int" name="hours" />
+        </in-vars>
+        <out-var module="date" name="newtime" />
+    </operation>
+    <operation id="createNewSchedule" name="Create New Schedule" method-name="schedule">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="schedule" name="sList" multi="list"/>
+            <in-var module="person" name="manager" />
+            <in-var module="person" name="caller" />
+            <in-var module="date" name="from" />
+            <in-var module="date" name="to" />
+        </in-vars>
+    </operation>
+    <operation id="printPerson" name="Print person" method-name="printPerson">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="person" name="person"/>
+        </in-vars>
+    </operation>
+    <operation id="printSchedules" name="Print Schedule" method-name="printSchedules">
+        <entity type="class" name="client.DummyActivity" />
+        <in-vars>
+            <in-var module="schedule" name="sList" multi="list"/>
+        </in-vars>
+    </operation>
+        <operation id="getProducts" method-name="getProducts" name="Get Products">
+        <entity name="accProductDao" type="bean"/>
+        <in-vars>
+            <in-var module="object" name="requestParams"/>
+        </in-vars>
+        <out-var module="KwlReturnObject" name="val" />
+    </operation>
+
+</operations>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    
+    <bean id="channelEventManager" class="com.krawler.common.comet.ServerEventManager"/>
+    
+    <bean id="calendaruserdao" class="com.krawler.spring.calendar.calendarmodule.JdbcCalendarUserDao" parent="baseDAO"/>
+
+    <bean id="calendareventdao" class="com.krawler.calendar.eventmodule.JdbcCalendarEventDao" parent="baseDAO" />
+
+    <bean id="calendaruserservice" class="com.krawler.spring.calendar.eventmodule.bizservice.CrmCalendarService" >
+        <property name="calendarUserDao">
+            <ref bean="calendaruserdao"/>
+        </property>
+        <property name="calendarDao">
+            <ref bean="calendaruserdao"/>
+        </property>
+        <property name="profileHandlerDao">
+            <ref bean="profileHandlerdao"/>
+        </property>
+    </bean>
+    <bean id="calendareventservice" class="com.krawler.calendar.eventmodule.DeskeraCalendarEventService" >
+         <property name="calendarEventDao">
+            <ref bean="calendareventdao"/>
+        </property>
+    
+    </bean>
+    
+    <bean id="commondao" class="com.krawler.spring.common.commonDAOImpl">
+      <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="opportunityEventService" class="com.krawler.spring.calendar.eventmodule.bizservice.OpportunityEventService">
+    	<property name="activityDao"  ref="crmActivitydao"/>
+    </bean>
+    <bean id="caseEventService" class="com.krawler.spring.calendar.eventmodule.bizservice.CaseEventService">
+    	<property name="activityDao"  ref="crmActivitydao"/>
+    </bean>
+    <bean id="contactEventService" class="com.krawler.spring.calendar.eventmodule.bizservice.ContactEventService">
+    	<property name="activityDao"  ref="crmActivitydao"/>
+    </bean>
+
+    <!-- Controllers-->
+    <bean name="/calendar/*.do" id="calendarController" class="com.krawler.spring.calendar.calendarmodule.crmCalendarController">
+        <property name="channelManager">
+            <ref bean="channelEventManager"/>
+        </property>
+        <property name="calendarUserService">
+            <ref bean="calendaruserservice"/>
+        </property>
+        <property name="calendarService">
+            <ref bean="calendaruserservice"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="calendarEventService">
+            <ref bean="calendareventservice"/>
+        </property>
+        <property name="moduleEventServices">
+        	<list>
+        		<ref bean="leadEventService"/>
+        		<ref bean="accountEventService"/>
+        		<ref bean="campaignEventService"/>
+        		<ref bean="opportunityEventService"/>
+        		<ref bean="caseEventService"/>
+        		<ref bean="contactEventService"/>
+        	</list>
+        </property>
+        <property name="crmManagerDAO">
+             <ref bean="crmManagerdao"/>
+        </property>
+    </bean>
+
+    <bean name="/calendarevent/*.do" id="calendarEventController" class="com.krawler.calendar.eventmodule.EventController">
+        <property name="calendarEventService">
+            <ref bean="calendareventservice"/>
+        </property>
+        <property name="channelManager">
+            <ref bean="channelEventManager"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <bean name="/common/*.do" id="calCommonController" class="com.krawler.spring.common.CommonController">
+        <property name="commonDAO">
+            <ref bean="commondao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+    
+</beans>

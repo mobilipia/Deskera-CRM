@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.zohoImportLog" table="zohoimport_log">
+    <id name="id" type="integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    
+    <property name="zusername" type="string">
+      <column name="zusername" length="100" />
+    </property>
+    <property name="userid" type="string">
+      <column name="userid" length="36" />
+    </property>
+    <property name="companyid" type="string">
+      <column name="companyid" length="36" />
+    </property>
+    <property name="date" type="timestamp">
+      <column name="importdate" length="50"/>
+    </property>
+    <property name="leads" type="integer">
+      <column name="leads" length="2" default="0" />
+    </property>
+    <property name="accounts" type="integer">
+      <column name="accounts" default="0" length="2"/>
+    </property>
+    <property name="potentials" type="integer">
+      <column name="potentials" length="2" default="0" />
+    </property>
+    <property name="contacts" type="integer">
+      <column name="contacts" default="0" length="2"/>
+    </property>
+    <property name="failedLeads" type="integer">
+      <column name="failedleads" length="2" default="0" />
+    </property>
+    <property name="failedAccounts" type="integer">
+      <column name="failedaccounts" default="0" length="2"/>
+    </property>
+    <property name="failedPotentials" type="integer">
+      <column name="failedpotentials" length="2" default="0" />
+    </property>
+    <property name="failedContacts" type="integer">
+      <column name="failedcontacts" default="0" length="2"/>
+    </property>
+   </class>
+</hibernate-mapping>

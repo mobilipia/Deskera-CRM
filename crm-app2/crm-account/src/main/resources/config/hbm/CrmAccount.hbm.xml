@@ -1,0 +1,139 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.CrmAccount" table="crm_account" >
+        <id name="accountid" type="string">
+            <column name="accountid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usersByUpdatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="updatedbyid"   />
+        </many-to-one>
+        <many-to-one name="crmCombodataByAccounttypeid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="accounttypeid"    default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmCombodataByIndustryid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="induustryid"    default="' '"/>
+        </many-to-one>
+        <property name="accounttypeID" type="string" insert="false" update="false">
+            <column name="accounttypeid"   default="' '" ></column>
+        </property>
+        <property name="industryID" type="string" insert="false" update="false">
+            <column name="induustryid"   default="' '" ></column>
+        </property>
+        <many-to-one name="usersByCreatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="createdbyid"   />
+        </many-to-one>
+        <many-to-one name="crmLead" class="com.krawler.crm.database.tables.CrmLead" fetch="select">
+            <column name="convertedleadid"    default="' '"/>
+        </many-to-one>
+         <property name="companyid" type="string" insert="false" update="false">
+           <column name="companyid"  ></column>
+        </property>
+        <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+            <column name="companyid"   />
+        </many-to-one>
+        <many-to-one name="crmProduct" class="com.krawler.crm.database.tables.CrmProduct" fetch="select">
+            <column name="productid"    default="' '"/>
+        </many-to-one>
+        <property name="accountname" type="string">
+            <column name="accountname" length="40"    default="' '"/>
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="40"    default="' '"/>
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="80"    default="' '"/>
+        </property>
+        <property name="website" type="string">
+            <column name="website" length="80"    default="' '"/>
+        </property>
+        <property name="ownershipid" type="string">
+            <column name="ownershipid"    default="' '"/>
+        </property>
+        <property name="revenue" type="string">
+            <column name="revenue"    default="' '"/>
+        </property>
+        <property name="revenuenum" type="java.lang.Double" insert="false" update="false">
+            <column name="revenue"/>
+        </property>
+        <property name="marketshare" type="string">
+            <column name="marketshare"    default="' '"/>
+        </property>
+        <property name="mailstreet" type="string">
+            <column name="mailstreet"    default="' '"/>
+        </property>
+        <property name="mailcity" type="string">
+            <column name="mailcity" length="40"    default="' '"/>
+        </property>
+        <property name="mailstate" type="string">
+            <column name="mailstate" length="40"    default="' '"/>
+        </property>
+        <property name="mailcountry" type="string">
+            <column name="mailcountry" length="40"    default="' '"/>
+        </property>
+        <property name="mailzip" type="string">
+            <column name="mailzip" length="40"    default="' '"/>
+        </property>
+        <property name="shipstreet" type="string">
+            <column name="shipstreet"    default="' '"/>
+        </property>
+        <property name="shipcity" type="string">
+            <column name="shipcity" length="40"    default="' '"/>
+        </property>
+        <property name="shipstate" type="string">
+            <column name="shipstate" length="40"    default="' '"/>
+        </property>
+        <property name="shipcountry" type="string">
+            <column name="shipcountry" length="40"    default="' '"/>
+        </property>
+        <property name="shipzip" type="string">
+            <column name="shipzip" length="40"    default="' '"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <property name="price" type="string">
+            <column name="price" length="40"    default="' '"/>
+        </property>
+        <property name="pricenum" type="java.lang.Double" insert="false" update="false">
+            <column name="price"/>
+        </property>
+
+        <!--property name="updatedon" type="timestamp">
+            <column name="updatedon" length="19"    />
+        </property>
+        <property name="createdon" type="java.util.Date" >
+            <column name="createdon" length="19"    />
+        </property-->
+        <property name="updatedOn" type="long">
+            <column name="updatedon" />
+        </property>
+        <property name="createdOn" type="long" >
+            <column name="createdon" />
+        </property>
+        <property name="isarchive" type="true_false">
+            <column name="isarchive"  default="false" not-null="true"/>
+        </property>
+        <property name="deleteflag" type="integer">
+            <column name="deleteflag"    default='0'/>
+        </property>
+        <property name="validflag" type="integer">
+            <column name="validflag"     default='0' />
+        </property>
+        <property name="cellstyle" type="string">
+            <column length="2000" name="cellstyle"/>
+        </property>
+        <set name="accountOwners" inverse="true" cascade="all,delete-orphan" >
+            <key column="accountid"  />
+            <one-to-many class="com.krawler.crm.database.tables.accountOwners" />
+        </set>
+        <set cascade="all,delete-orphan" inverse="true" name="crmProducts">
+          <key column="accountid"/>
+          <one-to-many class="com.krawler.crm.database.tables.AccountProducts"/>
+        </set>
+     <many-to-one column="crmaccountcustomdataref" class="com.krawler.crm.database.tables.CrmAccountCustomData"  name="CrmAccountCustomDataobj" />
+   </class>
+</hibernate-mapping>

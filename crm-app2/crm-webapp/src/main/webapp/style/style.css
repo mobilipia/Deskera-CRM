@@ -1,0 +1,46 @@
+#logo {
+	float: left;
+	width: 415px;
+	padding: 0px;
+	background-image: url(../images/deskera/k-crm.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	height: 46px;
+	margin-top: 25px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 21px;
+}
+
+.odc-banner-text-big{
+    width:56%;
+    padding:0px;
+    margin:0px;
+    float:left;
+    text-align:right;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:25px;
+    color:#FFFFFF;
+    display:block;
+    padding:40px 10px 40px 0px;
+}
+
+#middle-bg {
+	background-color: #FFFFFF;
+	text-align: left;
+	margin: auto;
+	width: 512px;
+	padding-right: 11px;
+	padding-left: 11px;
+	padding-top: 11px;
+}
+
+#middle {
+	margin: auto;
+	width: 534px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 25px;
+	padding-left: 0px;
+}
+

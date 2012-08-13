@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.esp.hibernate.impl.mb_forms" table="mb_forms">
+    <id column="formid" name="formid" type="string">
+      <!--generator class="uuid"/-->
+    </id>
+    <property name="name">
+      <column name="name"/>
+    </property>
+    <property name="data">
+      <column length="4000" name="data"/>
+    </property>
+    <property name="deployedInd">
+      <column name="deployed_ind"/>
+    </property>
+    <property name="abstractInd">
+      <column name="abstract_ind"/>
+    </property>
+    <property name="companyid">
+      <column name="companyid"/>
+    </property>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_reportlist" column="moduleid" name="moduleid"/>
+  </class>
+</hibernate-mapping>

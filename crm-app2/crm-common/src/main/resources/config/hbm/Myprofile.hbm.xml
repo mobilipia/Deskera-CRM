@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+   <class name="com.krawler.crm.database.tables.Myprofile" table="myprofile" >
+        <id name="userid" type="string">
+            <column name="userid" />
+            <generator class="assigned" />
+        </id>
+        <property name="fname" type="string">
+            <column name="fname" length="40" not-null="true" />
+        </property>
+        <property name="lname" type="string">
+            <column name="lname" length="40" not-null="true" />
+        </property>
+        <property name="emailid" type="string">
+            <column name="emailid" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" not-null="true" />
+        </property>
+        <property name="designation" type="string">
+            <column name="designation" not-null="true" />
+        </property>
+        <property name="contactno" type="string">
+            <column name="contactno" length="20" not-null="true" />
+        </property>
+        <property name="aboutuser" type="string">
+            <column name="aboutuser" not-null="true" />
+        </property>
+        <property name="fax" type="string">
+            <column name="fax" length="20" not-null="true" />
+        </property>
+        <property name="altcontactno" type="string">
+            <column name="altcontactno" length="20" not-null="true" />
+        </property>
+        <property name="panno" type="string">
+            <column name="panno" length="40" not-null="true" />
+        </property>
+        <property name="ssnno" type="string">
+            <column name="ssnno" length="40" not-null="true" />
+        </property>
+        <property name="company" type="string">
+            <column name="company" length="40" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

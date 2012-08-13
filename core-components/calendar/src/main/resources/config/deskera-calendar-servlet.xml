@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <!-- Implementation -->
+    <bean id="channelEventManager" class="com.krawler.esp.handlers.ServerEventManager">
+    </bean>
+
+    <bean id="calendardao" class="com.krawler.calendar.calendarmodule.JdbcCalendarDao" parent="baseDAO" />
+
+    <bean id="calendareventdao" class="com.krawler.calendar.eventmodule.JdbcCalendarEventDao" parent="baseDAO" />
+    
+    <bean id="calendarService" class="com.krawler.calendar.calendarmodule.DeskeraCalendarService">
+        <property name="calendarDAO">
+            <ref bean="calendardao"/>
+        </property>
+    </bean>
+    <bean id="calendarEventService" class="com.krawler.calendar.eventmodule.DeskeraCalendarEventService">
+        <property name="calendarEventDao">
+            <ref bean="calendareventdao"/>
+        </property>
+    </bean>
+
+    <bean id="commondao" class="com.krawler.spring.common.commonDAOImpl">
+      <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- Controllers-->
+    <bean name="/calendar/*.do" id="calendarController" class="com.krawler.calendar.calendarmodule.CalendarController">
+        <property name="calendarService">
+            <ref bean="calendarService"/>
+        </property>
+        <property name="channelManager">
+            <ref bean="channelEventManager"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <bean name="/calendarevent/*.do" id="calendarEventController" class="com.krawler.calendar.eventmodule.EventController">
+        <property name="calendarEventService">
+            <ref bean="calendarEventService"/>
+        </property>
+        <property name="channelManager">
+            <ref bean="channelEventManager"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <bean name="/common/*.do" id="commonController" class="com.krawler.spring.common.CommonController">
+        <property name="commonDAO">
+            <ref bean="commondao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+</beans>

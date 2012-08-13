@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!-- alternate XML view resolver, invoked if view returned from controller matches views.xml mapping -->
+	<bean id="testMap123" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="language" value="english"/>
+				<entry key="os" value="english"/>
+				<entry key="module" value="crm"/>
+			</map>
+		</constructor-arg>
+	</bean>
+ </beans>

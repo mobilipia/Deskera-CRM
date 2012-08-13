@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.model.AuditLogger" table="audit_log" >
+    <id name="id" type="string">
+            <column name="id" />
+            <generator class="native" />
+    </id>
+    <property name="userName" type="string">
+      <column name="user_name"/>
+    </property>
+    <property name="sessionId" type="string">
+      <column name="session_id"/>
+    </property>
+    <property name="time" type="long">
+      <column name="log_time"/>
+    </property>
+    <property name="ipAddress" type="string">
+      <column name="ip_address"/>
+    </property>
+    <property name="userid" type="string">
+      <column name="userid"/>
+    </property>
+    <many-to-one class="com.krawler.model.AuditFeature" name="auditFeature" column="a_feature"/>
+  </class>
+</hibernate-mapping>

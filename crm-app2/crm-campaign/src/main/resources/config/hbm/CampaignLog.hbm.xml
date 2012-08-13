@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.CampaignLog" table="campaign_log">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+
+    <many-to-one class="com.krawler.crm.database.tables.CrmCampaign" name="campaignid" not-null="true"/>
+    <many-to-one class="com.krawler.crm.database.tables.EmailMarketing" name="emailmarketingid" not-null="true"/>
+    <many-to-one class="com.krawler.crm.database.tables.TargetList" name="targetlistid" not-null="true"/>
+    <many-to-one class="com.krawler.crm.database.tables.TargetListTargets" name="targetid" not-null="true"/>
+
+    <property name="targettrackerkey" type="string">
+      <column name="targettrackerkey" length="36" />
+    </property>
+    <property name="targettype" type="string">
+      <column name="targettype" length="15" />
+    </property>
+    <property name="activitytype" type="string">
+      <column name="activitytype" length="15" />
+    </property>
+    <property name="activityDate" type="long">
+      <column name="activitydate" />
+    </property>
+    <property name="relatedtype" type="string">
+      <column name="relatedtype" length="15" />
+    </property>
+    <property name="hits" type="integer">
+      <column name="hits" default="0" length="2"/>
+    </property>
+    <property name="modifiedOn" type="long">
+      <column name="modifiedon" />
+    </property>
+    <property name="viewed" type="integer">
+      <column name="viewed" default="0" length="2"/>
+    </property>
+    <property name="deleted" type="integer">
+      <column name="deleted" default="0" length="2"/>
+    </property>
+    <property name="sendingfailed" type="integer">
+      <column default="0" length="2" name="sendingfailed"/>
+    </property>
+    <property name="bounceStatus" type="string">
+      <column name="bouncestatus" length="5" />
+    </property>
+	<set name="timeLogs" inverse="true" cascade="all,delete-orphan">
+		<key column="campaignlog" />
+		<one-to-many class="com.krawler.crm.database.tables.CampaignTimeLog" />
+	</set>
+   </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>com.krawler.baseline</groupId>
+    <artifactId>product-baseline</artifactId>
+    <version>2.29-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+  <name>Deskera Builder for Baseline Modules</name>
+  <description>Deskera Builder for Baseline Modules</description>
+
+    <scm>
+        <connection>scm:svn:svn://192.168.0.4/krawler/trunk/deskera</connection>
+        <developerConnection>scm:svn:svn://192.168.0.4/krawler/trunk/deskera</developerConnection>
+    </scm>
+
+    <modules>
+		<module>shared-components</module>
+		<module>core-components</module>
+		<module>crm-app2</module>
+		<module>bpm-app</module>
+   </modules>
+
+	<distributionManagement>
+		<repository>
+			 <id>krawler-central-repo</id>
+			 <name>Krawler Repository</name>
+			 <uniqueVersion>true</uniqueVersion>
+			 <url>ftp://192.168.0.2:22/krawlerlib/</url>
+		</repository>
+	</distributionManagement>
+
+ </project>

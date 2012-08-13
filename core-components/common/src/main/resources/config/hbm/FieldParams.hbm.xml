@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.common.admin.FieldParams" table="fieldParams">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+    <property name="maxlength" type="int">
+      <column name="maxlength" not-null="true"/>
+    </property>
+    <property name="isessential" type="int">
+      <column name="isessential"/>
+    </property>
+    <property name="fieldtype" type="int">
+      <column name="fieldtype" not-null="true"/>
+    </property>
+    <property name="validationtype" type="int">
+      <column name="validationtype" not-null="true"/>
+    </property>
+    <property name="customregex" type="string">
+      <column length="1024" name="customregex" not-null="true"/>
+    </property>
+    <property name="fieldname" type="string">
+      <column name="fieldname"/>
+    </property>
+    <property name="fieldlabel" type="string">
+      <column name="fieldlabel"/>
+    </property>
+    <property name="companyid" type="string">
+      <column name="companyid"/>
+    </property>
+    <property name="moduleid" type="int">
+      <column name="moduleid"/>
+    </property>
+    <property name="iseditable" type="string">
+      <column length="20" name="iseditable"/>
+    </property>
+    <property name="comboname" type="string">
+      <column length="50" name="comboname"/>
+    </property>
+    <property name="comboid" type="string">
+      <column length="36" name="comboid"/>
+    </property>
+    <property name="moduleflag" type="int">
+      <column default="0" name="moduleflag"/>
+    </property>
+    <property name="colnum" type="int">
+      <column default="0" name="colnum"/>
+    </property>
+    <property name="refcolnum" type="int">
+      <column default="0" name="refcolnum"/>
+    </property>
+    <property name="startingnumber" type="int"> 
+      <column default="0" name="startingnumber"/>
+    </property>
+    <property name="prefix" type="string">
+      <column default=" " name="prefix"/>
+    </property>
+    <property name="suffix" type="string">
+      <column default=" " name="suffix"/>
+    </property>
+    <property name="oldid" type="int">
+      <column default="0" name="oldid"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.Company" column="companyid" insert="false" name="company" update="false"/>
+  </class>
+</hibernate-mapping>

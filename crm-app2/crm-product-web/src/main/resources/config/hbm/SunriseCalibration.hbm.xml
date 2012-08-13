@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.SunriseCalibration" table="sunrisecalibration">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+    <property name="calon" type="long">
+      <column name="calon"/>
+    </property>
+    <property name="caldue" type="long">
+      <column name="caldue"/>
+    </property>
+    <property name="particulars" type="string">
+      <column length="255" name="particulars"  default="' '"/>
+    </property>
+    <property name="srcal" type="string">
+      <column length="255" name="srcal"  default="' '"/>
+    </property>
+    <property name="contactperson" type="string">
+      <column length="255" name="contactperson"  default="' '"/>
+    </property>
+    <property name="contactnumber" type="string">
+      <column length="255" name="contactnumber"  default="' '"/>
+    </property>
+    <property name="machinetype" type="string">
+      <column length="255" name="machinetype"  default="' '"/>
+    </property>
+    <property name="paymentstatus" type="string">
+      <column length="255" name="paymentstatus"  default="' '"/>
+    </property>
+    <property name="machinecalno" type="string">
+      <column length="255" name="machinecalno" default="' '"/>
+    </property>
+    <property name="state" type="string">
+      <column length="255" name="state" default="' '"/>
+    </property>
+    <property name="updatedOn" type="long">
+      <column name="updatedon"/>
+    </property>
+    <property name="createdOn" type="long">
+      <column name="createdon"/>
+    </property>
+    <property name="deleteflag" type="integer">
+      <column default="0" name="deleteflag"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.User" fetch="select" name="usersByUpdatedbyid">
+      <column default="&apos; &apos;" name="updatedbyid"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.common.admin.User" fetch="select" name="usersByCreatedbyid">
+      <column default="&apos; &apos;" name="createdbyid"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

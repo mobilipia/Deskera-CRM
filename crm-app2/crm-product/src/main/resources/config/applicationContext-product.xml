@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!--Product controller-->
+    <bean id="crmProductdao" class="com.krawler.spring.crm.productModule.crmProductDAOImpl" parent="baseDAO" />
+
+    <bean id="crmProductController" class="com.krawler.spring.crm.productModule.crmProductController">
+        <property name="productManagementService">
+            <ref bean="productManagementService"/>
+        </property>
+        <property name="crmProductDAO">
+            <ref bean="crmProductdao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="crmCommentDAO">
+            <ref bean="commentdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="fieldDataManager">
+            <ref bean="fielddatamanager"/>
+        </property>
+        <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+        <property name="cometManagementService">
+            <ref bean="cometManagementService"/>
+        </property>
+        <property name="crmCommonService">
+           <ref bean="crmCommonService"/>
+        </property>
+   </bean>
+
+    <bean id="productManagementService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.crm.product.bizservice.ProductManagementServiceImpl">
+                <property name="crmProductDAO">
+                    <ref bean="crmProductdao"/>
+                </property>
+                <property name="kwlCommonTablesDAO">
+                    <ref bean="kwlCommonTablesdao"/>
+                </property>
+                <property name="crmCommentDAO">
+                    <ref bean="commentdao"/>
+                </property>
+                <property name="crmManagerDAO">
+                    <ref bean="crmManagerdao"/>
+                </property>
+                <property name="fieldDataManager">
+                    <ref bean="fielddatamanager"/>
+                </property>
+                <property name="crmCommonDAO">
+                    <ref bean="crmCommondao"/>
+                </property>
+                <property name="fieldManagerDAO">
+                    <ref bean="fieldmanagerdao"/>
+                </property>
+                <property name="expressionManager">
+                    <ref bean="expressionManager"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

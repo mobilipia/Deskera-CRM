@@ -1,0 +1,153 @@
+<script type="text/javascript">
+
+var help = getHelpButton(this,36);
+portalmail_mainPanel = new Wtf.PortalMailPanel();
+var pmPanel = new Wtf.Panel({
+     layout:'border',
+     border:false,
+     tbar : [new Wtf.Toolbar.Button({
+                text:WtfGlobal.getLocaleText("crm.SETTINGLABEL"),//'Settings',
+                scope:this,
+                id:'emailSettings',
+                iconCls:'pwnd emailsetting',
+                colspan: 1,
+                menu: {
+                    items: [
+                    {
+                        text: WtfGlobal.getLocaleText("crm.targetlists.toptoolbar.newBTN"),//'New ',
+                        handler: this.onItemClick,
+                        scope: this,
+                        iconCls:'pwnd addemail',
+                        id: 'emailSettingsNew',
+                        handler:function() {
+                            new Wtf.MailAccSetting({editFlag:false}).show();
+                        }
+                    },
+                    {
+                        text: WtfGlobal.getLocaleText("crm.EDITTEXT"),//'Edit ',
+                        handler: this.onItemClick,
+                        scope: this,
+                        disabled:true,
+                        iconCls:'pwnd editemail',
+                        id: 'emailSettingsEdit',
+                        handler:function() {
+                            new Wtf.MailAccSetting({editFlag:true}).show();
+                        }
+                    },
+                    {
+                        text: WtfGlobal.getLocaleText("crm.DELETEBUTTON"),//'Delete',
+                        scope: this,
+                        iconCls:'pwnd deleteemail',
+                        id: 'emailSettingsDelete',
+                        disabled:true,
+                        handler:function() {
+                            Wtf.MessageBox.confirm(WtfGlobal.getLocaleText("crm.msgbox.CONFIRMTITLE"), WtfGlobal.getLocaleText("crm.mymails.delaccountconfirmmsg"), function(btn){
+                                if (btn == "yes") {
+                                    Wtf.Ajax.requestEx({
+                                        url: "Common/MailIntegration/mailIntegrate.do",
+                                        params:{
+                                            action : 'EmailUIAjax',
+                                            emailUIAction : 'getIeAccount',
+                                            ieId : lefttree.getSelectionModel().getSelectedNode().id.split('_')[1],
+                                            module : 'Emails',
+                                            to_pdf : true
+                                        },method:'post'},
+                                        this,
+                                        function(request,res) {
+                                             var responseText = request;
+                                            if(responseText != "") {
+                                                var resJsonObj = eval('(' + responseText + ')');
+                                                Wtf.Ajax.requestEx({
+                                                    url: "Common/MailIntegration/mailIntegrate.do",
+                                                    params:{
+                                                        action:"EmailUIAjax",
+                                                        emailUIAction:"deleteIeAccount",
+                                                        email_password:resJsonObj.email_password,
+                                                        email_user:resJsonObj.email_user,
+                                                        from_addr:resJsonObj.stored_options.from_addr,
+                                                        from_name:resJsonObj.name,
+                                                        group_id:resJsonObj.group_id,
+                                                        ie_id:resJsonObj.id,
+                                                        ie_name:resJsonObj.name,
+                                                        ie_status:'Active',
+                                                        krawler_body_only:true,
+                                                        mailbox:'INBOX',
+                                                        mark_read:1,
+                                                        module : "Emails",
+                                                        outbound_email: resJsonObj.outbound_email,
+                                                        port:resJsonObj.port,
+                                                        protocol:resJsonObj.service[3],
+                                                        server_url:resJsonObj.server_url,
+                                                        ssl:1,
+                                                        to_pdf:true,
+                                                        trashFolder:resJsonObj.stored_options.trashFolder
+                                                    },method:'post'},
+                                                    this,
+                                                    function(request,res) {
+                                                        lefttree.removeChildNodes();
+                                                        portalmail_mainPanel.removeAllRecords();
+                                                        lefttree.fetchMailAccount();
+                                                        Wtf.Msg.alert(WtfGlobal.getLocaleText("crm.msg.SUCCESSTITLE"),WtfGlobal.getLocaleText("crm.mymails.delacsuccessmsg"));
+                                                    },function() {
+                                                });
+                                            }
+                                        },function() {
+                                    });
+
+                                }
+                                else return ;
+                            }, this);
+                        }
+                    }
+                   ]
+            }
+            }),new Wtf.Button({
+                text:WtfGlobal.getLocaleText("crm.mymails.outboundsettings.title"),//'Outbound Email Settings',
+                scope:this,
+                id:'outboundemailSettings',
+                iconCls:'pwnd emailsetting',
+                handler:function() {
+                    var panel=Wtf.getCmp('outboundemailTabPanel');
+                    var tipTitle=WtfGlobal.getLocaleText("crm.mymails.outboundsettings.title");//"OutBound Email Settings";
+                    var title = Wtf.util.Format.ellipsis(tipTitle,18);
+                    if(panel==null)
+                    {
+                        panel=new Wtf.outboundEmail({
+                            border:false,
+                            title:"<div wtf:qtip=\""+tipTitle+"\"wtf:qtitle='"+WtfGlobal.getLocaleText("crm.mymails.outboundsettings.title")+"'>"+title+"</div>",
+                            layout:'fit',
+                            closable:true,
+                            id:'outboundemailTabPanel',
+                            iconCls:"pwnd pmsgicon"
+                        })
+                        mainPanel.add(panel);
+                    }
+                    mainPanel.setActiveTab(panel);
+                   // mainPanel.doLayout();
+                }
+            }),'->',help],
+     items:[{
+        region:'west',
+        border:true,
+        layout:'fit',
+        frame:false,
+        bodyStyle:'background:white;padding:10px;',
+        width:210,
+        split:false,
+        items:[lefttree = new Wtf.MailLeftTree({border:false,tabless:true,portalmailPanel :portalmail_mainPanel })]
+    }, {
+        region:'center',
+        layout:'fit',
+        border:false,
+        items:[new Wtf.Panel({
+            border:false,
+            layout:'fit',
+            id:'tabmailtab',
+            items:[portalmail_mainPanel]
+        })]
+   }]
+});
+Wtf.getCmp("tabpmessage").add(pmPanel);
+Wtf.getCmp("tabpmessage").doLayout();
+
+</script>

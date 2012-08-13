@@ -1,0 +1,30 @@
+<script type="text/javascript" >
+    var tabMyDocs = Wtf.getCmp("tabdocument");
+    if(tabMyDocs){
+        Wtf.destroy(Wtf.get('document-tag-tree'));
+
+        var mainGrid = new Wtf.docs.com.Grid({
+            id: 'doc-mydocs',
+            border: false,
+            treeroot: "My Documents",
+            autoWidth: true,
+            treeid: 'doctree-mydocs',
+            treeRenderto: 'navareadocs',
+            pcid:1
+        });
+        tabMyDocs.add(mainGrid);
+        tabMyDocs.doLayout();
+        tabMyDocs.on('deactivate', function(tabpanel){
+            if (Wtf.getCmp('doctree-mydocs'))
+                Wtf.getCmp('doctree-mydocs').hide();
+        });
+        tabMyDocs.on('activate', function(tabpanel){
+            if (Wtf.getCmp('doctree-mydocs'))
+                Wtf.getCmp('doctree-mydocs').show();
+        });
+
+    }
+</script>
+<div id="docsloading" style="visibility:hidden; top:293px;left:360px;">
+    <div class="loading-indicator"><img src="../../images/loading.gif" style="width:16px;height:16px; vertical-align:middle" alt="Loading"/>&#160;Loading...</div>
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+    <hibernate-mapping>
+        <class name="com.krawler.crm.database.tables.AccountProject" table="crm_account_project">
+            <id name="projectId" type="string">
+                <column length="50" name="projectid"/>
+                <generator class="assigned"/>
+            </id>
+            <many-to-one class="com.krawler.crm.database.tables.CrmAccount" name="accountId" not-null="true"/>
+            <property name="projectName" type="string">
+                <column name="projectname" not-null="true"/>
+            </property>
+            <property name="nickName" type="string">
+                <column name="nickname" not-null="true"/>
+            </property>
+        </class>
+    </hibernate-mapping>

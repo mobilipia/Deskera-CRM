@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.common.admin.AuditTrail" table="audit_trail">
+    <id column="id" name="ID">
+      <generator class="assigned"/>
+    </id>
+    <property name="details" type="text">
+      <column name="details"/>
+    </property>
+    <property name="IPAddress" type="string">
+      <column length="36" name="ipaddr"/>
+    </property>
+    <!--property name="auditTime" type="timestamp">
+      <column name="audittime" not-null="true"/>
+    </property-->
+    <property name="audittime" type="long">
+      <column name="audittime" not-null="true"/>
+    </property>
+    <property name="recid" type="string">
+      <column name="recid" not-null="true"/>
+    </property>
+    <property name="extraid" type="string">
+      <column name="extraid" not-null="true"/>
+    </property>
+    <property name="userId" type="long">
+      <column name="user_id"/>
+    </property>
+    <property name="companyId" type="long">
+      <column name="company_id"/>
+    </property>
+    <property name="auditGroupId" type="long">
+      <column name="audit_group_id"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.User" name="user" not-null="true"/>
+    <many-to-one class="com.krawler.common.admin.AuditAction" name="action" not-null="true"/>
+  </class>
+</hibernate-mapping> 

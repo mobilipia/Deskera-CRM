@@ -1,0 +1,549 @@
+.dpwnd {
+    background: url(../images/dtbar.gif) no-repeat !important;
+}
+.calexporticon {
+    background-position: 0 -844px !important;
+}
+.checked {
+     background-position: 0 -1975px !important;
+}
+.closeicon {
+    background-position: 0 -721px !important;
+}
+
+.contactimporticon {
+    background-position: 0 -865px !important;
+}
+.contactexporticon {
+    background-position: 0 -842px !important;
+}
+
+.teamcal {
+    background-position: 0 -2186px !important;
+}
+.calChkbox{
+    margin-top: 3px;
+    margin-left: -6px;
+}
+.closeDiv{
+    cursor: pointer;
+    float: right;
+    height: 14px;
+    margin-top: 2px;
+    margin-right: 2px;
+}
+.dateWidth {
+    width: 100%;
+    margin-left: -30px;
+}
+
+.reminderDiv {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.timeDiv {
+    border: none;
+    /*  float:left;
+     //margin-left:5px;*/
+    height: 125px;
+}
+
+.timeContainer {
+    margin-top: -7px;
+    width: 100%;
+    /*  height:200px;
+     height:500px;*/
+}
+
+.eventTimeLeftDiv, .eventTimeRightDiv {
+    border-bottom-color: -moz-use-text-color;
+    border-bottom-style: none;
+    border-bottom-width: medium;
+    border-left-color: -moz-use-text-color;
+    border-left-style: none;
+    border-left-width: medium;
+    border-right-color: -moz-use-text-color;
+    border-right-style: none;
+    border-right-width: medium;
+    border-top-color: -moz-use-text-color;
+    border-top-style: none;
+    border-top-width: medium;
+}
+
+.eventTimeLeftDiv {
+    width: 43%;
+    float: left;
+}
+
+.labelAlign{
+    font-size:11px;
+    padding-bottom:7px;
+    vertical-align:middle;
+}
+
+.eventTimeRightDiv {
+    width: 74%;
+    float: left;
+    margin-left: 8%;
+    padding: 0 0 0 0;
+}
+
+.TableStyle td {
+    border-left: thin dashed gray;
+    background-color: white;
+    font-style: normal;
+    font-size: 12px;
+    margin: 5px
+}
+
+.TableStyle {
+    /*border: thin solid black;*/
+}
+
+.x-form-check-wrap {
+    margin: 5px;
+}
+
+.AddReminderClass {
+    cursor: pointer;
+}
+
+.name1 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.chb {
+    float: left;
+    font-size: 12px;
+}
+
+.font {
+    font-size: 12px;
+    /*top:-7px;*/
+    margin-top: 2%
+}
+/* delete pading class*/
+.pading {
+    margin-left: 8%;
+}
+/* delete class below*/
+.comboitem {
+    background-image: url(../images/default/layout/panel-title-light-bg.gif);
+}
+
+.xbtn {
+    cursor: pointer;
+    background: url(images/Delete.gif) no-repeat 0 0;
+}
+
+.datepicker {
+    margin-top: 5px;
+    margin-left: 3px;
+}
+
+#calContainer .x-date-middle {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+#calContainer .x-date-picker, #calContainer .x-date-inner td {
+    border: none;
+}
+
+#calContainer .x-date-bottom, .imgchange {
+    display: none;
+}
+
+#calContainer .x-date-inner th {
+    background: none;
+}
+
+#calContainer .x-date-inner th span {
+    padding: 2px 0;
+}
+/* delete class below*/
+.button1css {
+}
+
+.button1 {
+    float: right;
+    margin: 7px 10px 10px;
+}
+
+.button11 {
+    float: right;
+    margin: 7px 5px 10px;
+}
+
+.x-panel-mc .x-panel-body {
+    border-top: 0 solid #ffffff;
+}
+
+.treenodeclass {
+    line-height: 11pt;
+    margin: 1px;
+}
+
+.addpersonbutton {
+    padding-left: 1px;
+    margin-left: 2%;
+    /*border-left:240px;*/
+    cursor: pointer;
+    background-position: left;
+}
+
+#document-tree .x-tree-node a span, .x-dd-drag-ghost a span {
+    padding: 0 !important;
+    text-decoration: none;
+}
+
+.s-tabletree-node-el {
+    margin-top: 3px;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.s-tabletree-td {
+    background: white none repeat scroll 0%;
+    width: 20px;
+    padding-right: 4px;
+    padding-top: 2px;
+    -moz-background-clip: -moz-initial;
+    -moz-background-origin: -moz-initial;
+    -moz-background-inline-policy: -moz-initial;
+    vertical-align: top;
+}
+
+.b2 {
+    border-style: solid;
+    border-width: 0 1px;
+    margin: 0 1px;
+}
+
+.b1, .b2, .t2 {
+    font-size: 1px;
+    height: 1px;
+    line-height: 1px;
+}
+
+.t2 {
+    margin: 0 1px;
+}
+
+td.calMenuImgCell {
+    background: white none repeat scroll 0%;
+    cursor: pointer;
+    padding-left: 4px;
+    padding-top: 2px;
+    vertical-align: top;
+    width: 19px;
+    cursor: pointer;
+}
+
+span.calMenuLabel {
+    color: white;
+    cursor: pointer;
+    font-size: 8pt;
+    height: 70%;
+    margin: 0;
+    text-decoration: none;
+    width: 100%;
+}
+
+.s-tabletree-a {
+    text-decoration: none;
+    color: white;
+}
+
+img {
+    border: 0 none;
+}
+
+td.calMenuImgCell img {
+    background-image: url(../images/btn_menu.png);
+    height: 14px;
+    margin-left: 0;
+    padding-top: 0;
+    width: 15px;
+}
+
+.chip {
+    WORD-BREAK: BREAK-ALL;
+    width: 100%;
+}
+
+#document-tree td.x-tree-ec-icon {
+    WORD-BREAK: BREAK-ALL;
+}
+
+.x-menu-list .x-color-palette {
+    width: 135px;
+    height: 45px;
+}
+
+.palette {
+    height: 50px;
+    width: 135px;
+}
+
+tr.nodeSelected a, tr.nodeSelected a:hover {
+    text-decoration: underline;
+    color: white !important;
+}
+
+.calMenuLabel {
+    color: white !important;
+}
+
+.HidingEvent {
+    display: none !important;
+}
+
+.TotalDayPanel, .taskPanel, .BlurtaskPanel {
+    width: 100%;
+    height: 100%;
+}
+
+.winshow {
+    padding-left: 5%;
+}
+
+.OneDayPanel {
+    float: left;
+    display: inline;
+    width: 14.2857%;
+    height: 19.3%;
+}
+
+.SmallDayPanel {
+    height: 16.3%;
+}
+
+.innerDiv {
+    position: relative;
+    float: left;
+    width: 14.2857%;
+}
+
+.taskPanel, .BlurtaskPanel {
+    border-top: solid thin #ccddee;
+    border-left: solid thin #ccddee;
+}
+
+.taskPanel {
+    color: #15428B;
+}
+/*class*/
+#more {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.BlurtaskPanel {
+    color: #c0c0c0;
+}
+
+.padd {
+    padding-right: 110px;
+}
+/*class*/
+.Days {
+    height: 100%;
+    font-size: 11px;
+    color: #15428B;
+    padding-top: 3px;
+}
+
+.eventPanel {
+    cursor: pointer;
+    color: White;
+    padding-left: 3px;
+    line-height: 15px;
+    margin: 1px 2px 0 2px;
+    text-overflow: ellipsis;
+    height: 15px;
+}
+
+.taskPanel1 {
+    background-color: #E8EEF7;
+    text-align: right;
+    /*padding-bottom: 2px;*/
+    padding-right: 2px;
+}
+
+.BlurtaskPanel > Div:first-child * {
+    background-color: #E8EEF7;
+    text-align: right;
+    padding-bottom: 2px;
+    padding-right: 2px;
+}
+
+.remainingevents .x-panel-bwrap {
+    display: none;
+}
+
+.innerPanel {
+    color: #fff;
+    position: absolute;
+    overflow: hidden;
+}
+
+.eventPanelDay {
+    z-index: 1000;
+    font-size: 10px;
+    position: absolute !important;
+    overflow: hidden;
+    border: 1px solid;
+    color: #ffffff;
+}
+
+.moreDiv {
+    font-size: 6px;
+    width: 100%;
+    cursor: pointer;
+    text-align: right;
+}
+
+.textDiv {
+    padding: 1px;
+}
+
+.scrollable {
+    /*height:70%;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+}
+
+.class2 {
+    height: 30px;
+    width: 55%;
+    margin: 0;
+    /*position:absolute;*/
+}
+
+.class4 {
+    left: 5%;
+    top: 2px;
+    position: absolute;
+}
+
+.dayhourPanel {
+    float: left;
+    z-index: 1000;
+    position: absolute;
+}
+
+.moreright {
+    background-image: url(../images/icon_moreright.gif);
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    padding-right: 2px;
+}
+
+.moreleft {
+    background-image: url(../images/icon_moreleft.gif);
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    padding-left: 8px;
+}
+
+.oneDayPanelBase-body {
+    width: 100% !important;
+}
+
+.oneDayPanelBase-body-noheader {
+    width: 100% !important;
+}
+.fontstyle *{
+    font-size: 12px;
+}
+
+.caltb, .fontstyle *, .add  {
+ 	color: #15428B;
+}
+
+/*Project module class*/
+
+.newcal {
+    background-position: 0 -1681px !important;
+}
+
+.saveicon {
+    background-position: 0 -1107px !important;
+}
+
+.refresh {
+    background-position: 0 -1011px !important;
+}
+.newCalEvent {
+    background-position: 0 -1705px !important;
+}
+.add {
+    background: url(../images/tabicons_02.gif) no-repeat !important;
+}
+
+.printicon {
+    background-position: 0 -1083px !important;
+}
+
+.calday {
+    background-position: 0 -794px !important;
+}
+
+.calweek {
+	background-position: 0 -1250px !important;
+}
+
+.calworkwk {
+    background-position: 0 -2092px !important;
+}
+
+.calmonth {
+    background-position:0 -2186px !important;
+}
+
+.propicon {
+    background-position: 0 -673px !important;
+}
+
+.previcon {
+    background-position: 0 -1539px !important;
+}
+
+.editicon {
+    background-position: 0 -1730px !important;
+}
+
+.editiconwt {
+    background-position: 0 -1730px !important;
+}
+
+.nexticon {
+    background-position: 0 -1515px !important;
+}
+
+.headerDays {
+    background-color: #BDD3EF;
+}
+
+.fixedhourPanel {
+    width: 42px !important;
+    display: block;
+}
+
+.daycompCell {
+    z-index: -1000;
+    border-color: #e8eef7;
+    border-style: solid;
+    border-width: 1px;
+    height: 30px;
+    width: 100%;
+}
+
+.ctext {
+    text-align:center;
+    vertical-align:middle;
+}

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="remoteAPIdao" class="com.krawler.spring.crm.common.RemoteAPIDAOImpl" parent="baseDAO">
+        <property name="companyDetailsDAO" ref="companyDetailsdao" />
+        <property name="kwlCommonTablesDAO" ref="kwlCommonTablesdao" />
+        <property name="permissionHandlerDAO" ref="permissionHandlerdao" />
+        <property name="crmManagerDAO" ref="crmManagerdao" />
+        <property name="crmCommonDAO" ref="crmCommondao" />
+        <property name="mailIntDAO" ref="mailIntegrationcontroller" />
+    </bean>
+    <bean id="crmRemoteAPIcontroller" class="com.krawler.spring.crm.common.remoteAPIController">
+        <property name="remoteAPIDAO" ref="remoteAPIdao" />
+      <property name="sessionHandlerImpl">
+           <ref bean="sessionHandlerdao"/>
+      </property>
+      <property name="routingDataSource" ref="dataSource"/>
+      <property name="companyDetailsDAO">
+            <ref bean="companyDetailsdao"/>
+      </property>
+      <property name="crmManagerDAO">
+           <ref bean="crmManagerdao"/>
+      </property>
+      <property name="kwlCommonTablesDAO">
+           <ref bean="kwlCommonTablesdao"/>
+      </property>
+      <property name="permissionHandlerDAO">
+           <ref bean="permissionHandlerdao"/>
+      </property>
+      <property name="profileHandlerDAO">
+           <ref bean="profileHandlerdao"/>
+      </property>
+      <property name="successView">
+           <value>jsonView</value>
+      </property>
+      <property name="txnManager">
+           <ref bean="txManager"/>
+      </property>
+      <property name="crmCommonDAO">
+           <ref bean="crmCommondao"/>
+      </property>
+      <property name="crmLeadDAO">
+           <ref bean="crmLeaddao"/>
+      </property>
+      <property name="crmAccountDAO">
+           <ref bean="crmAccountdao"/>
+      </property>
+      <property name="crmContactDAO">
+           <ref bean="crmContactdao"/>
+      </property>
+      <property name="crmEmailMarketingDAO">
+           <ref bean="crmEmailMarketingdao"/>
+      </property>
+      <property name="crmTargetDAO">
+           <ref bean="crmTargetdao"/>
+      </property>
+      <property name="mailIntDAO">
+            <ref bean="mailIntegrationcontroller"/>
+      </property>
+      <property name="hrmsIntDAO">
+            <ref bean="hrmsIntdao"/>
+      </property>
+      <property name="crmProductDAO">
+            <ref bean="crmProductdao"/>
+      </property>
+      <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="goalManagementService">
+            <ref bean="goalManagementService"/>
+        </property>
+        <property name="contactManagementService">
+            <ref bean="contactManagementService"/>
+        </property>
+    	<property name="apiCallHandlerService">
+    		<ref bean="apiCallHandlerService"/>
+    	</property>    	
+        <property name="sequencerService">
+        	<ref bean="sequencerService"/>
+        </property>
+    </bean>
+    
+    <bean id="remoteApiJsoncontroller" class="com.krawler.spring.crm.common.remoteApiJsonController">
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="permissionHandlerDAO">
+            <ref bean="permissionHandlerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="crmOpportunityDAO">
+            <ref bean="crmOpportunitydao"/>
+        </property>
+        <property name="profileHandlerDAO">
+            <ref bean="profileHandlerdao"/>
+        </property>
+        <property name="crmLeadDAO">
+            <ref bean="crmLeaddao"/>
+        </property>
+        <property name="crmAccountDAO">
+            <ref bean="crmAccountdao"/>
+        </property>
+        <property name="crmContactDAO">
+            <ref bean="crmContactdao"/>
+        </property>
+        <property name="crmCampaignDAO">
+            <ref bean="crmCampaigndao"/>
+        </property>
+        <property name="crmCaseDAO">
+            <ref bean="crmCasedao"/>
+        </property>
+      <!--property name="crmEmailMarketingDAO">
+           <ref bean="crmEmailMarketingdao"/>
+      </property-->
+      <!--property name="crmTargetDAO">
+           <ref bean="crmTargetdao"/>
+      </property-->
+        <property name="crmProductDAO">
+            <ref bean="crmProductdao"/>
+        </property>
+    </bean>
+
+</beans>

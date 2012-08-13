@@ -1,0 +1,116 @@
+.spreadsheetcls .x-grid3-cell-active{
+    border:1px solid #5E9DB9 !important;
+	line-height:10px !important;
+    color:black !important;
+}
+
+.x-grid3-cell-selected {
+	opacity:.7;
+}
+
+.spreadsheetcls .x-grid3-col {
+    border-color:#FFFFFF #FFFFFF #EDEDED #EDEDED;
+    border-style:solid;
+    border-width:1px;
+}
+.spreadsheetcls .x-grid3-row-height td{
+    line-height:12px;
+}
+.spreadsheetcls .x-grid3-row td, .spreadsheetcls .x-grid3-summary-row td{
+    padding-left:0px ;
+    padding-right:0px ;
+    line-height:12px;
+}
+.spreadsheetcls .x-grid3-row  {
+	border-width:0px;
+}
+
+.ssBold  {font-weight:bold !important;}
+.ssStrikeThrough  {text-decoration:line-through;}
+.ssAlignright {text-align:right;}
+.ssAlignleft  {text-align:left;}
+.ssAligncenter  {text-align:center;}
+.ssTextColor-000000 {color:#000000;}
+.ssTextColor-993300 {color:#993300;}
+.ssTextColor-333300 {color:#333300;}
+.ssTextColor-003300 {color:#003300;}
+.ssTextColor-003366 {color:#003366;}
+.ssTextColor-000080 {color:#000080;}
+.ssTextColor-333399 {color:#333399;}
+.ssTextColor-333333 {color:#333333;}
+.ssTextColor-800000 {color:#800000;}
+.ssTextColor-FF6600 {color:#FF6600;}
+.ssTextColor-808000 {color:#808000;}
+.ssTextColor-008000 {color:#008000;}
+.ssTextColor-008080 {color:#008080;}
+.ssTextColor-0000FF {color:#0000FF;}
+.ssTextColor-666699 {color:#666699;}
+.ssTextColor-808080 {color:#808080;}
+.ssTextColor-FF0000 {color:#FF0000;}
+.ssTextColor-FF9900 {color:#FF9900;}
+.ssTextColor-99CC00 {color:#99CC00;}
+.ssTextColor-339966 {color:#339966;}
+.ssTextColor-33CCCC {color:#33CCCC;}
+.ssTextColor-3366FF {color:#3366FF;}
+.ssTextColor-800080 {color:#800080;}
+.ssTextColor-969696 {color:#969696;}
+.ssTextColor-FF00FF {color:#FF00FF;}
+.ssTextColor-FFCC00 {color:#FFCC00;}
+.ssTextColor-FFFF00 {color:#FFFF00;}
+.ssTextColor-00FF00 {color:#00FF00;}
+.ssTextColor-00FFFF {color:#00FFFF;}
+.ssTextColor-00CCFF {color:#00CCFF;}
+.ssTextColor-993366 {color:#993366;}
+.ssTextColor-C0C0C0 {color:#C0C0C0;}
+.ssTextColor-FF99CC {color:#FF99CC;}
+.ssTextColor-FFCC99 {color:#FFCC99;}
+.ssTextColor-FFFF99 {color:#FFFF99;}
+.ssTextColor-CCFFCC {color:#CCFFCC;}
+.ssTextColor-CCFFFF {color:#CCFFFF;}
+.ssTextColor-99CCFF {color:#99CCFF;}
+.ssTextColor-CC99FF {color:#CC99FF;}
+.ssTextColor-FFFFFF {color:#FFFFFF;}
+
+.ssBGColor-000000 {background-color:#000000 !important;}
+.ssBGColor-993300 {background-color:#993300 !important;}
+.ssBGColor-333300 {background-color:#333300 !important;}
+.ssBGColor-003300 {background-color:#003300 !important;}
+.ssBGColor-003366 {background-color:#003366 !important;}
+.ssBGColor-000080 {background-color:#000080 !important;}
+.ssBGColor-333399 {background-color:#333399 !important;}
+.ssBGColor-333333 {background-color:#333333 !important;}
+.ssBGColor-800000 {background-color:#800000 !important;}
+.ssBGColor-FF6600 {background-color:#FF6600 !important;}
+.ssBGColor-808000 {background-color:#808000 !important;}
+.ssBGColor-008000 {background-color:#008000 !important;}
+.ssBGColor-008080 {background-color:#008080 !important;}
+.ssBGColor-0000FF {background-color:#0000FF !important;}
+.ssBGColor-666699 {background-color:#666699 !important;}
+.ssBGColor-808080 {background-color:#808080 !important;}
+.ssBGColor-FF0000 {background-color:#FF0000 !important;}
+.ssBGColor-FF9900 {background-color:#FF9900 !important;}
+.ssBGColor-99CC00 {background-color:#99CC00 !important;}
+.ssBGColor-339966 {background-color:#339966 !important;}
+.ssBGColor-33CCCC {background-color:#33CCCC !important;}
+.ssBGColor-3366FF {background-color:#3366FF !important;}
+.ssBGColor-800080 {background-color:#800080 !important;}
+.ssBGColor-969696 {background-color:#969696 !important;}
+.ssBGColor-FF00FF {background-color:#FF00FF !important;}
+.ssBGColor-FFCC00 {background-color:#FFCC00 !important;}
+.ssBGColor-FFFF00 {background-color:#FFFF00 !important;}
+.ssBGColor-00FF00 {background-color:#00FF00 !important;}
+.ssBGColor-00FFFF {background-color:#00FFFF !important;}
+.ssBGColor-00CCFF {background-color:#00CCFF !important;}
+.ssBGColor-993366 {background-color:#993366 !important;}
+.ssBGColor-C0C0C0 {background-color:#C0C0C0 !important;}
+.ssBGColor-FF99CC {background-color:#FF99CC !important;}
+.ssBGColor-FFCC99 {background-color:#FFCC99 !important;}
+.ssBGColor-FFFF99 {background-color:#FFFF99 !important;}
+.ssBGColor-CCFFCC {background-color:#CCFFCC !important;}
+.ssBGColor-CCFFFF {background-color:#CCFFFF !important;}
+.ssBGColor-99CCFF {background-color:#99CCFF !important;}
+.ssBGColor-CC99FF {background-color:#CC99FF !important;}
+.ssBGColor-FFFFFF {background-color:#FFFFFF !important;}
+
+
+

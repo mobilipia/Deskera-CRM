@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.prereqgroup" table="mb__prereqgroup">
+    <id name="groupid" type="string">
+        </id>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_reportlist" column="moduleid" name="moduleid"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_rolemaster" column="roleid" name="roleid"/>
+    <property name="filterflag" type="java.lang.Integer"/>
+    <property name="seq" type="java.lang.Integer"/>
+  </class>
+</hibernate-mapping>

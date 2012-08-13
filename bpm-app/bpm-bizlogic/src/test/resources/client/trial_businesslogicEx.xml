@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE businessrules PUBLIC "-//KRAWLER//DTD BUSINESSRULES//EN" "http://192.168.0.4/dtds/businesslogicEx.dtd">
+
+<businessrules>
+    <process id="table" init="na">
+        <vars>
+            <in-var name="a" module="int" />
+            <in-var name="b" module="int" />
+            <local-var name="x" module="int" />
+            <local-var name="y" module="int" />
+            <local-var name="z" module="int" />
+            <local-var name="temp" module="int" />
+        </vars>
+        <out-var name="c" module="int" />
+        <node-list>
+            <node id="na" invoke="geta" next="n1" fork="nb" >
+                <output>x</output>
+            </node>
+            <node id="nb" invoke="getb" next="n1" fork="nc" >
+                <output>y</output>
+            </node>
+            <node id="nc" invoke="getc" next="n1" >
+                <output>z</output>
+            </node>
+            <node id="n1" invoke="add" next="n2">
+                <inputs>
+                    <var name="a">a</var>
+                    <var name="b">b</var>
+                </inputs>
+                <output>temp</output>
+            </node>
+            <node id="n2" invoke="add" next="n3">
+                <inputs>
+                    <var name="a">a</var>
+                    <var name="b">temp</var>
+                </inputs>
+                <output>temp</output>
+            </node>
+            <node id="n3" invoke="add" next="n4" >
+                <inputs>
+                    <var name="a">a</var>
+                    <var name="b">temp</var>
+                </inputs>
+                <output>temp</output>
+            </node>
+            <node id="n4" invoke="eo" next="n5" >
+                <inputs>
+                    <var name="x">a</var>
+                    <var name="y">temp</var>
+                </inputs>
+            </node>
+            <node id="n5" invoke="add" next="n6" >
+                <inputs>
+                    <var name="a">a</var>
+                    <var name="b">temp</var>
+                </inputs>
+                <output>temp</output>
+            </node>
+            <node id="n6" invoke="add" next="n7" >
+                <inputs>
+                    <var name="a">a</var>
+                    <var name="b">temp</var>
+                </inputs>
+                <output>temp</output>
+            </node>
+            <node id="n7" invoke="add" next="n8" >
+                <inputs>
+                    <var name="a">x</var>
+                    <var name="b">temp</var>
+                </inputs>
+                <output>temp</output>
+            </node>
+            <node id="n8" invoke="add" next="n9">
+                <inputs>
+                    <var name="a">x</var>
+                    <var name="b">temp</var>
+                </inputs>
+                <output>temp</output>
+            </node>
+            <node id="n9" invoke="add" next="n10">
+                <inputs>
+                    <var name="a">x</var>
+                    <var name="b">temp</var>
+                </inputs>
+                <output>temp</output>
+            </node>
+            <node id="n10" invoke="cprint">
+                <inputs>
+                    <var name="x">x</var>
+                    <var name="y">temp</var>
+                </inputs>
+            </node>
+       </node-list>
+    </process>
+
+    <process id="eo" init="na">
+        <vars>
+            <in-var name="x" module="int" />
+            <in-var name="y" module="int" />
+            <local-var name="p" module="int" />
+            <local-var name="q" module="int" />
+        </vars>
+        <node-list>
+            <node id="na" invoke="geta" next="nc" fork="nb" >
+                <output>p</output>
+            </node>
+            <node id="nb" invoke="getb" next="nc" >
+                <output>q</output>
+            </node>
+            <node id="nc" invoke="disp" fork="nd" >
+                <inputs>
+                    <var name="d">y</var>
+                </inputs>
+            </node>
+            <node id="nd" invoke="sw">
+                <inputs>
+                    <var name="x">x</var>
+                    <var name="y">y</var>
+                </inputs>
+            </node>
+       </node-list>
+    </process>
+
+    <switch id="sw" otherwise="disp" >
+        <vars>
+            <in-var name="x" module="int" />
+            <in-var name="y" module="int" />
+        </vars>
+        <inputs>
+            <var name="d">x</var>
+        </inputs>
+        <expr>y</expr>
+        <case label="1" then="disp">
+            <inputs>
+                <var name="d">y</var>
+            </inputs>
+        </case>
+        <case label="2" then="add">
+            <inputs>
+                <var name="a">x</var>
+                <var name="b">y</var>
+            </inputs>
+        </case>
+        <case label="3" then="sub">
+            <inputs>
+                <var name="a">x</var>
+                <var name="b">y</var>
+            </inputs>
+        </case>
+        <case label="4" then="div">
+            <inputs>
+                <var name="a">x</var>
+                <var name="b">y</var>
+            </inputs>
+        </case>
+        <case label="5" then="mul">
+            <inputs>
+                <var name="a">x</var>
+                <var name="b">y</var>
+            </inputs>
+        </case>
+    </switch>
+
+    <elseif-ledder id="cprint" else="mul">
+        <vars>
+            <in-var name="x" module="int" />
+            <in-var name="y" module="int" />
+        </vars>
+        <inputs>
+            <var name="a">y</var>
+            <var name="b">x</var>
+        </inputs>
+        <if then="disp">
+            <when><![CDATA[x<5&&x==y]]></when>
+            <inputs>
+                <var name="d">y</var>
+            </inputs>
+        </if>
+    </elseif-ledder>
+
+    <process id="scheduler" init="a1">
+        <vars>
+            <local-var name="mans" module="person" multi="list" >
+                [{
+                    name:"M1",timeZone:"GMT-8:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                },{
+                    name:"M2",timeZone:"GMT-4:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                },{
+                    name:"M3",timeZone:"GMT-0:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                },{
+                    name:"M4",timeZone:"GMT+4:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                },{
+                    name:"M5",timeZone:"GMT+8:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                }]
+            </local-var>
+            <local-var name="cals" module="person" multi="list" >
+                [{
+                    name:"C1",timeZone:"GMT-8:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                },{
+                    name:"C2",timeZone:"GMT-4:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                },{
+                    name:"C3",timeZone:"GMT-0:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                },{
+                    name:"C4",timeZone:"GMT+4:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                },{
+                    name:"C5",timeZone:"GMT+8:00",startTime:"10:00 AM",endTime:"8:00 PM"
+                }]                
+            </local-var>
+            <local-var name="man" module="person" />
+            <local-var name="sList" module="schedule" multi="list" >[]</local-var>
+        </vars>
+        <node-list>
+            <node id="a1" invoke="schPersons" next="a4">
+                <inputs>
+                    <var name="sList">sList</var>
+                    <var name="manager">man</var>
+                    <var name="caller">cal</var>
+                </inputs>
+                <repeat current="man">mans</repeat>
+                <repeat current="cal">cals</repeat>
+            </node>
+            <node id="a4" invoke="printSchedules" >
+                <inputs>
+                    <var name="sList">sList</var>
+                </inputs>
+            </node>
+        </node-list>
+    </process>
+
+    <process id="schPersons" init="a1">
+        <vars>
+            <in-var name="manager" module="person" />
+            <in-var name="caller" module="person" />
+            <in-var name="sList" module="schedule" multi="list" />
+            <local-var name="ml" module="date" multi="list" >[]</local-var>
+            <local-var name="cl" module="date" multi="list" >[]</local-var>
+            <local-var name="ft" module="date" multi="list" >[]</local-var>
+            <local-var name="mtemp" module="object" multi="list">[]</local-var>
+            <local-var name="ctemp" module="object" multi="list">[]</local-var>
+        </vars>
+        <node-list>
+            <node id="a1" invoke="findFreeTime" next="a2">
+                <inputs>
+                    <var name="l">ml</var>
+                    <var name="p">manager</var>
+                    <var name="sch">sch</var>
+                </inputs>
+                <prestatements>
+                    mtemp[0]=manager.start;
+                    mtemp[1]=manager.end;
+                    ml[0]=mtemp;
+                </prestatements>
+                <poststatements>
+                    mtemp[0]=manager.start;
+                    mtemp[1]=manager.end;
+                    ml[0]=mtemp;
+                </poststatements>
+            </node>
+            <node id="a2" invoke="findFreeTime" next="a3">
+                <inputs>
+                    <var name="l">cl</var>
+                    <var name="p">caller</var>
+                    <var name="sch">sch</var>
+                </inputs>
+                <prestatements>
+                    ctemp[0]=caller.start;
+                    ctemp[1]=caller.end;
+                    cl[0]=ctemp;
+                </prestatements>
+                
+            </node>
+            <node id="a3" invoke="interjection" next="n1">
+                <inputs>
+                    <var name="md">md</var>
+                    <var name="cd">cd</var>
+                    <var name="target">ft</var>
+                    <var name="dur">1</var>
+                </inputs>
+                
+            </node>
+            <node id="n1" invoke="createNewSchedule">
+                <inputs>
+                    <var name="sList">sList</var>
+                    <var name="manager">manager</var>
+                    <var name="caller">caller</var>
+                    <var name="from">ft[0]</var>
+                    <var name="to">ft[1]</var>
+                </inputs>
+                
+            </node>
+        </node-list>
+    </process>
+
+    <process id="findFreeTime" init="a1">
+        <vars>
+            <in-var name="p" module="person" />
+            <in-var name="sch" module="schedule"/>
+            <in-var name="l" module="date" multi="list" />
+        </vars>
+        <node-list>
+            <node id="a1" invoke="CTList">
+                <inputs>
+                    <var name="ll">ll</var>
+                    <var name="l">l</var>
+                    <var name="sch">sch</var>
+                    <var name="p">p</var>
+                </inputs>
+                <condition>p==sch.manager||p==sch.caller</condition>
+                <repeat><on>l</on><index>i</index></repeat>
+            </node>
+        </node-list>
+    </process>
+
+    <process id="CTList" init="a1">
+        <vars>
+            <in-var name="p" module="person" />
+            <in-var name="sch" module="schedule" />
+            <in-var name="ll" module="date" multi="list" />
+            <in-var name="l" module="date" multi="list" />
+            <local-var name="s" module="date" />
+            <local-var name="e" module="date" />
+        </vars>
+        <node-list>
+            <!--node id="a1" invoke="" next="">
+                <condition operator="AND">
+                    <operand side="left">
+                        <condition operator="ge">
+                            <operand side="left">kwl:getVariableData("sch/start")</operand>
+                            <operand side="right">kwl:getVariableData("ll/0")</operand>
+                        </condition>
+                    </operand>
+                    <operand side="right">
+                        <condition operator="le">
+                            <operand side="left">kwl:getVariableData("sch/end")</operand>
+                            <operand side="right">kwl:getVariableData("ll/1")</operand>
+                        </condition>
+                    </operand>
+                </condition>
+            </node-->
+            <node id="a1" invoke="printPerson">
+                <inputs>
+                    <var name="person">p</var>
+                </inputs>
+            </node>
+        </node-list>
+    </process>
+    
+    <process id="interjection" init="a1">
+        <vars>
+            <in-var name="target" module="date" multi="list" />
+            <in-var name="md" module="date" multi="list" />
+            <in-var name="cd" module="date" multi="list" />
+            <in-var name="dur" module="int" />
+            <local-var name="st" module="date" />
+            <local-var name="et" module="date" />
+            <local-var name="l" module="date" multi="list" >[]</local-var>
+        </vars>
+        <node-list>
+            <node id="a1" invoke="addTime" next="n1" fork="a2">
+                <inputs>
+                    <var name="date">md[0]</var>
+                    <var name="hours">0</var>
+                </inputs>
+                <output>st</output>
+                <condition><![CDATA[ md[0]>cd[0] ]]></condition>
+            </node>
+            <node id="a2" invoke="addTime" next="n1" fork="a3">
+                <inputs>
+                    <var name="date">cd[0]</var>
+                    <var name="hours">0</var>
+                </inputs>
+                <output>st</output>
+                <condition><![CDATA[ md[0]<cd[0] ]]></condition>
+            </node>
+            <node id="a3" invoke="addTime" next="n1" fork="a4">
+                <inputs>
+                    <var name="date">md[1]</var>
+                    <var name="hours">-1</var>
+                </inputs>
+                <output>et</output>
+                <condition><![CDATA[ md[1]>cd[1] ]]></condition>
+            </node>
+            <node id="a4" invoke="addTime" next="n1">
+                <inputs>
+                    <var name="date">cd[1]</var>
+                    <var name="hours">-1</var>
+                </inputs>
+                <output>et</output>
+                <condition><![CDATA[ md[1]<cd[1] ]]></condition>
+            </node>
+            <node id="n1" invoke="interjection1">
+                <inputs>
+                    <var name="start">st</var>
+                    <var name="t">target</var>
+                    <var name="dur">dur</var>
+                </inputs>
+                <condition><![CDATA[ st<=et ]]></condition>
+            </node>
+        </node-list>
+    </process>
+    <process id="interjection1" init="a1">
+        <vars>
+            <in-var name="start" module="date" />
+            <in-var name="dur" module="int" />
+            <in-var name="t" module="date" multi="list" />
+        </vars>
+        <node-list>
+            <node id="a1" invoke="addTime" next="a2">
+                <inputs>
+                    <var name="date">start</var>
+                    <var name="hours">0</var>
+                </inputs>
+                <output>t[0]</output>
+            </node>
+            <node id="a2" invoke="addTime">
+                <inputs>
+                    <var name="date">start</var>
+                    <var name="hours">1</var>
+                </inputs>
+                <output>t[1]</output>
+            </node>
+        </node-list>
+    </process>
+</businessrules>

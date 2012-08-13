@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.LeadConversionMappings" table="crm_leadconversionmappings">
+    <id name="id" type="java.lang.String">
+      <generator class="uuid"/>
+    </id>
+    <many-to-one class="com.krawler.common.admin.DefaultHeader" fetch="select" name="modulefield">
+      <column name="modulefieldid" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.common.admin.DefaultHeader" fetch="select" name="leadfield">
+      <column name="leadfieldid" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.common.admin.Company" fetch="select" name="company">
+      <column name="companyid" not-null="true"/>
+    </many-to-one>
+    <property name="defaultMapping" type="true_false">
+      <column default="&apos;T&apos;" name="isdefaultmapping" not-null="true"/>
+    </property>
+    <property name="moduleName" type="string">
+      <column name="modulename" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

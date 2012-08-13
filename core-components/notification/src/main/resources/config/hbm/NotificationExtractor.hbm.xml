@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.common.notification.dm.NotificationExtractor" table="notification_extractorbeans">
+    <id name="id" type="long">
+      <generator class="increment"/>
+    </id>
+    <property name="beanid" type="java.lang.String">
+      <column length="255" name="subject"/>
+    </property>
+    <property name="definition" type="long">
+        <column name="definition"/>
+    </property>
+    <many-to-one class="com.krawler.common.notification.dm.NotificationDefinition" insert="false" name="refdefinition" update="false">
+        <column name="definition"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,114 @@
+.northFormFormat{
+    padding:10px;
+    background:#F1F1F1;
+    margin:10px 10px 0px 10px;
+    border:1px solid #99BBE8;
+}
+
+.visibleDisabled .x-item-disabled
+{
+    opacity:1 !important;
+}
+
+.hidden-from-item {
+    margin : 0 !important;
+    height : 0 !important;
+}
+.tempbackgroundview{
+    background:#F1F1F1;
+}
+.bckgroundcolor{
+    background:#F1F1F1;
+    font-size:13px
+}
+.gridFormat{
+   padding:10px;
+}
+.invgrid .x-panel-body  {
+border-top:0px solid #99BBE8;
+}
+.visibleDisabled .x-item-disabled
+{
+    opacity:1 !important;
+}
+.dttriggerForTeamLead{
+     display:none !important;
+}
+.templineview{
+    width:100%;
+    border-width:2px 0 0 0;
+    line-height:1px;
+    font-size:0;
+    margin:0;
+    padding:0;
+}
+.currency-view{
+    font-family:arial,tahoma,helvetica,sans-serif;
+}
+.x-column-inner {
+    width: 100% !important;
+}
+.delete-gridrow{
+        background-position: 0 -387px !important;
+        width : 16px;
+        height : 16px;
+}
+.gridLine {
+    color: #15428B;
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    width: 91%;
+    border-bottom: 1px solid Black;
+    margin: 5px 0px 10px 0px;
+    height: 15px;
+
+    /*border-bottom:1px solid Black;
+    color:#15428B;
+    display:block;
+    font-size:11px;
+    font-weight:bold;
+    height:15px;
+    padding:0px 0px 0px 0px;
+    margin:5px 0 10px 0px;
+    width:91%;
+    text-align: left;*/
+}
+.headerRow{
+    width: 12% !important;
+    display: block;
+    float: left;
+    font-weight: bold;
+}
+.gridRow{
+    width: 12% !important;
+    display: block;
+    float: left;
+    /*font-weight: bold;*/
+}
+.expanderContainer{
+    margin-left: 5%;
+    width: 95%;
+}
+.gridNo{
+    width: 30px;
+    display: block;
+    float: left;
+    padding-right:5px;
+    text-align:right;
+}
+.gridHeader{
+    color: #15428B;
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    width: 50%;
+    border-bottom: 1px solid #D8DFFF;
+    margin: 5px 0px 10px 0px;
+    height: 15px;
+}
+.quotation{
+}
+.quotation .x-panel {
+    margin-bottom:0px;
+}

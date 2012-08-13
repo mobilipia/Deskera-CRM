@@ -1,0 +1,124 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.CrmCase" table="crm_case" >
+        <id name="caseid" type="string">
+            <column name="caseid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="crmContact" class="com.krawler.crm.database.tables.CrmContact" fetch="select">
+            <column name="contactnameid"       default="' '"/>
+        </many-to-one>
+        <many-to-one name="usersByUpdatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="updatedbyid"     default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmProduct" class="com.krawler.crm.database.tables.CrmProduct" fetch="select">
+            <column name="productnameid"       default="' '"/>
+        </many-to-one>
+        <many-to-one name="usersByCreatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="createdbyid"     default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmCombodataByCasetypeid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="casetypeid"       default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmCombodataByCasestatusid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="casestatusid"      default="' '" />
+        </many-to-one>
+        <many-to-one name="crmCombodataByCasepriorityid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="casepriorityid"      default="' '" />
+        </many-to-one>
+        <property name="casetypeID" type="string" insert="false" update="false">
+            <column name="casetypeid"   default="' '" ></column>
+        </property>
+        <property name="casestatusID" type="string" insert="false" update="false">
+            <column name="casestatusid"   default="' '" ></column>
+        </property>
+        <property name="casepriorityID" type="string" insert="false" update="false">
+            <column name="casepriorityid"   default="' '" ></column>
+        </property>
+        <many-to-one name="crmAccount" class="com.krawler.crm.database.tables.CrmAccount" fetch="select">
+            <column name="accountnameid"      default="' '" />
+        </many-to-one>
+         
+         <many-to-one name="assignedto" class="com.krawler.common.admin.User" fetch="select">
+            <column name="assignedto"     default="' '"/>
+        </many-to-one>        
+         <property name="companyid" type="string" insert="false" update="false">
+           <column name="companyid"  ></column>
+        </property>
+        <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+            <column name="companyid"     default="' '"/>
+        </many-to-one>
+        <many-to-one name="usersByUserid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="userid"     default="' '"/>
+        </many-to-one>
+        <property name="casename" type="string">
+            <column name="casename" length="80"      default="' '" />
+        </property>
+        <property name="subject" type="string">
+            <column name="subject"   default="' '" />
+        </property>
+        <property name="reportedbyid" type="string">
+            <column name="reportedbyid"       default="' '"/>
+        </property>
+        <property name="resolution" type="string">
+            <column name="resolution"       default="' '"/>
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="40"      default="' '" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="40"      default="' '" />
+        </property>
+        <property name="description" type="string">
+            <column name="description"   />
+        </property>
+        <property name="internalcomments" type="string">
+            <column name="internalcomments"  />
+        </property>
+        <property name="fileuploadid" type="string">
+            <column name="fileuploadid"      default="' '" />
+        </property>
+        <!--property name="updatedon" type="timestamp">
+            <column name="updatedon" length="19"     />
+        </property>
+        <property name="createdon" type="java.util.Date">
+            <column name="createdon" length="19"     />
+        </property-->
+        <property name="updatedOn" type="long">
+            <column name="updatedon" />
+        </property>
+        <property name="createdOn" type="long">
+            <column name="createdon" />
+        </property>
+        <property name="createdOnNE" type="long">
+            <column name="createdonNE" />
+        </property>
+        <property name="isarchive" type="true_false">
+            <column name="isarchive" default="false" not-null="true"/>
+        </property>
+        <property name="deleteflag" type="integer">
+            <column name="deleteflag"     default='0'/>
+        </property>
+        <property name="validflag" type="integer">
+            <column name="validflag"     default='0' />
+        </property>
+        <property name="cellstyle" type="string">
+            <column length="2000" name="cellstyle"/>
+        </property>
+        <set cascade="all,delete-orphan" inverse="true" name="crmProducts">
+            <key column="caseid"/>
+            <one-to-many class="com.krawler.crm.database.tables.CaseProducts"/>
+        </set>
+        <many-to-one column="crmcasecustomdataref" class="com.krawler.crm.database.tables.CrmCaseCustomData"  name="CrmCaseCustomDataobj" />
+      <property name="caseCreatedBy" type="string">
+            <column name="casecreatedby"   />
+        </property>
+
+ 		<property name="createdByFlag" type="integer">
+            <column name="createdbyflag"     default='0'/>
+        </property>
+    </class>
+</hibernate-mapping>

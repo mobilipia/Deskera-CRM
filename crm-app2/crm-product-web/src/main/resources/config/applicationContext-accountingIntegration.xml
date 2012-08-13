@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <!--CRM-Accounting Integration controller-->
+    <bean id="accIntdao" class="com.krawler.spring.crm.integration.accIntDAOImpl" parent="baseDAO" />
+    <bean id="accIntController" class="com.krawler.spring.crm.integration.accIntController">
+        <property name="accIntDAO">
+            <ref bean="accIntdao"/>
+        </property>
+        <property name="crmLeadDAO">
+            <ref bean="crmLeaddao"/>
+        </property>
+        <property name="crmAccountDAO">
+            <ref bean="crmAccountdao"/>
+        </property>
+        <property name="crmCommonDAO">
+           <ref bean="crmCommondao"/>
+        </property>
+        <property name="crmRemoteAPIController">
+            <ref bean="crmRemoteAPIcontroller"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+</beans>

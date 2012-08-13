@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/storeLead.do">crmLeadCommoncontroller</prop>
+                <prop key="/acceptweblead.do">crmLeadCommoncontroller</prop>
+                <prop key="/Lead/*.do">crmLeadCommonController</prop>            
+                <prop key="/GoogleContacts/*.do">crmGContactsController</prop>
+                <prop key="/ImportRecords/*.do">crmImportController</prop>
+                <prop key="/DetailPanel/*.do">detailPanelController</prop>
+                <prop key="/Archive/*.do">archiveHandlerController</prop>                
+                <prop key="/HRMSIntegration/*.do">hrmsIntController</prop>
+                <prop key="/PROJECTIntegration/*.do">projectIntController</prop>
+                <prop key="/ZohoImportRecords/*.do">zohoImportController</prop>
+                <prop key="/GlobalSearch/*.do">globalSearchController</prop>
+                <prop key="/sunrise/*.do">calibrationController</prop>
+                <prop key="/Document/*.do">crmDocumentController</prop>
+                <prop key="/crmCommonHandler/*.do">crmCommonHandlerController</prop>
+                <prop key="/fieldmanager/*.do">fieldmanagerController</prop>
+                <prop key="/notification/*.do">sendemailnotification</prop>
+                <prop key="/quotation/*.do">quotationController</prop>
+                <prop key="/tax/*.do">taxController</prop>
+                <prop key="/msgs/*.js">props2jsController</prop>
+                <prop key="/keys/*.js">props2jsController</prop>
+                <prop key="/wtf-lang-locale.js">localejsController</prop>
+                <!--prop key="/expressionManager/*.do">expressionManagerController</prop-->
+            </props>
+        </property>
+        <property name="interceptors">
+            <ref bean="interceptors" />            
+        </property>
+    </bean>
+</beans>

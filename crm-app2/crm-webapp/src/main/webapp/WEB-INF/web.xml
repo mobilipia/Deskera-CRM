@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:config/applicationContextList.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>
+		 org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+   <listener>
+      <listener-class>com.krawler.filter.ReuqestListenerForDB</listener-class>
+   </listener>
+	<!-- Calendar Settings -->
+	<servlet>
+		<servlet-name>bind</servlet-name>
+		<servlet-class>org.mortbay.cometd.continuation.ContinuationCometdServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>bind</servlet-name>
+		<url-pattern>/bind/*</url-pattern>
+	</servlet-mapping>
+
+<mime-mapping>
+    <extension>xlsx</extension>
+    <mime-type>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</mime-type>
+</mime-mapping>
+
+<mime-mapping>
+    <extension>docx</extension>
+    <mime-type>application/vnd.openxmlformats-officedocument.wordprocessingml.document</mime-type>
+</mime-mapping>
+
+<mime-mapping>
+    <extension>csv</extension>
+    <mime-type>text/csv</mime-type>
+</mime-mapping>
+
+	<servlet>
+		<servlet-name>core</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/core-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>core</servlet-name>
+		<url-pattern>/core/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>cron</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/cron-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>cron</servlet-name>
+		<url-pattern>/cron/*</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>calendar</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/calendar-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>calendar</servlet-name>
+		<url-pattern>/calendar/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>calendarexport</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/crmCalendarExport-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>calendarexport</servlet-name>
+		<url-pattern>/exportICS.ics</url-pattern>
+	</servlet-mapping>
+
+	<!-- CRM Settings -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/dispatcher-servlet.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>threadContextInheritable</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/Common/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Common Controllers -->
+	<servlet>
+		<servlet-name>common</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/common-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>common</servlet-name>
+		<url-pattern>/crm/common/*</url-pattern>
+	</servlet-mapping>
+   
+    <servlet>
+		<servlet-name>crmreportbuilder</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/crmReportBuilderAPI-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>crmreportbuilder</servlet-name>
+		<url-pattern>/crm/CustomReport/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>modulebuilder</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/modulebuilder-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>modulebuilder</servlet-name>
+		<url-pattern>/mb/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Accounting Integration Controllers -->
+	<servlet>
+		<servlet-name>accountingintegration</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/accountingIntegration-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>accountingintegration</servlet-name>
+		<url-pattern>/crm/Integration/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Dashboard widget -->
+	<servlet>
+		<servlet-name>widget</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/widget-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- 
+		<servlet>
+			<servlet-name>comet</servlet-name>
+			<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+			<init-param>
+				<param-name>contextConfigLocation</param-name>
+				<param-value>classpath:config/comet-servlet.xml</param-value>
+			</init-param>
+			<load-on-startup>1</load-on-startup>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>comet</servlet-name>
+			<url-pattern>/Comet/*</url-pattern>
+		</servlet-mapping>
+		 -->
+	<servlet-mapping>
+		<servlet-name>widget</servlet-name>
+		<url-pattern>/Dashboard/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>deskeracommon</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/deskeracommon-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deskeracommon</servlet-name>
+		<url-pattern>/deskeracommon/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- CRM Tree -->
+	<servlet>
+		<servlet-name>crmtree</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/crmtree-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>crmtree</servlet-name>
+		<url-pattern>/crm/crmTree/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>crmdashboard</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/crmdashboard-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>crmdashboard</servlet-name>
+		<url-pattern>/crm/Dashboard/*</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Product -->
+	<servlet>
+		<servlet-name>product</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/product-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>product</servlet-name>
+		<url-pattern>/crm/Product/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Lead -->
+	<servlet>
+		<servlet-name>lead</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/lead-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lead</servlet-name>
+		<url-pattern>/crm/Lead/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Account -->
+	<servlet>
+		<servlet-name>account</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/account-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>account</servlet-name>
+		<url-pattern>/crm/Account/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Contact -->
+	<servlet>
+		<servlet-name>contact</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/contact-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>contact</servlet-name>
+		<url-pattern>/crm/Contact/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Opportunity -->
+	<servlet>
+		<servlet-name>opportunity</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/opportunity-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>opportunity</servlet-name>
+		<url-pattern>/crm/Opportunity/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Case -->
+	<servlet>
+		<servlet-name>case</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/case-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>case</servlet-name>
+		<url-pattern>/crm/Case/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Campaign -->
+	<servlet>
+		<servlet-name>campaign</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/campaign-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>campaign</servlet-name>
+		<url-pattern>/crm/Campaign/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Email Marketing -->
+	<servlet>
+		<servlet-name>emailmarketing</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/emailMarketing-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>emailmarketing</servlet-name>
+		<url-pattern>/crm/emailMarketing/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Target -->
+	<servlet>
+		<servlet-name>target</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/target-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>target</servlet-name>
+		<url-pattern>/crm/Target/*</url-pattern>
+	</servlet-mapping>
+		
+	<!-- Notification -->
+	<servlet>
+		<servlet-name>notification</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/notification-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>notification</servlet-name>
+		<url-pattern>/crm/notification/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- Activity -->
+	<servlet>
+		<servlet-name>activity</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/activity-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>activity</servlet-name>
+		<url-pattern>/crm/Activity/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- IPhone -->
+	<servlet>
+		<servlet-name>iphone</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/iphone-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>iphone</servlet-name>
+		<url-pattern>/deskeraCRMMOB_V1.jsp</url-pattern>
+	</servlet-mapping>
+	<!-- Remote API -->
+	<servlet>
+		<servlet-name>remoteAPI</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/crmRemoteAPI-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>remoteAPI</servlet-name>
+		<url-pattern>/remoteapi.jsp</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>remoteAPIJson</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/crmRemoteAPI-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>remoteAPIJson</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+    
+	<!-- Email Sender -->
+	<servlet>
+		<servlet-name>emailViewer</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/emailViewer-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>emailViewer</servlet-name>
+		<url-pattern>/newsletter.jsp</url-pattern>
+	</servlet-mapping>
+
+	<!--<context-param>
+			<param-name>serverName</param-name>
+			<param-value>http://crm.asm.com:8084</param-value>
+		</context-param>
+		<context-param>
+			<param-name>casServerUrlPrefix</param-name>
+			<param-value>https://localhost:8443/auth/</param-value>
+		</context-param>
+		<context-param>
+			<param-name>casServerLoginUrl</param-name>
+			<param-value>https://localhost:8443/auth/login</param-value>
+		</context-param>
+		<context-param>
+			<param-name>casServerLogoutUrl</param-name>
+			<param-value>https://localhost:8443/auth/logout</param-value>
+		</context-param>
+		<context-param>
+			<param-name>companyRedirectionPattern</param-name>
+			<param-value>/a/([^\/]*)/(.*)</param-value>
+		</context-param>
+		<filter>
+			   <filter-name>CAS Single Sign Out Filter</filter-name>
+			   <filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+		</filter>
+		 <filter>
+			<filter-name>CAS Authentication Filter</filter-name>
+			<filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
+			<init-param>
+				<param-name>renew</param-name>
+				<param-value>false</param-value>
+			</init-param>
+			<init-param>
+				<param-name>gateway</param-name>
+				<param-value>false</param-value>
+			</init-param>
+		</filter>
+		<filter>
+			<filter-name>CAS Validation Filter</filter-name>
+			<filter-class>org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter</filter-class>
+			<init-param>
+				<param-name>redirectAfterValidation</param-name>
+				<param-value>true</param-value>
+			</init-param>
+		</filter>
+		<filter>
+			<filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+			<filter-class>org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>
+		</filter>
+		<filter>
+			<filter-name>CAS Assertion Thread Local Filter</filter-name>
+			<filter-class>org.jasig.cas.client.util.AssertionThreadLocalFilter</filter-class>
+		</filter>
+		<filter-mapping>
+			   <filter-name>CAS Single Sign Out Filter</filter-name>
+			   <url-pattern>/a/*</url-pattern>
+		</filter-mapping>
+		<filter-mapping>
+			<filter-name>CAS Authentication Filter</filter-name>
+			<url-pattern>/a/*</url-pattern>
+		</filter-mapping>
+		<filter-mapping>
+			<filter-name>CAS Validation Filter</filter-name>
+			<url-pattern>/a/*</url-pattern>
+		</filter-mapping>
+		<filter-mapping>
+			<filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+			<url-pattern>/a/*</url-pattern>
+		</filter-mapping>
+		<filter-mapping>
+			<filter-name>CAS Assertion Thread Local Filter</filter-name>
+			<url-pattern>/a/*</url-pattern>
+		</filter-mapping>
+		<listener>
+			<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+		</listener>-->
+	<!-- 
+		<context-param>
+			<param-name>platformURL</param-name>
+			<param-value>http://192.168.0.66:8084/deskeraplatform/</param-value>
+		</context-param>
+		<context-param>
+			<param-name>projectManagementUrl</param-name>
+			<param-value>http://192.168.0.4:8084/KrawlerESP/</param-value>
+		</context-param>
+		<context-param>
+			<param-name>hrmsURL</param-name>
+			<param-value>http://192.168.0.4:8084/HrmsSpring/</param-value>
+		</context-param>
+		<context-param>
+			<param-name>accURL</param-name>
+			<param-value>http://192.168.0.4:8084/Accounting/</param-value>
+		</context-param>
+			<context-param>
+			<param-name>crmURL</param-name>
+			<param-value>http://192.168.0.102:8084/HQLCrm/</param-value>
+		</context-param>
+		 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<filter>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+		<init-param>
+			<param-name>logLevel</param-name>
+			<param-value>DEBUG</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/a/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/b/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>ProfileImages</servlet-name>
+		<servlet-class>com.krawler.esp.servlets.ProfileImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProfileImages</servlet-name>
+		<url-pattern>/images/store/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>video</servlet-name>
+		<servlet-class>com.krawler.esp.servlets.StreamVideo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>video</servlet-name>
+		<url-pattern>/video.jsp</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

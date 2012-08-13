@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="nutch-conf.xsl"?>
+
+
+<krawler-conf>
+
+<property>
+  <name>forum_base_url</name>
+  <value>http://192.168.0.221/deskerasupport/</value>
+</property>
+<property>
+  <name>soap_server_url</name>
+        <value>http://192.168.0.111/krawlercrm51/</value>
+</property>
+<property>
+  <name>mysql_user</name>
+  <value>root</value>
+</property>
+<property>
+  <name>mysql_passwd</name>
+  <value>krawler</value>
+</property>
+<property>
+  <name>dbname</name>
+  <value>demostagingcrm</value>
+</property>
+<property>
+  <name>dbserverip</name>
+  <value>192.168.0.101</value>
+</property>
+<property>
+  <name>base_urlformat</name>
+        <value>http://192.168.0.101:8084/HQLCrm/a/%s/</value>
+    </property>
+    <property>
+      <name>base_urlformat_unprotected</name>
+      <value>http://192.168.0.101:8084/HQLCrm/b/%s/</value>
+    </property>
+     <property>
+          <name>do_not_disable_deskera_tour</name>
+        <value>demo</value>
+    </property>
+    <property>
+      <name>top_activity_days</name>
+      <value>2</value>
+    </property>
+    <property>
+        <name>tempFilePath</name>
+        <value>/home/krawler/store/CRM/tempImage.html</value>
+    </property>
+    <property>
+        <name>imageOutputFile</name>
+        <value>/home/krawler/store/CRM/imageTemp.png</value>
+    </property>
+    <property>
+        <name>ProfileImagePathBase</name>
+        <value>/home/krawler/store/</value>
+    </property>
+    <property>
+        <name>SMTPPath</name>
+        <value>192.168.0.2</value>
+    </property>
+    <property>
+        <name>SMTPPort</name>
+        <value>25</value>
+    </property>
+    <property>
+        <name>NewsLetterAddress</name>
+        <value>newsletters@deskera.com</value>
+    </property>
+    <property>
+		<name>remoteapikey</name>
+		<value>krawler</value>
+    </property>
+    <property>
+        <name>DocStorePath0</name>
+        <value>/home/krawler/store/CRM/</value>
+    </property>
+    <property>
+        <name>EmailUploadFile</name>
+        <value>/home/krawler/store/CRM/email/upload/</value>
+    </property>
+    <property>
+        <name>SERVER_TIMEZONE</name>
+        <value>-05:00</value>
+    </property>
+    <property>
+        <name>audittrailindex</name>
+        <value>/home/krawler/store/CRM/audit/audittrailindex</value>
+	</property><property>
+        <name>audittraildocindex</name>
+        <value>/home/krawler/store/CRM/audit/audittraildocindex</value>
+    </property>
+    <property>
+        <name>CrmClassPath</name>
+        <value>com.krawler.crm.database.tables.</value>
+    </property>
+    <property>
+        <name>DocsClassPath</name>
+        <value>com.krawler.common.admin.</value>
+    </property>
+    <property>
+        <name>ImportFileThreadPoolSize</name>
+        <value>1</value>
+    </property>
+    <property>
+        <name>UploadTempDir</name>
+        <value>/tmp</value>
+    </property>
+	<property>
+        <name>platformURL</name>
+        <value>http://192.168.0.66:8084/deskeraplatform/</value>
+    </property>
+	<property>
+        <name>projectManagementURL</name>
+        <value>http://192.168.0.4:8084/KrawlerESP/</value>
+    </property>
+	<property>
+        <name>hrmsURL</name>
+        <value>http://192.168.0.4:8084/HrmsSpring/</value>
+    </property>
+	<property>
+        <name>accURL</name>
+        <value>http://192.168.0.4:8084/Accounting/</value>
+    </property>
+	<property>
+        <name>crmURL</name>
+        <value>http://192.168.0.102:8084/HQLCrm/</value>
+    </property>
+    <property>
+        <name>logUnknownUser</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>secutech_companyid</name>
+        <value>0d61c839-2027-4714-b0dd-8fb92d9ff9fa</value>
+    </property>
+    <property>
+        <name>sunrise_companyid</name>
+        <value>a4792363-b0e1-4b67-992b-2851234d5ea6</value>
+    </property>
+</krawler-conf>

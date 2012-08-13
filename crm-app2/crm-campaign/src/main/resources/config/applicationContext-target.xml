@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    
+    <!--Target controller-->
+    <bean id="crmTargetdao" class="com.krawler.spring.crm.targetModule.crmTargetDAOImpl" parent="baseDAO" />
+    
+    <bean id="crmTargetController" class="com.krawler.spring.crm.targetModule.crmTargetController">
+        <property name="crmTargetDAO">
+            <ref bean="crmTargetdao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <!--Target Report Controller-->
+    <bean id="targetReportdao" class="com.krawler.spring.crm.targetModule.crmTargetReportDAOImpl" parent="baseDAO" />
+
+    <bean id="targetReportController" class="com.krawler.spring.crm.targetModule.crmTargetReportController">
+        <property name="crmTargetReportDAO">
+            <ref bean="targetReportdao"/>
+        </property>
+        <property name="crmUserDAO">
+            <ref bean="crmUserdao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+</beans>

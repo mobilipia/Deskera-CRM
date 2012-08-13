@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.LeadProducts" table="crm_leadProducts">
+    <id name="id" type="java.lang.String">
+      <generator class="uuid"/>
+    </id>
+    <many-to-one class="com.krawler.crm.database.tables.CrmProduct" fetch="select" name="productId">
+      <column name="productid" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.crm.database.tables.CrmLead" fetch="select" name="leadid">
+      <column name="leadid" not-null="true"/>
+    </many-to-one>
+    <!--property name="createdon" type="java.util.Date">
+            <column name="createdon" length="19"     />
+    </property-->
+    <property name="createdOn" type="long">
+            <column name="createdon" />
+    </property>
+    <property name="numbering" type="integer">
+       <column name="numbering"   default="0" />
+    </property>
+    
+    <property name="leadId" type="string" insert="false" update="false">
+    	<column name="leadid" />
+    </property>
+    
+  </class>
+</hibernate-mapping>

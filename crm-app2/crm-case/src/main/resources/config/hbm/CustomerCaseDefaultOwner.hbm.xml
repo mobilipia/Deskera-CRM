@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.CustomerCaseDefaultOwner" table="company_caseowner">
+    <id column="companyid" name="companyid">
+      <generator class="foreign">
+        <param name="property">company</param>
+      </generator>
+    </id>
+    
+    <many-to-one name="user" class="com.krawler.common.admin.User" fetch="select">
+        <column name="defaultcaseowner"  not-null="true" />
+    </many-to-one>
+    <one-to-one name="company" class="com.krawler.common.admin.Company" constrained="true" /> 
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.CustomReportColumns" table="cr_reportcolumns">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+    <property name="columname" type="string">
+      <column default="" length="100" name="columname"/>
+    </property>
+    <property name="displayname" type="string">
+      <column default="" length="100" name="displayname"/>
+    </property>
+    <property name="dataIndex" type="string">
+      <column default="" length="100" name="dataindex"/>
+    </property>
+    <property name="refTable" type="string">
+      <column default="" length="100" name="reftable"/>
+    </property>
+    <property name="summarytype" type="string">
+      <column default="" length="1024" name="summarytype"/>
+    </property>
+    <property name="xtype" type="string">
+      <column default="" length="36" name="xtype"/>
+    </property>
+    <property name="displayorder" type="integer">
+      <column default="0" name="displayorder"/>
+    </property>
+    <property name="renderer" type="string">
+      <column default="" length="36" name="renderer"/>
+    </property>
+    <property name="updatedon" type="long">
+      <column name="updatedon"/>
+    </property>
+    <property name="createdon" type="long">
+      <column name="createdon"/>
+    </property>
+    <property name="hidden" type="true_false">
+        <column default="&apos;T&apos;" name="hidden"/>
+    </property>
+    <property name="quicksearch" type="true_false">
+        <column default="&apos;F&apos;" name="qsearch"/>
+    </property>
+    <property name="grouporder" type="integer">
+      <column default="0" name="grouporder"/>
+    </property>
+    <property name="groupflag" type="true_false">
+        <column default="F" name="groupflag"/>
+    </property>
+    <property name="deleteflag" type="integer">
+      <column default="0" name="deleteflag"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.User" fetch="select" name="usersByUpdatedbyid">
+      <column default="&apos; &apos;" name="updatedbyid"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.common.admin.User" fetch="select" name="usersByCreatedbyid">
+      <column default="&apos; &apos;" name="createdbyid"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.common.admin.DefaultHeader" fetch="select" name="defaultheader">
+      <column default="&apos; &apos;" name="defaultheader"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.crm.database.tables.CustomReportList" fetch="select" name="reportno">
+      <column default="&apos; &apos;" name="reportno"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

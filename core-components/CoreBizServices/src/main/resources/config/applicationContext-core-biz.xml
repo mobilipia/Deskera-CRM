@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+   <bean id="logInterceptor" class="com.krawler.interceptors.LogInterceptor">
+   		<property name="auditLoggerService">
+   			<ref bean="auditLoggerService"/>
+   		</property>
+   </bean>
+    <bean id="ChartService" class="com.krawler.service.ChartService" ></bean>
+        
+    <bean id="auditLoggerService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.service.AuditLoggerService">
+                <property name="auditLoggerDAO">
+                    <ref bean="auditLoggerDAO"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+   
+   <bean id="auditLoggerDAO" class="com.krawler.dao.AuditLoggerDAO" parent="baseDAO"/>
+   		   
+   <bean id="baseDAO" class="com.krawler.dao.BaseDAO" abstract="true">
+   	<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+        <property name="jdbcTemplate" >
+            <bean class="org.springframework.jdbc.core.JdbcTemplate">
+                <property name="dataSource" ref="dataSource" />
+            </bean>            
+        </property>
+   </bean>
+
+   <bean id="logController" class="com.krawler.web.AuditLoggerController">
+        <property name="auditLoggerService">
+                <ref bean="auditLoggerService"/>
+        </property>
+   </bean>
+
+    <bean id="sequencerService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.service.SequencerServiceImpl">
+                <property name="sequencerDao">
+                    <ref bean="sequencerDAO"/>
+                </property>
+            </bean>
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="getNext">PROPAGATION_REQUIRES_NEW</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="sequencerDAO" class="com.krawler.dao.SequencerDAOImpl" parent="baseDAO"/>
+
+</beans>

@@ -1,0 +1,19 @@
+/*
+ * Copyright (C) 2012  Krawler Information Systems Pvt Ltd
+ * All rights reserved.
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+(function(){tinymce.create('tinymce.plugins.Save',{init:function(ed,url){var t=this;t.editor=ed;ed.addCommand('mceSave',t._save,t);ed.addCommand('mceCancel',t._cancel,t);ed.addButton('save',{title:'save.save_desc',cmd:'mceSave'});ed.addButton('cancel',{title:'save.cancel_desc',cmd:'mceCancel'});ed.onNodeChange.add(t._nodeChange,t);ed.addShortcut('ctrl+s',ed.getLang('save.save_desc'),'mceSave');},getInfo:function(){return{longname:'Save',author:'Moxiecode Systems AB',authorurl:'http://tinymce.moxiecode.com',infourl:'http://wiki.moxiecode.com/index.php/TinyMCE:Plugins/save',version:tinymce.majorVersion+"."+tinymce.minorVersion};},_nodeChange:function(ed,cm,n){var ed=this.editor;if(ed.getParam('save_enablewhendirty')){cm.setDisabled('save',!ed.isDirty());cm.setDisabled('cancel',!ed.isDirty());}},_save:function(){var ed=this.editor,formObj,os,i,elementId;formObj=tinymce.DOM.get(ed.id).form||tinymce.DOM.getParent(ed.id,'form');if(ed.getParam("save_enablewhendirty")&&!ed.isDirty())return;tinyMCE.triggerSave();if(os=ed.getParam("save_onsavecallback")){if(ed.execCallback('save_onsavecallback',ed)){ed.startContent=tinymce.trim(ed.getContent({format:'raw'}));ed.nodeChanged();}return;}if(formObj){ed.isNotDirty=true;if(formObj.onsubmit==null||formObj.onsubmit()!=false)formObj.submit();ed.nodeChanged();}else ed.windowManager.alert("Error: No form element found.");},_cancel:function(){var ed=this.editor,os,h=tinymce.trim(ed.startContent);if(os=ed.getParam("save_oncancelcallback")){ed.execCallback('save_oncancelcallback',ed);return;}ed.setContent(h);ed.undoManager.clear();ed.nodeChanged();}});tinymce.PluginManager.add('save',tinymce.plugins.Save);})();

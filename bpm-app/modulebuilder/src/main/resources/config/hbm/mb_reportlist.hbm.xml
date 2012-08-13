@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.mb_reportlist" table="mb_reportlist">
+    <id name="reportid" type="java.lang.String">
+      <generator class="uuid"/>
+    </id>
+    <property name="deleteflag" type="java.lang.Integer"/>
+    <property name="reportkey">
+      <column name="reportkey" sql-type="INTEGER"/>
+    </property>
+    <property name="type">
+      <column default="0" name="type" sql-type="INTEGER"/>
+    </property>
+    <property name="createddate" type="java.util.Date"/>
+    <property name="modifieddate" type="java.util.Date"/>
+    <property name="createdby" type="java.lang.String"/>
+    <property name="reportname" type="java.lang.String"/>
+    <property name="tablename" type="java.lang.String"/>
+    <property name="displayconf">
+      <column default="0" name="displayconf" sql-type="INTEGER"/>
+    </property>
+    <property name="tableflag">
+      <column default="0" name="tableflag" sql-type="INTEGER"/>
+    </property>
+    <property name="companyid">
+      <column name="companyid"/>
+    </property>
+  </class>
+</hibernate-mapping>

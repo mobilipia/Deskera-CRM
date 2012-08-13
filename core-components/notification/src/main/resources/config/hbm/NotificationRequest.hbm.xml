@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.common.notification.dm.NotificationRequest" table="notification_request">
+    <id name="id" type="long">
+      <generator class="increment"/>
+    </id>
+    <!--property name="channel">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.krawler.common.notification.NotificationChannel</param>
+      </type>
+    </property-->
+    <property name="channel" type="long">
+        <column name="channel"/>
+    </property>
+    <many-to-one class="com.krawler.common.notification.dm.NotificationChannel" insert="false" name="refchannel" update="false">
+        <column name="channel"/>
+    </many-to-one>
+
+    <property name="notificationtype" type="long">
+        <column name="notificationtype"/>
+    </property>
+    <many-to-one class="com.krawler.common.notification.dm.NotificationType" insert="false" name="refnotificationtype" update="false">
+        <column name="notificationtype"/>
+    </many-to-one>
+
+    <property name="refid1" type="java.lang.String"/>
+    <property name="reftype1" type="java.lang.String"/>
+    <property name="refid2" type="java.lang.String"/>
+    <property name="reftype2" type="java.lang.String"/>
+    <property name="refid3" type="java.lang.String"/>
+    <property name="reftype3" type="java.lang.String"/>
+    <property name="createdon" type="long">
+      <column name="createdon"/>
+    </property>
+    <property name="updatedon" type="long">
+      <column name="updatedon"/>
+    </property>
+    <property name="duedate" type="long">
+      <column name="duedate"/>
+    </property>
+    <property name="deleteflag" type="integer">
+      <column default="0" length="2" name="deleteflag"/>
+    </property>
+
+    <property length="40" name="createdbyid" type="string">
+        <column name="createdbyid"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.User" insert="false" name="refcreatedbyid" update="false">
+        <column name="createdbyid"/>
+    </many-to-one>
+
+    <set cascade="all,delete-orphan" inverse="true" lazy="true" name="recepients">
+      <key column="id"/>
+      <one-to-many class="com.krawler.common.notification.dm.Recepients"/>
+    </set>
+
+    <property name="sendstatus" type="long">
+        <column name="sendstatus"/>
+    </property>
+    <many-to-one class="com.krawler.common.notification.dm.NotificationStatus" insert="false" name="refsendstatus" update="false">
+        <column name="sendstatus"/>
+    </many-to-one>
+
+    <property name="notificationdefinition" type="long">
+        <column name="notificationdefinition"/>
+    </property>
+    <many-to-one class="com.krawler.common.notification.dm.NotificationDefinition" insert="false" name="refnotificationdefinition" update="false">
+        <column name="notificationdefinition"/>
+    </many-to-one>
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.scheduledmarketing" table="scheduledmarketing">
+        <id name="id" type="java.lang.String">
+            <generator class="uuid"></generator>
+        </id>
+        <many-to-one name="userid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="userid" default="' '" />
+        </many-to-one>
+        <many-to-one name="emailmarketingid" class="com.krawler.crm.database.tables.EmailMarketing" fetch="select">
+            <column name="emailmarketingid" />
+        </many-to-one>
+        <property name="deleted" type="integer">
+            <column name="deleted" default="0"></column>
+        </property>
+        <!--property name="scheduleddate" type="timestamp">
+            <column name="scheduleddate" />
+        </property-->
+        <property name="scheduledDate" type="long">
+            <column name="scheduleddate" />
+        </property>
+        <property name="scheduledtime" type="java.lang.String">
+            <column name="scheduledtime" default="' '"  />
+        </property>
+    </class>
+</hibernate-mapping>

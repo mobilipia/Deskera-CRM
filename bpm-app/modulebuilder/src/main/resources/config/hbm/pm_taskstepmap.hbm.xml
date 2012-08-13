@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.esp.hibernate.impl.pm_taskstepmap" table="pm_taskstepmap">
+    <id column="id" name="id">
+      <generator class="uuid"/>
+    </id>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.pm_taskmaster" column="taskid" name="taskid"/>
+    <property name="stepid">
+      <column name="stepid"/>
+    </property>    
+    <property name="steptype" type="java.lang.Integer"/>
+  </class>
+</hibernate-mapping>

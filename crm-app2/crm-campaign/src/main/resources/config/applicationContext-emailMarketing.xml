@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    
+    <!--Bounce Email Handler-->
+    <bean id="bounceMailhandler" class="com.krawler.spring.crm.emailMarketing.bounceHandlerImpl" parent="baseDAO" />
+    <!--Campaign Email DAO-->
+    <bean id="campaignMaildao" class="com.krawler.esp.handlers.CampaignMailDAO" parent="baseDAO" />
+    	
+    <!--Email Marketing Controller-->
+    <bean id="crmEmailMarketingdao" class="com.krawler.spring.crm.emailMarketing.crmEmailMarketingDAOImpl" parent="baseDAO">
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+         <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+        <property name="campaignMailDAO">
+            <ref bean="campaignMaildao"/>
+        </property>
+        <property name="mailSenderCache">
+            <ref bean="mailSenderCache"/>
+        </property>
+        <property name="crmCommonDAO">
+           <ref bean="crmCommondao"/>
+        </property>
+    </bean>
+    <bean id="crmEmailMarketingController" class="com.krawler.spring.crm.emailMarketing.crmEmailMarketingController">
+        <property name="bounceHandlerImpl">
+            <ref bean="bounceMailhandler"/>
+        </property>
+        <property name="crmEmailMarketingDAO">
+            <ref bean="crmEmailMarketingdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="apiCallHandlerService">
+            <ref bean="apiCallHandlerService"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="profileHandlerDAO">
+            <ref bean="profileHandlerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <bean id="sendScheduleCampaign" class="com.krawler.spring.crm.emailMarketing.sendScheduleCampaign">
+        <property name="crmEmailMarketingDAO">
+            <ref bean="crmEmailMarketingdao"/>
+        </property>
+    	<property name="apiCallHandlerService">
+    		<ref bean="apiCallHandlerService"/>
+    	</property>
+        <property name="bounceHandlerImpl">
+            <ref bean="bounceMailhandler"/>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+    </bean>
+
+</beans>

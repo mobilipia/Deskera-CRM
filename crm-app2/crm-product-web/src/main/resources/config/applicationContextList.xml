@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+    <import resource="applicationContext-interceptor.xml" />
+    <import resource="applicationContext-dispatcher.xml" />
+    <import resource="applicationContext-crm-common.xml" />
+    <import resource="applicationContext-accountingIntegration.xml" />
+    <import resource="applicationContext-calendar.xml" />
+    <import resource="applicationContext-common.xml" />
+    <import resource="applicationContext-crmCalendarExport.xml" />
+    <import resource="applicationContext-crmdashboard.xml" />
+    <import resource="applicationContext-crmRemoteAPI.xml" />
+    <import resource="applicationContext-crmtree.xml" />
+    <import resource="applicationContext-iphone.xml" />
+    <import resource="applicationContext-crmReportBuilderAPI.xml" />
+</beans>

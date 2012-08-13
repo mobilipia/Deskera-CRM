@@ -1,0 +1,102 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+   <class name="com.krawler.crm.database.tables.CrmActivityMaster" table="crm_activity_master" >
+        <id name="activityid" type="string">
+            <column name="activityid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usersByUpdatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="updatedbyid"    />
+        </many-to-one>
+        <many-to-one name="usersByCreatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="createdbyid"     />
+        </many-to-one>
+        <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+            <column name="companyid"     />
+        </many-to-one>
+        <many-to-one name="usersByUserid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="userid"     />
+        </many-to-one>
+        <many-to-one name="crmCombodataByPriorityid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="priorityid"     default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmCombodataByStatusid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="statusid"    default="' '" />
+        </many-to-one>
+        <many-to-one name="crmCombodataByTypeid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="typeid"    default="' '" />
+        </many-to-one>
+        <property name="priorityID" type="string" insert="false" update="false">
+            <column name="priorityid"   default="' '" ></column>
+        </property>
+        <property name="statusID" type="string" insert="false" update="false">
+            <column name="statusid"   default="' '" ></column>
+        </property>
+        <property name="typeID" type="string" insert="false" update="false">
+            <column name="typeid"   default="' '" ></column>
+        </property>
+        <property name="flag" type="string">
+            <column name="flag" length="10"      />
+        </property>
+        <property name="subject" type="string">
+            <column name="subject" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="25"     default="' '" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="80"     default="' '" />
+        </property>
+        <property name="startDate" type="long">
+            <column name="startdate" />
+        </property>
+        <property name="endDate" type="long">
+            <column name="enddate" />
+        </property>
+        <property name="name" type="string">
+            <column name="name"     default="' '" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments"  />
+        </property>
+        <property name="updatedOn" type="long">
+            <column name="updatedon" />
+        </property>
+        <property name="createdOn" type="long">
+            <column name="createdon" />
+        </property>
+        <property name="isarchive" type="true_false">
+            <column name="isarchive"  default="false" not-null="true" />
+        </property>
+        <property name="deleteflag" type="integer">
+            <column name="deleteflag"     default='0'/>
+        </property>
+        <property name="validflag" type="integer">
+            <column name="validflag"     default='0' />
+        </property>
+        <property name="mapwith" type="integer">
+            <column name="mapwith"     default='0' />
+        </property>
+        <property name="cellstyle" type="string">
+            <column length="2000" name="cellstyle"/>
+        </property>
+        <property name="scheduleType" type="integer">
+            <column name="scheduleType"     default='0' />
+        </property>
+        <property name="isallday" type="true_false">
+            <column name="isallday"  default="false" not-null="true" />
+        </property>
+        <property name="tilldate" type="timestamp">
+            <column name="tilldate" length="19" />
+        </property>
+        <property name="tilldat" type="long">
+            <column name="tilldat" length="20" />
+        </property>
+        <property name="calendarid" type="string">
+            <column name="calendarid" />
+        </property>
+    </class>
+</hibernate-mapping>

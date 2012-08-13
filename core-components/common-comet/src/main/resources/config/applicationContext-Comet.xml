@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="crmPublisherdao" class="com.krawler.common.comet.CrmPublisherDAOImpl" >
+    </bean>
+
+    <bean id="cometManagementService" class="com.krawler.common.cometModule.bizservice.CometManagementServiceImpl">
+        <property name="crmPublisherDAO">
+            <ref bean="crmPublisherdao"/>
+        </property>
+    </bean>
+</beans>

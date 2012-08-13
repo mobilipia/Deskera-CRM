@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.UserCommissionPlan" table="usecommissionplan">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+    <many-to-one class="com.krawler.crm.database.tables.Commission" name="commissionplan" not-null="true"/>
+    <many-to-one class="com.krawler.common.admin.User" name="userid" not-null="true"/>
+    <property name="affectfrom" type="timestamp">
+      <column name="affectfrom" length="50"/>
+    </property>
+    <property name="isactive" type="true_false">
+      <column name="isactive" not-null="true"/>
+    </property>
+    <property name="plany" type="string">
+      <column name="plany"/>
+    </property>
+    <property name="deleted" type="integer">
+      <column name="deleted" default="0" length="2"/>
+    </property>
+    <!--property name="createdon" type="timestamp">
+      <column name="createdon" length="50"/>
+    </property>
+    <property name="updatedon" type="timestamp">
+        <column name="updatedon" length="50"/>
+    </property-->
+    <property name="createdOn" type="long">
+      <column name="createdon" />
+    </property>
+    <property name="updatedOn" type="long">
+        <column name="updatedon" />
+    </property>
+    <many-to-one name="usersByUpdatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="updatedbyid"/>
+    </many-to-one>
+    <many-to-one name="usersByCreatedbyid" class="com.krawler.common.admin.User" fetch="select">
+        <column name="createdbyid"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

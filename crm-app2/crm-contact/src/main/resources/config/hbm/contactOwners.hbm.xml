@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.contactOwners" table="crm_contactOwners">
+    <id name="id" type="java.lang.String">
+         <generator class="uuid"></generator>
+    </id>
+    <many-to-one name="usersByUserid" class="com.krawler.common.admin.User" fetch="select">
+        <column name="usersByUserid" not-null="true" />
+    </many-to-one>
+    <many-to-one name="contact" class="com.krawler.crm.database.tables.CrmContact" fetch="select">
+        <column name="contactid" not-null="true" />
+    </many-to-one>
+    <property name="mainOwner" type="true_false">
+        <column name="mainOwner" default="false" not-null="true" />
+    </property>
+    <property name="contactId" type="string" insert="false" update="false">
+    	<column name="contactid" />
+    </property>
+
+  </class>
+</hibernate-mapping>

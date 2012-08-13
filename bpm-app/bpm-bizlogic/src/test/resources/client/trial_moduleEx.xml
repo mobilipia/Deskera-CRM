@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE modules PUBLIC "-//KRAWLER//DTD MODULES//EN" "http://192.168.0.4/dtds/module.dtd">
+<modules>
+    <module id="KwlReturnObject" type="pojo" class="com.krawler.spring.common.KwlReturnObject">
+        <property-list>
+            <property type="boolean" name="successFlag" />
+            <property type="string" name="msg" />
+            <property type="string" name="errorCode" />
+            <property type="object" name="entityList" multi="list"/>
+            <property type="int" name="recordTotalCount" />
+        </property-list>
+    </module>
+    
+    <module id="invoice" type="pojo" class="com.krawler.hql.accounting.Invoice">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="string" name="invoiceNumber" />
+            <property type="invoiceDetail" name="row" multi="list" />
+            <property type="date" name="shipDate" />
+            <property type="date" name="dueDate" />
+            <property type="discount" name="discount" />
+            <property type="je" name="journalEntry" />
+            <property type="jeDetail" name="customerEntry" />
+            <property type="jeDetail" name="shipEntry" />
+            <property type="jeDetail" name="otherEntry" />
+            <property type="jeDetail" name="taxEntry" />
+            <property type="currency" name="currency" />
+        </property-list>
+    </module>
+
+    <module id="invoiceDetail" type="pojo" class="com.krawler.hql.accounting.InvoiceDetail">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="discount" name="discount" />
+            <property type="string" name="rate" />
+            <property type="inventory" name="inventory" />
+        </property-list>
+    </module>
+
+    <module id="je" type="pojo" class="com.krawler.hql.accounting.JournalEntry">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="string" name="entryNumber"/>
+            <property type="date" name="entryDate"/>
+            <property type="string" name="memo" />
+            <property type="jeDetail" name="details" multi="list" />
+        </property-list>
+    </module>
+
+    <module id="jeDetail" type="pojo" class="com.krawler.hql.accounting.JournalEntryDetail">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="account" name="account" />
+            <property type="double" name="amount"/>
+            <property type="boolean" name="debit" />
+        </property-list>
+    </module>
+
+    <module id="account" type="pojo" class="com.krawler.hql.accounting.Account">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="string" name="name" />
+            <property type="account" name="parent" />
+            <property type="group" name="group" />
+            <property type="date" name="creationDate" />
+            <property type="boolean" name="debit" />
+        </property-list>
+    </module>
+
+    <module id="group" type="pojo" class="com.krawler.hql.accounting.Group">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="string" name="name" />
+            <property type="int" name="nature" />
+            <property type="boolean" name="affectGrossProfit" />
+            <property type="group" name="parent" />
+            <property type="int" name="displayOrder" />
+            <property type="boolean" name="debit" />
+        </property-list>
+    </module>
+
+    <module id="discount" type="pojo" class="com.krawler.hql.accounting.Discount">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="double" name="originalAmount" />
+            <property type="double" name="discount" />
+            <property type="boolean" name="inPercent" />
+        </property-list>
+    </module>
+
+    <module id="inventory" type="pojo" class="com.krawler.hql.accounting.Inventory">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="double" name="quantity" />
+            <property type="string" name="description" />
+            <property type="boolean" name="carryIn" />
+            <property type="boolean" name="newInv" />
+            <property type="boolean" name="defective" />
+            <property type="product" name="product" />
+        </property-list>
+    </module>
+
+    <module id="product" type="pojo" class="com.krawler.hql.accounting.Product">
+        <property-list>
+            <property type="string" name="ID" />
+            <property type="string" name="name" />
+            <property type="string" name="description" />
+            <property type="double" name="reorderQuantity" />
+            <property type="double" name="reorderLevel" />
+        </property-list>
+    </module>
+
+    <module id="person" type="pojo" class="client.Person">
+        <property-list>
+            <property type="string" name="name" />
+            <property type="string" name="timeZone" />
+            <property type="date" name="start" />
+            <property type="date" name="end" />
+            <property type="string" name="startTime" />
+            <property type="string" name="endTime" />
+        </property-list>
+    </module>
+    <module id="schedule" type="pojo" class="client.Schedule">
+        <property-list>
+            <property type="person" name="manager" />
+            <property type="person" name="caller" />
+            <property type="date" name="startTime" />
+            <property type="date" name="endTime" />
+        </property-list>
+    </module>
+</modules>

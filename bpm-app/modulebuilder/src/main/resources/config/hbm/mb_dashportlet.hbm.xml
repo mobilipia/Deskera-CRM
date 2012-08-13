@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.mb_dashportlet" table="mb_dashportlet">
+    <id name="portletid" type="java.lang.String">
+      <generator class="uuid"/>
+    </id>
+    <property name="config" type="java.lang.String"/>
+    <property name="portlettitle" type="java.lang.String"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_dashboard" column="dashboardid" name="dashboardid"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_reportlist" column="reportid" name="reportid"/>
+  </class>
+</hibernate-mapping>

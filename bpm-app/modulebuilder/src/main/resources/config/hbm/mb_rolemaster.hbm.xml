@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.mb_rolemaster" table="mb_rolemaster">
+    <id name="roleid" type="integer">
+      <generator class="increment"/>
+    </id>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_rolegrmaster" column="groupid" name="groupid"/>
+    <property name="description" type="java.lang.String"/>
+    <property name="rolename" type="java.lang.String"/>
+  </class>
+</hibernate-mapping>

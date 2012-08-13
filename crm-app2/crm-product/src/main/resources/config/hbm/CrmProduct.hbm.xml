@@ -1,0 +1,125 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.CrmProduct" table="crm_product" >
+    <id name="productid" type="string">
+            <column name="productid" />
+            <generator class="assigned" />
+    </id>
+        <many-to-one name="usersByUpdatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="updatedbyid"       default="' '" />
+    </many-to-one>
+        <many-to-one name="usersByCreatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="createdbyid"       default="' '" />
+    </many-to-one>
+     <property name="companyid" type="string" insert="false" update="false">
+          <column name="companyid"  ></column>
+     </property>
+
+     <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+            <column name="companyid"       default="' '" />
+    </many-to-one>
+        <many-to-one name="usersByUserid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="userid"       default="' '" />
+    </many-to-one>
+        <many-to-one name="crmCombodataByCategoryid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="categoryid"      default="' '" />
+    </many-to-one>
+    <property name="productcategoryID" type="string" insert="false" update="false">
+        <column name="categoryid"   default="' '" ></column>
+    </property>
+    <property name="productname" type="string">
+            <column name="productname"      default="' '" />
+    </property>
+    <property name="code" type="string">
+            <column name="code"      default="' '" />
+    </property>
+    <property name="startdate" type="string">
+            <column name="startdate"     default="' '"  />
+    </property>
+    <property name="enddate" type="string">
+            <column name="enddate"      default="' '" />
+    </property>
+    <property name="currencyid" type="string">
+            <column name="currencyid"      default="' '" />
+    </property>
+    <property name="unitprice" type="string">
+            <column name="unitprice"       default="' '"/>
+    </property>
+    <property name="unitpricenum" type="java.lang.Double" insert="false" update="false">
+        <column name="unitprice"/>
+    </property>
+    <property name="commisionrate" type="string">
+            <column name="commisionrate"      default="' '" />
+    </property>
+    <property name="taxincurred" type="string">
+            <column name="taxincurred"      default="' '" />
+    </property>
+    <property name="threshold" type="string">
+            <column name="threshold"     default="' '"  />
+    </property>
+    <property name="stockquantity" type="string">
+            <column name="stockquantity"       default="' '"/>
+    </property>
+    <property name="quantitylevel" type="string">
+            <column name="quantitylevel"       default="' '"/>
+    </property>
+    <property name="quantityindemand" type="string">
+            <column name="quantityindemand"      default="' '" />
+    </property>
+    <property name="description" type="string">
+            <column name="description"   />
+    </property>
+    <!--property name="updatedon" type="timestamp">
+            <column name="updatedon" length="19"      />
+    </property>
+    <property name="createdon" type="java.util.Date">
+            <column name="createdon" length="19"       />
+    </property-->
+    <property name="updatedOn" type="long">
+            <column name="updatedon" />
+    </property>
+    <property name="createdOn" type="long">
+            <column name="createdon" />
+    </property>
+    <property name="isarchive" type="true_false">
+            <column name="isarchive"  default="false" not-null="true"/>
+    </property>
+    <property name="syncaccounting" type="true_false">
+            <column name="syncaccounting"  default="false" not-null="true"/>
+    </property>
+    <property name="deleteflag" type="integer">
+            <column name="deleteflag"       default='0' />
+    </property>
+    <property name="vendornamee" type="string">
+            <column name="vendornamee"      default="' '" />
+    </property>
+    <property name="vendorphoneno" type="string">
+            <column name="vendorphoneno" length="40"      />
+    </property>
+    <property name="vendoremail" type="string">
+            <column name="vendoremail" length="80"       />
+    </property>
+    <!--  property name="startindate" type="timestamp">
+            <column name="startindate" length="19"          />
+    </property>
+    <property name="endindate" type="timestamp">
+            <column name="endindate" length="19"          />
+    </property-->
+    <property name="startingdate" type="long">
+            <column name="startingdate" length="20"          />
+    </property>
+    <property name="endingdate" type="long">
+            <column name="endingdate" length="20"          />
+    </property>
+    <property name="validflag" type="integer">
+            <column name="validflag"     default='0' />
+    </property>
+    <property name="cellstyle" type="string">
+      <column length="2000" name="cellstyle"/>
+    </property>
+    <many-to-one column="crmproductcustomdataref" class="com.krawler.crm.database.tables.CrmProductCustomData"  name="CrmProductCustomDataobj" />
+  </class>
+</hibernate-mapping>

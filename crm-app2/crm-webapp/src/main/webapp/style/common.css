@@ -1,0 +1,54 @@
+
+html, body {
+    font-family: Tahoma, Verdana, Arial, Helvetica, sans-sarif;
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    overflow: hidden;
+    height: 100%;
+    font-size: 12px;
+}
+
+#loading {
+    position: absolute;
+    border: 1px solid #6593cf;
+    padding: 2px;
+    background: #c3daf9;
+    text-align: center;
+    z-index: 20001;
+}
+
+#loading {
+    left: 45%;
+    top: 40%;
+    width: 150px;
+}
+
+#loading {
+    border: 1px solid #a3bad9;
+    color: #003366;
+    font-weight: bold;
+    font-size: 13px;
+    margin: 0;
+}
+
+#loading {
+    background: white;
+    padding: 10px;
+}
+
+.pwnd {
+    background: url(../images/tbar.gif) no-repeat !important;
+}
+.outbox {
+    background-position: 0 -696px !important;
+}
+.deliconwt {
+    background-position: 0 -385px !important;
+}
+.delicon {
+    background-position: 0 -387px !important;
+}
+.rssfeedicon{
+    background-position: 0 -1300px !important;
+}

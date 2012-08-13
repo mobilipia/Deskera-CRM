@@ -1,0 +1,159 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.CrmOpportunity" table="crm_opportunity" >
+        <id name="oppid" type="string">
+            <column name="oppid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="crmProduct" class="com.krawler.crm.database.tables.CrmProduct" fetch="select">
+            <column name="productid"    default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmCombodataByOppstageid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="oppstageid"      default="' '" />
+        </many-to-one>
+        <many-to-one name="crmCombodataByOpptypeid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="opptypeid"       default="' '"/>
+        </many-to-one>
+        <many-to-one name="crmCombodataByLeadsourceid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="leadsourceid"      default="' '" />
+        </many-to-one>
+        <many-to-one name="crmCombodataByRegionid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="regionid"      default="' '" />
+        </many-to-one>
+        <property name="regionID" type="string" insert="false" update="false">
+            <column name="regionid"   default="' '" ></column>
+        </property>
+        <property name="leadsourceID" type="string" insert="false" update="false">
+            <column name="leadsourceid"   default="' '" ></column>
+        </property>
+        <property name="opptypeID" type="string" insert="false" update="false">
+            <column name="opptypeid"   default="' '" ></column>
+        </property>
+        <property name="oppstageID" type="string" insert="false" update="false">
+            <column name="oppstageid"   default="' '" ></column>
+        </property>
+        <many-to-one name="usersByUpdatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="updatedbyid"     default="' '" />
+        </many-to-one>
+        <many-to-one name="usersByCreatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="createdbyid"     default="' '" />
+        </many-to-one>
+        <many-to-one name="crmLead" class="com.krawler.crm.database.tables.CrmLead" fetch="select">
+            <column name="convertedleadid"      default="' '" />
+        </many-to-one>
+        <many-to-one name="crmAccount" class="com.krawler.crm.database.tables.CrmAccount" fetch="select">
+            <column name="accountnameid"      default="' '" />
+        </many-to-one>
+         <property name="companyid" type="string" insert="false" update="false">
+            <column name="companyid"  ></column>
+        </property>
+        <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+            <column name="companyid"     default="' '" />
+        </many-to-one>        
+        <property name="oppname" type="string">
+            <column name="oppname" length="40"      default="' '" />
+        </property>
+        <property name="closedate" type="string">
+            <column name="closedate" length="40"      default="' '" />
+        </property>
+        <property name="probability" type="string">
+            <column name="probability"     default="' '" />
+        </property>
+        <property name="probabilitynum" type="java.lang.Double" insert="false" update="false">
+            <column name="probability"/>
+        </property>
+        <property name="currencyid" type="string">
+            <column name="currencyid"       default="' '"/>
+        </property>
+        <property name="revenue" type="string">
+            <column name="revenue"       default="' '"/>
+        </property>
+        <property name="revenuenum" type="java.lang.Double" insert="false" update="false">
+            <column name="revenue"/>
+        </property>
+        <property name="recurrevenue" type="string">
+            <column name="recurrevenue"      default="' '" />
+        </property>
+        <property name="price" type="string">
+            <column name="price"      default="' '" />
+        </property>
+        <property name="pricenum" type="java.lang.Double" insert="false" update="false">
+            <column name="price"/>
+        </property>
+        <property name="keyname" type="string">
+            <column name="keyname" length="40"     default="' '"  />
+        </property>
+        <property name="keytitleid" type="string">
+            <column name="keytitleid"      default="' '" />
+        </property>
+        <property name="keyaddstreet" type="string">
+            <column name="keyaddstreet"      default="' '" />
+        </property>
+        <property name="keyaddcity" type="string">
+            <column name="keyaddcity" length="40"       default="' '"/>
+        </property>
+        <property name="keyaddstate" type="string">
+            <column name="keyaddstate" length="40"      default="' '" />
+        </property>
+        <property name="keyaddcountry" type="string">
+            <column name="keyaddcountry" length="40"       default="' '"/>
+        </property>
+        <property name="keyaddzip" type="string">
+            <column name="keyaddzip" length="40"      default="' '" />
+        </property>
+        <property name="description" type="string">
+            <column name="description"      default="' '" />
+        </property>
+        <property name="competitorname" type="string">
+            <column name="competitorname" length="40"     default="' '"  />
+        </property>
+        <property name="salesamount" type="string">
+            <column name="salesamount"       default="' '"/>
+        </property>
+        <property name="salesamountnum" type="double" insert="false" update="false">
+            <column name="salesamount"/>
+        </property>
+        <property name="isarchive" type="true_false">
+            <column name="isarchive" default="false" not-null="true" />
+        </property>
+        <!--property name="updatedon" type="timestamp">
+            <column name="updatedon" length="19"    />
+        </property>
+        <property name="createdon" type="java.util.Date" >
+            <column name="createdon" length="19"  />
+        </property-->
+        <property name="updatedOn" type="long">
+            <column name="updatedon" />
+        </property>
+        <property name="createdOn" type="long" >
+            <column name="createdon" />
+        </property>
+        <property name="deleteflag" type="integer">
+            <column name="deleteflag"     default='0' />
+        </property>
+       <!-- property name="closindate" type="timestamp">
+            <column name="closindate" length="19"      />
+        </property-->
+        <property name="closingdate" type="long">
+            <column name="closingdate" length="20"      />
+        </property>
+        <property name="validflag" type="integer">
+            <column name="validflag"     default='0' />
+        </property>
+        <property name="cellstyle" type="string">
+            <column length="2000" name="cellstyle"/>
+        </property>
+        <set name="crmProducts" inverse="true" cascade="all,delete-orphan" >
+            <key column="oppid"  />
+            <one-to-many class="com.krawler.crm.database.tables.OppurtunityProducts"  />
+        </set>
+        <set name="oppOwners" inverse="true" cascade="all,delete-orphan" >
+            <key column="opportunityid"  />
+            <one-to-many class="com.krawler.crm.database.tables.opportunityOwners" />
+        </set>
+        <many-to-one column="crmopportunitycustomdataref" class="com.krawler.crm.database.tables.CrmOpportunityCustomData"  name="CrmOpportunityCustomDataobj" />
+    </class>
+</hibernate-mapping>

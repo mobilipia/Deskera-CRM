@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.mb_roleperm" table="mb_roleperm">
+    <id name="id" type="int">
+      <generator class="increment"/>
+    </id>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_permgrmaster" column="permgrid" name="permgrid"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_rolemaster" column="roleid" name="roleid"/>
+    <property name="permvalview" type="int"/>
+    <property name="permvaledit" type="int"/>
+  </class>
+</hibernate-mapping>

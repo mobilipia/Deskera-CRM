@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.esp.hibernate.impl.mb_comboFilterConfig" table="mb_comboFilterConfig">
+    <id column="id" name="id" type="string">
+      <generator class="uuid"/>
+    </id>
+    <property name="fieldname">
+      <column name="fieldname"/>
+    </property>
+    <property name="displayfield">
+      <column name="displayfield"/>
+    </property>
+    <property name="xtype">
+      <column name="xtype"/>
+    </property>
+    <property name="reftable">
+      <column name="reftable"/>
+    </property>
+    <property name="refcol">
+      <column name="refcol"/>
+    </property>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_gridconfig" name="gridconfigid"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_reportlist" column="reportid" name="refmoduleid"/>
+  </class>
+</hibernate-mapping>

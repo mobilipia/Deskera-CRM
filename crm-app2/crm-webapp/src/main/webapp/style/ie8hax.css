@@ -1,0 +1,94 @@
+/*Wtf.menu.Menu problem in ie 8*/
+.x-menu {
+    width: auto !important;
+}
+
+/*help*/
+#dashhelp .helpHeader {
+    color:#35332a;
+}
+#dashhelp .helpContent {
+    color:#676655;
+    padding-left: 11% !important;
+}
+#fcue-close{
+    visibility:visible !important;
+}
+.outerHelp {
+    padding-bottom:0.3% !important;
+}
+
+/*Date picker width problem*/
+.x-date-menu > ul {
+    display: inline;
+}
+
+.x-date-menu > ul li {
+    display: inline;
+}
+
+/*My Organisation*/
+div.blockbottom {
+    padding-left:6px !important;
+    padding-right:6px !important;
+}
+
+/*Detail Panel*/
+.dpanellinks {
+    height:1% !important;
+}
+
+/*Combo & Date field*/
+.wtf-ie .x-form-text {
+    top:1px !important;
+    margin-top:0px !important;
+    margin-bottom:0px !important;
+}
+.wtf-ie #doc-mydocs .x-form-text {
+    top:auto !important;
+}
+.searchInput {
+   height: 17px !important;
+}
+
+.x-btn-text-icon .x-btn-center .x-btn-text {
+padding-left:22px;
+}
+
+.tagTextBox {
+    margin-right: 0px !important;
+    position: absolute !important;
+    float: right !important;
+    bottom: 10px !important;
+    right: 90px !important;
+}
+
+/*grid row numberer size specially in audit trail*/
+.x-grid3-col-numberer{
+	width:auto;
+	text-align:center !important;
+}
+.fcue-content {
+	padding-bottom:0px;
+}
+
+/*Global search alignment*/
+#textSearch{
+	top:0px !important;
+	margin-top:0px !important;
+}
+
+
+/*My Account address field*/
+#address{
+	width:211px !important
+}
+
+/*My Account aboutme field*/
+#aboutme{
+	width:211px !important
+}
+
+.x-form-item TD{
+	vertical-align: center; 
+}

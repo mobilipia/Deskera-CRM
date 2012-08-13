@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/CRMManager/*.do">crmManagerController</prop>
+                <prop key="/User/*.do">crmUserController</prop>
+                <prop key="/AuditTrail/*.do">auditTrailController</prop>
+                <prop key="/OrganizationChart/*.do">organizationChartController</prop>
+                <prop key="/ProfileHandler/*.do">profileHandlerController</prop>
+                <prop key="/PermissionHandler/*.do">permissionHandlercontroller</prop>
+                <prop key="/AuthHandler/*.do">authHandlercontroller</prop>
+                <prop key="/CompanyDetails/*.do">companyDetailsController</prop>
+                <prop key="/KwlCommonTables/*.do">kwlCommonTablesController</prop>
+                <prop key="/Comment/*.do">crmCommentController</prop>
+                <prop key="/ChartXmlSetting/*.do">chartXmlSettingController</prop>
+                <prop key="/ExportPdfTemplate/*.do">exportPdfTemplateController</prop>
+                <prop key="/Spreadsheet/*.do">spreadSheetController</prop>
+                <prop key="/FirstRunHelp/*.do">firstRunHelpController</prop>
+                <prop key="/AdvanceSearch/*.do">savesearchcontroller</prop>
+                <prop key="/CRMCommon/*.do">crmCommonController</prop>
+                <prop key="/MailIntegration/*.do">mailIntegrationcontroller</prop>
+                <prop key="/ImportRecords/*.do">importcontroller</prop>
+                <prop key="/scripts/*.do">dbscriptcontroller</prop>
+                <prop key="/error.do">errorMessagecontroller</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <ref bean="interceptors" />            
+        </property>
+    </bean>
+    
+</beans>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.common.admin.FieldComboData" table="fieldcombodata">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+    <property name="value" type="string">
+      <column name="value"/>
+    </property>
+    <property name="fieldid" type="string">
+      <column name="fieldid"/>
+    </property>
+    <property name="oldid" type="int">
+      <column default="0" name="oldid"/>
+    </property>
+    <property name="deleteflag" type="integer">
+      <column default="0" name="deleteflag"/>
+    </property>
+    <property name="itemsequence" type="integer">
+      <column default="0" name="itemsequence"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.FieldParams" column="fieldid" insert="false" name="field" update="false"/>
+  </class>
+</hibernate-mapping>

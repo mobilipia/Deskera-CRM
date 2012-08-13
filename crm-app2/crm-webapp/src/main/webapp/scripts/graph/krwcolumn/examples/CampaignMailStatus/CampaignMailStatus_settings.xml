@@ -1,0 +1,106 @@
+<settings>
+  <text_size>12</text_size>
+  <text_color>05428B</text_color>
+  <redraw>1</redraw>
+  <background>
+    <alpha>1</alpha>
+    <border_color>FFFFFF</border_color>
+  </background>
+  <plot_area>
+    <alpha>1</alpha>
+    <border_color>FFFFFF</border_color>
+    <margins>
+      <left>150</left>
+      <right>150</right>
+      <top>65</top>
+      <bottom>60</bottom>
+    </margins>
+  </plot_area>
+  <grid>
+    <category>
+      <color>05428B</color>
+      <alpha>55</alpha>
+      <dashed>1</dashed>
+    </category>
+    <value>
+      <color>05428B</color>
+      <alpha>42</alpha>
+      <dashed>1</dashed>
+      <fill_color>999999</fill_color>
+      <fill_alpha>11</fill_alpha>
+    </value>
+  </grid>
+  <axes>
+    <category>
+      <tick_length>14</tick_length>
+      <width>5</width>
+      <color>CCCCCC</color>
+      <alpha>76</alpha>
+    </category>
+    <value>
+      <tick_length>14</tick_length>
+      <width>5</width>
+      <color>CCCCCC</color>
+      <alpha>80</alpha>
+    </value>
+  </axes>
+  <values>
+    <value>
+      <min>0</min>
+      <integers_only>1</integers_only>
+    </value>
+  </values>
+  <legend>
+    <alpha>4</alpha>
+    <spacing>7</spacing>
+    <align>right</align>
+  </legend>
+  <depth>25</depth>
+  <angle>54</angle>
+  <column>
+    <width>77</width>
+    <spacing>10</spacing>
+    <alpha>88</alpha>
+    <border_color>CCCCCC</border_color>
+    <border_alpha>47</border_alpha>
+    <balloon_text>{title}: {value}</balloon_text>
+    <data_labels_position>inside</data_labels_position>
+    <grow_time>3</grow_time>
+    <sequenced_grow>1</sequenced_grow>
+  </column>
+  <graphs>
+    <graph gid="0">
+      <title>Sent Mail</title>
+      <color>FFCC66</color>
+    </graph>
+    <graph gid="1">
+      <title>Viewed Mail</title>
+      <color>ADD981</color>
+    </graph>
+    <graph gid="2">
+      <title>Unsubscribed</title>
+      <color>7F8DA9</color>
+    </graph>
+       <graph gid="3">
+      <title>Failed Mail</title>
+      <color>A30433</color>
+    </graph>
+  </graphs>
+  <labels>
+    <label lid="0">
+      <text><![CDATA[<b>Campaign Mail Status</b>]]></text>
+      <y>9</y>
+      <text_color>05428B</text_color>
+      <text_size>14</text_size>
+      <align>center</align>
+    </label>
+    <label lid="1">
+      <text><![CDATA[<b> Mails  </b>]]></text>
+      <x>70</x>
+      <y>50%</y>
+      <text_color>05428B</text_color>
+      <text_size>12</text_size>
+      <rotate>1</rotate>
+    </label>
+  </labels>
+</settings>

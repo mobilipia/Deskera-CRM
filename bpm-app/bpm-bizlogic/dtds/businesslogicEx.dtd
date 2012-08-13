@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/businesslogicEx.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE businessrules SYSTEM "businesslogicEx.dtd">
+
+    <businessrules>
+    ...
+    </businessrules>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT businessrules (switch|elseif-ledder|process)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT process (node|node-list|trigger-list|in-vars|out-var)*>
+<!ATTLIST process
+    init CDATA #IMPLIED
+    id ID #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT trigger-list (trigger)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT trigger EMPTY>
+<!ATTLIST trigger
+    id CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT node-list (node)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT node (variables|condition)*>
+<!ATTLIST node
+    fork CDATA #IMPLIED
+    next CDATA #IMPLIED
+    invoke CDATA #IMPLIED
+    id CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT elseif-ledder (in-vars?,variables?,(if)*)>
+<!ATTLIST elseif-ledder
+    id ID #IMPLIED
+    else CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT if (variables?,condition)>
+<!ATTLIST if 
+    then CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT variables (var)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT var (#PCDATA)>
+<!ATTLIST var
+    name CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT condition (operand)*>
+<!ATTLIST condition
+    operator (AND|OR|NOT|lt|gt|le|ge|eq|ne|null|notnull) #IMPLIED
+    id ID #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT operand (#PCDATA|condition)*>
+<!ATTLIST operand
+    side (left|right) #IMPLIED
+  >
+
+  <!--- Put your DTDDoc comment here. -->
+<!ELEMENT in-vars (in-var)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT in-var (constant)*>
+<!ATTLIST in-var
+    index CDATA #IMPLIED
+    name CDATA #IMPLIED
+    type CDATA #IMPLIED
+    multi CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT out-var EMPTY>
+<!ATTLIST out-var
+    multi CDATA #IMPLIED
+    name CDATA #IMPLIED
+    type CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT switch (in-vars?,variables?,(case)*)>
+<!ATTLIST switch
+    id ID #IMPLIED
+    otherwise CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT case (label,variables?)>
+<!ATTLIST case
+    then CDATA #IMPLIED
+  >
+
+<!ELEMENT label (#PCDATA|condition)*>
+
+

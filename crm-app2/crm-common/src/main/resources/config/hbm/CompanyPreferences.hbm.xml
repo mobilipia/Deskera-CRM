@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.krawler.crm.database.tables.CompanyPreferences" table="CompanyPreferences">
+    <id column="companyid" name="companyid">
+      <generator class="foreign">
+        <param name="property">company</param>
+      </generator>
+    </id>
+    <property name="campaign" type="true_false">
+        <column name="campaign" default="false"/>
+    </property>
+    <property name="lead" type="true_false">
+        <column name="lead" default="false"/>
+    </property>
+    <property name="account" type="true_false">
+        <column name="account" default="false"/>
+    </property>
+    <property name="contact" type="true_false">
+        <column name="contact" default="false"/>
+    </property>
+    <property name="opportunity" type="true_false">
+        <column name="opportunity" default="false"/>
+    </property>
+    <property name="cases" type="true_false">
+        <column name="cases" default="false"/>
+    </property>
+    <property name="product" type="true_false">
+        <column name="product" default="true"/>
+    </property>
+    <property name="activity" type="true_false">
+        <column name="activity" default="false"/>
+    </property>
+    <property name="editconvertedlead" type="true_false">
+        <column name="editconvertedlead" default="false"/>
+    </property>
+    <property name="defaultleadtype" type="true_false">
+        <column name="defaultleadtype" default="true"/>
+    </property>
+    <property name="leadrouting" type="integer">
+        <column name="leadrouting" default="0" not-null="true" />
+    </property>
+ <one-to-one class="com.krawler.common.admin.Company" constrained="true" name="company"/>
+</class>
+</hibernate-mapping>

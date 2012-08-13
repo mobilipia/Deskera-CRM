@@ -1,0 +1,85 @@
+
+body{
+    font-family:sans-serif;
+    font-size:12px
+}
+th {
+    text-align: left;
+}
+
+th {
+    font-style: normal;
+    font-weight: normal;
+}
+.companylogo {
+                margin: 0 0 10px;
+                border-bottom: 1px dotted #CCCCCC;
+                height: 30px;
+}
+
+a.case {
+    color: #083772;
+    text-decoration: none;
+}
+a.case:hover {
+	color: #456;
+    text-decoration: underline;
+}
+a.shortcuts
+{
+	 color: #083772;
+	 text-decoration: none
+}
+a.shortcuts:hover
+{
+	color: #456;
+    text-decoration: underline;
+}
+.caseDetailTD {
+    border-bottom:1px dotted #CFCFCF;
+    font-size:12px;
+    padding-bottom:1%;
+    padding-top:1%;
+}
+.caseListlTD {
+    border-bottom:1px dotted #CFCFCF;
+    font-size:12px;
+    padding-bottom:1%;
+    padding-top:1%;
+}
+tr th.caseListlTD {
+	border-bottom:2px solid;
+	
+}
+
+tr th.caseDetailTD {
+	border-bottom:2px solid;
+}
+
+.newcase {
+    font-size:12px;
+    padding-bottom:1%;
+    padding-top:1%;
+    color: rgb(21, 66, 139);
+}
+
+.caseName {
+    padding-bottom:1%;
+    padding-top:1%;
+    width:5em;
+    word-wrap:break-word;
+}
+
+.caseSubject {
+    padding-bottom:1%;
+    padding-top:1%;
+    width:20em;
+    word-wrap:break-word;
+}
+
+.caseDescription {
+    padding-bottom:1%;
+    padding-top:1%;
+    width:50em;
+    word-wrap:break-word;
+}

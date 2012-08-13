@@ -1,0 +1,471 @@
+<script type="text/javascript">
+Wtf.SunRiseCalibrationGrid = function(config) {
+    Wtf.apply(this, config);
+    this.record = Wtf.data.Record.create([
+        {name: 'id'},
+        {name: 'calon',dateFormat:'time',type:'date'},
+        {name: 'caldue',dateFormat:'time',type:'date'},
+        {name: 'particulars'},
+        {name: 'srcal'},
+        {name: 'contactperson'},
+        {name: 'contactnumber'},
+        {name: 'machinetype'},
+        {name: 'machinecalno'},
+        {name: 'state'},
+        {name: 'paymentstatus'}]);
+
+    this.jsonReader = new Wtf.data.KwlJsonReader({
+        root: "data",
+        totalProperty:"totalCount"
+    }, this.record);
+
+    this.dstore = new Wtf.data.Store({
+        remoteSort:true,
+        url: Wtf.req.springBase+'common/sunrise/getSunriseClientCallibrationData.do',
+        params: {
+    		start : 0,
+    		limit: 25
+
+        },
+        reader: this.jsonReader
+    });
+    this.sm= new Wtf.grid.CheckboxSelectionModel({
+        singleSelect:false
+    });
+    
+    this.cmodel = new Wtf.grid.ColumnModel([
+        new Wtf.grid.RowNumberer(),this.sm,{
+            dataIndex: 'calon',
+            header: 'Calibration On',
+            xtype:'datefield',
+            pdfwidth:60,
+            editor: new Wtf.form.DateField(),
+            offset:Wtf.pref.tzoffset,
+            format:WtfGlobal.getOnlyDateFormat(),
+            renderer:WtfGlobal.onlyDateRendererTZ,
+            sortable: true
+        },{
+            header: "Calibration Due",
+            dataIndex: 'caldue',
+            xtype:'datefield',
+            pdfwidth:60,
+            editor: new Wtf.form.DateField(),
+            offset:Wtf.pref.tzoffset,
+            format:WtfGlobal.getOnlyDateFormat(),
+            renderer:WtfGlobal.onlyDateRendererTZ,
+            sortable: true
+        },{
+            header: "Particulars",
+            dataIndex: 'particulars',
+            xtype:'textfield',
+            pdfwidth:60,
+            sortable: true,
+            editor: new Wtf.ux.TextField({
+                validateOnBlur: false,
+                validationDelay: 1000,
+                maxLength : 200
+            })
+        },{
+            header: "S.R.Cal.",
+            dataIndex: 'srcal',
+            xtype:'textfield',
+            pdfwidth:60,
+            sortable: true,
+            editor: new Wtf.ux.TextField({
+                validateOnBlur: false,
+                validationDelay: 1000,
+                maxLength : 200
+            })
+        },{
+            header: "Contact Person",
+            dataIndex: 'contactperson',
+            xtype:'textfield',
+            pdfwidth:60,
+            sortable: true,
+            editor: new Wtf.ux.TextField({
+                validateOnBlur: false,
+                validationDelay: 1000,
+                maxLength : 200
+            })
+        },{
+            header: "Contact No",
+            dataIndex: 'contactnumber',
+            xtype:'textfield',
+            pdfwidth:60,
+            sortable: true,
+            editor: new Wtf.ux.TextField({
+                validateOnBlur: false,
+                validationDelay: 1000,
+                maxLength : 200
+            })
+        },{
+            header: "Type of machine",
+            dataIndex: 'machinetype',
+            xtype:'textfield',
+            pdfwidth:60,
+            sortable: true,
+            editor: new Wtf.ux.TextField({
+                validateOnBlur: false,
+                validationDelay: 1000,
+                maxLength : 200
+            })
+        },{
+            header: "Machine Calibration No",
+            dataIndex: 'machinecalno',
+            xtype:'textfield',
+            pdfwidth:60,
+            sortable: true,
+            editor: new Wtf.ux.TextField({
+                validateOnBlur: false,
+                validationDelay: 1000,
+                maxLength : 200
+            })
+        },{
+            header: "State",
+            dataIndex: 'state',
+            xtype:'textfield',
+            pdfwidth:60,
+            sortable: true,
+            editor: new Wtf.ux.TextField({
+                validateOnBlur: false,
+                validationDelay: 1000,
+                maxLength : 200
+            })
+        },{
+            header: "Payment Status",
+            dataIndex: 'paymentstatus',
+            xtype:'textfield',
+            pdfwidth:60,
+            sortable: true,
+            editor: new Wtf.ux.TextField({
+                validateOnBlur: false,
+                validationDelay: 1000,
+                maxLength : 200
+            })
+        }]);
+
+    this.deletebutton=new Wtf.Button({
+    	text:"Delete",
+        tooltip:{text:'Select row(s) to delete.'},
+        scope:this,
+        iconCls:getTabIconCls(Wtf.etype.delet),
+        disabled:false,
+        scope:this,
+        handler:this.deleteRecord
+    });
+    
+   
+    
+    this.pg = new Wtf.PagingSearchToolbar({
+        pageSize: 25,
+        store: this.dstore,
+        displayInfo:true,
+        displayMsg: 'Displaying records {0} - {1} of {2}',
+        emptyMsg: "No results to display",
+        plugins: this.pP = new Wtf.common.pPageSize()
+    });
+    this.quickSearchTF = new Wtf.KWLTagSearch({
+        id: 'sunrise_cal'+this.id,
+        width: 200,
+        emptyText: 'Search by Particulars or Cont.Person '
+    });
+    var optbutton = [];
+   // if(!WtfGlobal.EnableDisable(Wtf.UPerm.Product, Wtf.Perm.Product.exportt)) 
+    {
+        this.exp = exportButton(this,"Record",9);
+        optbutton.push(this.exp);
+    
+
+        this.printprv = printButton(this,"Record",9);
+        optbutton.push(this.printprv);
+        
+    }
+
+//    if(!WtfGlobal.EnableDisable(Wtf.UPerm.Lead, Wtf.Perm.Lead.importt)) {
+        var extraConfig = {};
+        //var createdon = new Date().getTime();
+        var extraParams = "{\"Deleteflag\":0,\"UsersByCreatedbyid\":\""+loginid+"\", \"UsersByUpdatedbyid\":\""+loginid+"\"}";
+        this.importCalA =Wtf.importMenuArray(this,"Calibration",this.dstore,extraParams, extraConfig);
+        this.importCals = Wtf.importMenuButtonA(this.importCalA,this,"Calibration");
+        optbutton.push(this.importCals);
+//    }
+
+    this.tbarPrint.on('mouseover',function() {
+    	var s = this.getSelectionModel().getSelections();
+        this.printprv.menu.items.items[1].setDisabled(s.length<=0);
+    }, this);
+    this.tbarExport.on("mouseover", function(){
+        var s = this.getSelectionModel().getSelections();
+        this.exp.menu.items.items[1].setDisabled(s.length<=0);
+        this.exp.menu.items.items[3].setDisabled(s.length<=0);
+        this.exp.menu.items.items[5].setDisabled(s.length<=0);
+    },this);
+    var selectionModel = new Wtf.grid.MultiCellSelectionModel();
+    Wtf.SunRiseCalibrationGrid.superclass.constructor.call(this, {
+        ds: this.dstore,
+        cm: this.cmodel,
+        tbar:["Search",this.quickSearchTF,'-',this.deletebutton,optbutton],
+        enableColumnHide: true,
+        width: '100%',
+        scrollOffset: 0,
+        bbar:this.pg,
+        selModel: selectionModel
+    });
+    
+    this.dstore.on('load',function(){
+        this.quickSearchTF.StorageChanged(this.dstore);
+        this.quickSearchTF.on('SearchComplete', function() {
+            this.getView().refresh();
+        }, this);
+    },this);
+
+    this.dstore.on("datachanged",function(){
+        this.quickSearchTF.setPage(this.pP.combo.value);
+    },this);
+}
+
+Wtf.extend(Wtf.SunRiseCalibrationGrid, Wtf.grid.EditorGridPanel, {
+    initComponent: function() {
+        Wtf.SunRiseCalibrationGrid.superclass.initComponent.call(this);
+        this.dstore.on('load', this.onDataLoad, this);
+        this.on('validateedit', this.Param, this);
+        this.on('afteredit', this.GridAfterEdit, this);
+    },
+
+    afterRender: function(config) {
+        Wtf.SunRiseCalibrationGrid.superclass.afterRender.call(this,config);
+        this.dstore.load({
+            params :{
+                start : 0,
+                limit : this.pP.combo.value
+            }
+        });
+
+    },
+
+    Param: function(e) {
+
+    },
+    
+    GridAfterEdit: function(e) {
+        var rec = e.record;
+        var field = e.field;
+        var count = this.dstore.getCount();
+        if (count == (e.row + 1))
+            this.addBlankRow();
+        if (field=='calon' || field=='caldue' || field=='particulars' || field=='srcal' || field=='contactperson' || field=='contactnumber' || field=='machinetype' || field=='machinecalno' || field=='state' || field=='paymentstatus'){
+           
+           this.htmlStrippedRecordSet(rec,field)
+        }
+        this.updateRecord(rec);
+        //this.dstore.reload();
+    },
+    htmlStrippedRecordSet : function (rec,field){
+        
+        rec.set(field,WtfGlobal.HTMLStripper(rec.get(field)));
+       
+    },
+    updateRecord : function(record) {
+        var rData = record.data;
+        Wtf.Ajax.requestEx({
+            url: Wtf.req.springBase+'common/sunrise/sunriseClientCallibrationSave.do',
+            params: {
+                jsondata: this.getJsonFromRecord(record)
+        }},this,
+        function(res) {
+            if(res.ID!=undefined)
+                rData.id = res.ID;
+        },
+        function(res) {
+            WtfComMsgBox(12,1);
+        });
+    },
+    deleteRecord:function() {
+    	if(this.getSelectionModel().getCount()==0)
+    	{
+    		 WtfComMsgBox(1);
+    		return;
+    	}
+    	else if(this.getSelectionModel().getCount()==1){
+            this.rec=this.getSelectionModel().getSelected();
+            var id=this.rec.data.id;
+            if(id=="0"){
+                WtfComMsgBox(25);
+                	return;
+                }
+    	}
+        Wtf.MessageBox.show({
+            title:'Confirm',
+            msg:"Are you sure you want to delete selected Record(s)?<br><br><b>Note: This data cannot be retrieved later.</b>",
+            icon:Wtf.MessageBox.QUESTION,
+            buttons:Wtf.MessageBox.YESNO,
+            scope:this,
+            fn:function(button){
+                if(button=='yes')
+                {	
+                	var sm = this.getSelectionModel();
+                    this.delkey=sm.getSelections();
+                    this.ids=[];
+                    sm.clearSelections();
+                    for(var i=0;i<this.delkey.length;i++){
+                        if(this.delkey[i].get('id'))
+                        {
+                            this.ids.push(this.delkey[i].get('id'));
+                        } 
+                    }
+                    if(this.ids.length>0)
+                    {
+                    	Wtf.commonWaitMsgBox("Deleting data..."); 
+                        Wtf.Ajax.requestEx({
+                           
+                        	url:Wtf.req.springBase+'common/sunrise/sunriseClientCallibrationDelete.do',
+                                params:{
+                                    ids:this.ids
+                                }
+                            },this,
+                            function(action, response){
+                            	Wtf.updateProgress();
+                            	if(action.success) {
+                                	this.dstore.reload();
+                                	var hd = Wtf.fly(this.getView().innerHd).child('.x-grid3-hd-checker-on');
+                            	    if(hd) {
+                            	      hd.removeClass('x-grid3-hd-checker-on');
+                            	    }
+                                	if(action.msg) {
+                                		ResponseAlert(91);
+            			            }
+                                }
+                               
+                            },
+                            function()
+                            {
+                                Wtf.updateProgress();
+                                ResponseAlert(92);
+                            })
+                    }
+                }
+            }
+        });
+    },
+    
+    exportfile: function(type) {
+        if(this.searchJson==null) {
+            this.searchJson = "";
+        }
+        this.RelatedRecordName="";
+        var name="CalibrationReport";
+        var fromdate="";
+        var todate="";
+        var report=""
+        var url = Wtf.req.springBase+'common/sunrise/sunriseClientCallibrationExport.do';        
+		if(this.sortInfo != undefined) {
+            var field = this.sortInfo.field;
+            var dir = this.sortInfo.direction;
+        }
+        exportWithTemplate(this,type,name,fromdate,todate,report,url,undefined,this,undefined,field,dir);
+    },
+    exportSelected: function(type) {
+        var name="CalibrationReport";
+        var fromdate="";
+        var todate="";
+        var report=""
+        this.titlename=""
+        var selArr = [];
+        var url = Wtf.req.springBase+'common/sunrise/sunriseClientCallibrationExport.do';        
+        if(this.sortInfo != undefined) {
+            var field = this.sortInfo.field;
+            if(field!=undefined && field=="createdon"){
+                field="createdOn";
+            }
+            var dir = this.sortInfo.direction;
+        }
+        selArr = this.getSelectionModel().getSelections();
+        var jsondata = "";
+        for(var i=0;i<selArr.length;i++)
+        {
+                jsondata+="{'id':'" + selArr[i].get('id') + "'},";
+        }
+        if(jsondata.length > 0) {
+            var trmLen = jsondata.length - 1;
+            var finalStr = jsondata.substr(0,trmLen);
+            exportWithTemplate(this,type,name,fromdate,todate,report,url,undefined,this,finalStr,field,dir);
+        } 
+    },
+    PrintPriview : function(type) {
+        if(this.searchJson==null) {
+            this.searchJson = "";
+        }
+        this.RelatedRecordName="";
+        var name="Calibration Report";
+        var fromdate="";
+        var todate="";
+        var report="report";
+        var exportUrl = Wtf.req.springBase+'common/sunrise/sunriseClientCallibrationExport.do';
+        if(this.sortInfo != undefined) {
+            var field = this.sortInfo.field;
+            if(field!=undefined && field=="createdon"){
+                field="createdOn";
+            }
+            var dir = this.sortInfo.direction;
+        }
+        exportWithTemplate(this,type,name,fromdate,todate,report,exportUrl,undefined,this,undefined,field,dir);
+    },
+    onDataLoad: function(store, record, option) {
+        this.addBlankRow();
+    },
+
+    getJsonFromRecord : function(record) {
+        var jsondata = "";
+        var rData = record.data;
+        jsondata+='{"id":"' + rData.id + '",';
+        if(rData.calon.getTime) {
+            jsondata+='"calon":"' +rData.calon.getTime() + '",';
+        }
+        if(rData.caldue.getTime) {
+            jsondata+='"caldue":"' +rData.caldue.getTime() + '",';
+        }
+        jsondata+='"particulars":"' +rData.particulars + '",';
+        jsondata+='"srcal":"' +rData.srcal + '",';
+        jsondata+='"contactperson":"' +rData.contactperson + '",';
+        jsondata+='"contactnumber":"' +rData.contactnumber + '",';
+        jsondata+='"machinetype":"' +rData.machinetype + '",';
+        jsondata+='"paymentstatus":"' +rData.paymentstatus + '",';
+        jsondata+='"machinecalno":"' +rData.machinecalno + '",';
+        jsondata+='"state":"' +rData.state + '"';
+        jsondata+= '},';
+        var finalStr = jsondata.substr(0,(jsondata.length - 1));
+        return finalStr;
+    },
+
+    addBlankRow: function(){
+        var p = new this.record({
+            id: '0',
+            calon: '',
+            caldue: '',
+            particulars: '',
+            srcal: '',
+            contactperson: '',
+            contactnumber: '',
+            machinetype: '',machinecalno: '',state:'',
+            paymentstatus: ''
+        });
+        this.dstore.insert(this.dstore.getCount(), p);
+    }
+});
+
+
+var CalibrationPanel = new Wtf.SunRiseCalibrationGrid({
+    border:false,
+    //title:"Calibration Certificate",
+    layout:'fit',
+    //closable:true,
+    //iconCls:"listViewTabIcon",
+    id:'sunRiseCalibrationGrid',
+    viewConfig: {
+    	forceFit: true
+	}
+});
+Wtf.getCmp("tabsunrisecalibar").add(CalibrationPanel);
+Wtf.getCmp("tabsunrisecalibar").doLayout();
+
+</script>

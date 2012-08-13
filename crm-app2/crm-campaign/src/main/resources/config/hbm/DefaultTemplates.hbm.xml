@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.DefaultTemplates" table="defaulttemplates">
+    <id name="templateid" type="string">
+      <column name="templateid"/>
+      <generator class="increment"/>
+    </id>
+    <property name="name" type="string">
+      <column length="255" name="name"/>
+    </property>
+    <property name="description" type="text">
+      <column name="description"/>
+    </property>
+    <property name="subject" type="string">
+      <column length="255" name="subject"/>
+    </property>
+    <property name="body" type="text">
+      <column name="body"/>
+    </property>
+    <property name="body_html" type="text">
+      <column name="body_html"/>
+    </property>
+    <property name="thumbnail" type="string">
+      <column length="255" name="thumbnail"/>
+    </property>
+  </class>
+</hibernate-mapping>

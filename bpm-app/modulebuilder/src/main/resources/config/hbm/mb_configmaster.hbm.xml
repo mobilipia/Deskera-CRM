@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.esp.hibernate.impl.mb_configmaster" table="mb_configmaster">
+    <id column="configid" name="configid" type="string">
+      <generator class="uuid"/>
+    </id>
+    <property name="configtype">
+      <column name="configtype" sql-type="INTEGER"/>
+    </property>
+    <property name="name">
+      <column name="name"/>
+    </property>
+    <property name="flag">
+      <column name="flag" sql-type="INTEGER"/>
+    </property>
+  </class>
+</hibernate-mapping>

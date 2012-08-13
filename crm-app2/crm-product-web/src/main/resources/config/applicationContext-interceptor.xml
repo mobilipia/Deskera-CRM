@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id ="openSessionInViewInterceptor" name="openSessionInViewInterceptor"
+        class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+        <property name="flushMode">
+			<bean id="org.springframework.orm.hibernate3.HibernateAccessor.FLUSH_AUTO" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+		</property>
+    </bean>
+    <bean id="interceptors" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="openSessionInViewInterceptor" />
+                <ref bean="logInterceptor" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!-- Extras -->
+
+    <bean id="crmCommondao" class="com.krawler.spring.crm.common.crmCommonDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+    
+	<bean id="crmCommonService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.spring.crm.common.CrmCommonServiceImpl">
+                <property name="commonDAO">
+                    <ref bean="crmCommondao"/>
+                </property>
+                <property name="managerDAO">
+                    <ref bean="crmManagerdao"/>
+                </property>
+                <property name="fieldManagerDAO">
+                    <ref bean="fieldmanagerdao"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!--KwlCommonTables Controller-->
+    <bean id="kwlCommonTablesdao" class="com.krawler.spring.common.kwlCommonTablesDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+
+     <bean id="fieldmanagerdao" class="com.krawler.customFieldMaster.fieldManagerDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+
+     <bean id="fielddatamanagerdao" class="com.krawler.customFieldMaster.fieldDataManagerDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+    <bean id="fielddatamanager" class="com.krawler.customFieldMaster.fieldDataManager">
+      <property name="fieldDataManagerDAO">
+            <ref bean="fielddatamanagerdao"/>
+        </property>
+        <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+        </property>
+    </bean>
+
+    <!--CRMManager controller-->
+    <bean id="crmManagerController" class="com.krawler.spring.crm.common.crmManagerController">
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+          <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+       </property>
+       <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+       <property name="crmCommonService">
+            <ref bean="crmCommonService"/>
+       </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="companyDetailsDAO">
+            <ref bean="companyDetailsdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <bean id="crmManagerdao" class="com.krawler.spring.crm.common.crmManagerDAOImpl" parent="baseDAO">
+      <property name="sessionHandlerImpl">
+          <ref bean="sessionHandlerdao"/>
+      </property>
+      <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+       </property>
+    </bean>
+
+    <!--Storage Handler Controller-->
+    <bean id="storageHandlerdao" class="com.krawler.spring.storageHandler.storageHandlerImpl"/>
+
+    <!--Export controller-->
+    <bean id="exportdao" class="com.krawler.spring.exportFunctionality.exportDAOImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+        <property name="storageHandlerImpl">
+            <ref bean="storageHandlerdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+    </bean>
+
+    <!--Comments Controller-->
+    <bean id="commentdao" class="com.krawler.spring.comments.commentDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+
+    <!-- Lucene Search Bean -->
+    <bean id="luceneSearch" class="com.krawler.luceneSearchService.LuceneSearchImpl"/>
+
+     <!--Audit Trail Controller-->
+    <bean id="auditIndexHandler" class="com.krawler.spring.auditTrailModule.AuditIndex">
+        <property name="luceneSearch">
+            <ref bean="luceneSearch"/>
+        </property>
+    </bean>
+
+    <bean id="auditTraildao" class="com.krawler.spring.auditTrailModule.auditTrailDAOImpl" parent="baseDAO">
+      <property name="storageHandlerImpl">
+            <ref bean="storageHandlerdao"/>
+      </property>
+      <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+      </property>
+      <property name="luceneSearch">
+            <ref bean="luceneSearch"/>
+      </property>
+      <property name="auditIndex" >
+            <ref bean="auditIndexHandler"/>
+      </property>
+    </bean>
+
+    <bean id="crmUserdao" class="com.krawler.spring.crm.userModule.crmUserDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+
+    <bean id="permissionHandlerdao" class="com.krawler.spring.permissionHandler.permissionHandlerDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+
+    <bean id="companyDetailsdao" class="com.krawler.spring.companyDetails.companyDetailsDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+        <property name="storageHandlerImpl">
+            <ref bean="storageHandlerdao"/>
+        </property>
+    </bean>     
+</beans>

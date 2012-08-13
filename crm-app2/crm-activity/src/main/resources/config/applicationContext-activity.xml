@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <import resource="classpath:config/lead-servlet.xml"/>
+    <import resource="classpath:config/contact-servlet.xml"/>
+    <import resource="classpath:config/opportunity-servlet.xml"/>
+    <import resource="classpath:config/case-servlet.xml"/>
+
+    <!--Activity controller-->
+    <bean id="crmActivitydao" class="com.krawler.spring.crm.activityModule.crmActivityDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+    <bean id="crmActivityController" class="com.krawler.spring.crm.activityModule.crmActivityController">
+        <property name="crmCommonDAO">
+            <ref bean="crmCommondao"/>
+        </property>
+        <property name="crmActivityDAO">
+            <ref bean="crmActivitydao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>        
+        <property name="crmLeadDAO">
+           <ref bean="crmLeaddao"/>
+        </property>
+        <property name="crmContactDAO">
+            <ref bean="crmContactdao"/>
+        </property>
+        <property name="crmAccountDAO">
+           <ref bean="crmAccountdao"/>
+        </property>
+        <property name="crmOpportunityDAO">
+           <ref bean="crmOpportunitydao"/>
+        </property>
+        <property name="crmCaseDAO">
+           <ref bean="crmCasedao"/>
+        </property>
+        <property name="cometManagementService">
+            <ref bean="cometManagementService"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+        <property name="activityManagementService">
+            <ref bean="activityManagementService"/>
+        </property>
+    </bean>
+
+    <!--Activity Report Controller-->
+    <bean id="activityReportdao" class="com.krawler.spring.crm.activityModule.crmActivityReportDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+    <bean id="activityReportController" class="com.krawler.spring.crm.activityModule.crmActivityReportController">
+        <property name="crmActivityReportDAO">
+            <ref bean="activityReportdao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <bean id="activityManagementService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.crm.activity.bizservice.ActivityManagementServiceImpl">
+                <property name="crmActivityDAO">
+                    <ref bean="crmActivitydao"/>
+                </property>
+                <property name="audiTrailDAO">
+                    <ref bean="auditTraildao"/>
+                </property>
+                <property name="NotificationManagementServiceDAO">
+                    <ref bean="notifyManagementService"/>
+                </property>
+                <property name="crmManagerDAO">
+                    <ref bean="crmManagerdao"/>
+                </property>
+                <property name="crmCommonDAO">
+                    <ref bean="crmCommondao"/>
+                </property>
+                <property name="fieldManagerDAO">
+                    <ref bean="fieldmanagerdao"/>
+                </property>
+                <property name="kwlCommonTablesDAO">
+                    <ref bean="kwlCommonTablesdao"/>
+                </property>
+                <property name="crmCommentDAO">
+                    <ref bean="commentdao"/>
+                </property>
+                <property name="calendarDao">
+                    <ref bean="calendaruserdao"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

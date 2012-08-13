@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.model.AuditModule" table="audit_module">
+    <id column="id" name="id">
+      <generator class="assigned"/>
+    </id>
+    <property name="name" type="string">
+      <column name="name"/>
+    </property>
+    <set cascade="all" inverse="true" name="features">
+      <key column="a_module"/>
+      <one-to-many class="com.krawler.model.AuditFeature"/>
+    </set>
+    <property name="activeInd" type="true_false">
+      <column name="active_ind"/>
+    </property>
+  </class>
+</hibernate-mapping>

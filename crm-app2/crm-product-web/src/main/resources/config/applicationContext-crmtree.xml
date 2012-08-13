@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <!--Tree controller-->
+    <bean id="crmTreeController" class="com.krawler.spring.crm.treeModule.crmTreeController">
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="crmAccountDAO">
+            <ref bean="crmAccountdao"/>
+        </property>
+        <property name="crmCampaignDAO">
+            <ref bean="crmCampaigndao"/>
+        </property>
+        <property name="crmActivityDAO">
+            <ref bean="crmActivitydao"/>
+        </property>
+        <property name="crmOpportunityDAO">
+            <ref bean="crmOpportunitydao"/>
+        </property>
+        <property name="crmContactDAO">
+            <ref bean="crmContactdao"/>
+        </property>
+         <property name="crmCaseDAO">
+            <ref bean="crmCasedao"/>
+        </property>
+        <property name="crmLeadDAO">
+            <ref bean="crmLeaddao"/>
+        </property>
+        <property name="crmProductDAO">
+            <ref bean="crmProductdao"/>
+        </property>
+        <property name="documentDAO">
+            <ref bean="documentdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+</beans>

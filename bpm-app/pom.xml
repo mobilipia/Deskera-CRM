@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.krawler.pom</groupId>
+		<artifactId>deskera-shared-pom</artifactId>
+		<version>1.1.1</version>
+	</parent>
+    
+	<modelVersion>4.0.0</modelVersion>
+    <groupId>com.krawler.baseline</groupId>
+    <artifactId>bpm-baseline</artifactId>
+    <version>2.29-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+  <name>Deskera Builder for BPM Modules</name>
+  <description>Deskera Builder for BPM Modules</description>
+
+    <scm>
+        <connection>scm:svn:svn://192.168.0.4/krawler/trunk/deskera/shared-components</connection>
+        <developerConnection>scm:svn:svn://192.168.0.4/krawler/trunk/deskera/shared-components</developerConnection>
+    </scm>
+	
+    <modules>
+		<module>bpm-bizlogic</module>
+        <module>modulebuilder</module>
+		<module>jar-loader</module>
+   </modules>
+   
+    <dependencies>
+    </dependencies>
+	
+	<distributionManagement>
+		<repository>
+			 <id>krawler-central-repo</id>
+			 <name>Krawler Repository</name>
+			 <uniqueVersion>true</uniqueVersion>
+			 <url>ftp://192.168.0.2:22/krawlerlib/</url>
+		</repository>
+	</distributionManagement>
+
+ </project>

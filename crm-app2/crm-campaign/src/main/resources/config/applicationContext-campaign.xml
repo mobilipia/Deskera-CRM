@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    
+    <!--Campaign controller-->
+    <bean id="crmCampaigndao" class="com.krawler.spring.crm.campaignModule.crmCampaignDAOImpl" parent="baseDAO"/>
+    <bean id="crmCampaignController" class="com.krawler.spring.crm.campaignModule.crmCampaignController">
+        <property name="crmCampaignDAO">
+            <ref bean="crmCampaigndao"/>
+        </property>
+        <property name="campaignManagementService">
+            <ref bean="campaignManagementService"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="cometManagementService">
+            <ref bean="cometManagementService"/>
+        </property>
+        <property name="crmCommentDAO">
+            <ref bean="commentdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+         <property name="crmCommonService">
+           <ref bean="crmCommonService"/>
+        </property>
+    </bean>
+
+    <!--Campaign Report Controller-->
+    <bean id="campaignReportdao" class="com.krawler.spring.crm.campaignModule.crmCampaignReportDAOImpl" parent="baseDAO" />
+    <bean id="campaignReportController" class="com.krawler.spring.crm.campaignModule.crmCampaignReportController">
+        <property name="crmCampaignReportDAO">
+            <ref bean="campaignReportdao"/>
+        </property>
+        <property name="crmCampaignDAO">
+            <ref bean="crmCampaigndao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="crmCommonDAO">
+            <ref bean="crmCommondao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <bean id="campaignManagementService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.crm.campaign.bizservice.CampaignManagementServiceImpl">
+                <property name="crmCampaignDAO">
+                    <ref bean="crmCampaigndao"/>
+                </property>
+                <property name="kwlCommonTablesDAO">
+                    <ref bean="kwlCommonTablesdao"/>
+                </property>
+                <property name="crmCommentDAO">
+                    <ref bean="commentdao"/>
+                </property>
+                <property name="crmManagerDAO">
+                    <ref bean="crmManagerdao"/>
+                </property>
+                <property name="fieldDataManager">
+                    <ref bean="fielddatamanager"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

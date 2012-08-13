@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <import resource="classpath:com/krawler/crm/database/tables/calendar-servlet.xml"/>
+    <import resource="classpath:com/krawler/crm/database/tables/dispatcher-servlet.xml"/>
+    
+    <!-- Controllers-->
+    <bean id="calendarExportcontroller" class="com.krawler.spring.calendar.calendarmodule.exportICSController">
+        <property name="calendareventDAO">
+            <ref bean="calendareventdao"/>
+        </property>
+        <property name="calendarDAO">
+            <ref bean="calendardao"/>
+        </property>
+        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="exportICS.ics">crmCalendarExportcontroller</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

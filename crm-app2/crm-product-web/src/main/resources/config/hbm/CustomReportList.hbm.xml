@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.CustomReportList" table="cr_reportlist">
+    <id name="rno" type="int">
+      <column name="rno"/>
+      <generator class="increment"/>
+    </id>
+    <property name="rname" type="string">
+      <column default="" length="255" name="rname"/>
+    </property>
+    <!--property name="runiquename" type="string">
+      <column default="" length="255" name="runiquename"/>
+    </property-->
+    <property name="rdescription" type="string">
+      <column default="" length="1024" name="rdescription"/>
+    </property>
+    <property name="rcategory" type="string">
+      <column default="" length="36" name="rcategory"/>
+    </property>
+    <property name="rfilterjson" type="text">
+      <column default="" name="rfilterjson"/>
+    </property>
+    <property name="updatedon" type="long">
+      <column name="updatedon"/>
+    </property>
+    <property name="createdon" type="long">
+      <column name="createdon"/>
+    </property>
+    <property name="deleteflag" type="integer">
+      <column default="0" name="deleteflag"/>
+    </property>
+    <property name="summaryflag" type="true_false">
+        <column default="F" name="summaryflag"/>
+    </property>
+    <property name="groupflag" type="true_false">
+        <column default="F" name="groupflag"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.User" fetch="select" name="usersByUpdatedbyid">
+      <column default="&apos; &apos;" name="updatedbyid"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.common.admin.User" fetch="select" name="usersByCreatedbyid">
+      <column default="&apos; &apos;" name="createdbyid"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

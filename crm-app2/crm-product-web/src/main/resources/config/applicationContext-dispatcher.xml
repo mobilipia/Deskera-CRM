@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="sessionvalidator"  name="sessionvalidator" class="com.krawler.esp.handlers.sessionAdvisor"/>
+
+    <bean name="proxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="*Controller"/>
+        <property name="interceptorNames">
+            <list>
+                <value>sessionvalidator</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--User controller-->
+    <bean id="crmUserController" class="com.krawler.spring.crm.userModule.crmUserController">
+        <property name="crmUserDAO">
+            <ref bean="crmUserdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <bean id="kwlCommonTablesController" class="com.krawler.spring.common.kwlCommonTablesController">
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <!--Company Details Controller-->
+    <bean id="companyDetailsController" class="com.krawler.spring.companyDetails.companyDetailsController">
+        <property name="companyDetailsDAO">
+            <ref bean="companyDetailsdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <!--Profile Handler Controller-->
+    <bean id="profileHandlerController" class="com.krawler.spring.profileHandler.profileHandlerController">
+        <property name="profileHandlerService">
+            <ref bean="profileHandlerService"/>
+        </property>
+        <property name="profileHandlerDAO">
+            <ref bean="profileHandlerdao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="companyDetailsDAO">
+            <ref bean="companyDetailsdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="mailIntDAO">
+            <ref bean="mailIntegrationcontroller"/>
+        </property>
+        <property name="permissionHandlerDAO">
+            <ref bean="permissionHandlerdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <bean id="profileHandlerService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.profileHandler.bizservice.ProfileHandlerServiceImpl">
+                <property name="profileHandlerDAO">
+                    <ref bean="profileHandlerdao"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!--Permission Handler Controller-->
+    <bean id="permissionHandlercontroller" class="com.krawler.spring.permissionHandler.permissionHandlerController">
+        <property name="permissionHandlerDAO">
+            <ref bean="permissionHandlerdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+
+    
+     <!--Audit Trail Controller-->
+    <bean id="auditTrailController" class="com.krawler.spring.crm.common.auditTrailController">
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="profileHandlerDAO">
+            <ref bean="profileHandlerdao"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="storageHandlerImpl">
+            <ref bean="storageHandlerdao"/>
+      </property>
+      <property name="luceneSearch">
+            <ref bean="luceneSearch"/>
+      </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <!--Organization Controller-->
+    <bean id="organizationChartdao" class="com.krawler.spring.organizationChart.organizationChartDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+    <bean id="organizationChartController" class="com.krawler.spring.organizationChart.organizationChartController">
+        <property name="organizationChartDAO">
+            <ref bean="organizationChartdao"/>
+        </property>
+        <property name="permissionHandlerDAO">
+            <ref bean="permissionHandlerdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+	<!--CRMCommon controller-->
+    <bean id="crmCommonController" class="com.krawler.spring.crm.common.crmCommonController">
+        <property name="crmUserDAO">
+            <ref bean="crmUserdao"/>
+        </property>
+        <property name="crmCommonService">
+           <ref bean="crmCommonService"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="crmCommonDAO">
+            <ref bean="crmCommondao"/>
+        </property>
+        <property name="permissionHandlerDAO">
+            <ref bean="permissionHandlerdao"/>
+        </property>
+        <property name="profileHandlerDAO">
+            <ref bean="profileHandlerdao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+        <property name="auditLoggerService">
+   			<ref bean="auditLoggerService"/>
+   		</property>
+    </bean>
+
+    <!--Comments Controller-->
+    <bean id="crmCommentController" class="com.krawler.spring.crm.common.commentController">
+        <property name="crmCommentDAO">
+            <ref bean="commentdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="profileHandlerDAO">
+            <ref bean="profileHandlerdao"/>
+        </property>
+        <property name="cometManagementService">
+            <ref bean="cometManagementService"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+        <property name="auditTrailDAO">
+            <ref bean="auditTraildao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+
+
+    <!--Chart Xml Settings controller-->
+    <bean id="chartXmlSettingdao" class="com.krawler.spring.chartXmlSettings.chartXmlSettingDAOImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <bean id="chartXmlSettingController" class="com.krawler.spring.crm.common.chartXmlSettingController">
+        <property name="chartXmlSettingDAO">
+            <ref bean="chartXmlSettingdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <!--Export PDF Template controller-->
+    <bean id="exportPdfTemplatedao" class="com.krawler.spring.exportFunctionality.exportPdfTemplateDAOImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <bean id="exportPdfTemplateService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.spring.exportFunctionality.ExportPdfTemplateServiceImpl">
+                <property name="exportPdfTemplDAO">
+                    <ref bean="exportPdfTemplatedao"/>
+                </property>                
+            </bean>
+        </property>
+    </bean>
+    <bean id="exportPdfTemplateController" class="com.krawler.spring.exportFunctionality.exportPdfTemplateController">
+        <property name="exportPdfTemplateService">
+            <ref bean="exportPdfTemplateService"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <!--First Run Help Controller-->
+    <bean id="firstRunHelpdao" class="com.krawler.spring.firstRunHelp.firstRunHelpDAOImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <bean id="firstRunHelpController" class="com.krawler.spring.firstRunHelp.firstRunHelpController">
+        <property name="firstRunHelpDAO">
+            <ref bean="firstRunHelpdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <!-- Common Import -->
+    <bean id = "importDao" class = "com.krawler.spring.crm.common.ImportCustomImpl" parent="baseDAO">
+        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+        <property name="fieldDataManager">
+            <ref bean="fielddatamanager"/>
+        </property>
+        <property name="crmManagerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+        </property>
+        <property name="crmLeadDAO" ref="crmLeaddao"/>
+        <property name="crmOpportunityDAO" ref="crmOpportunitydao"/>
+        <property name="crmAccountDAO" ref="crmAccountdao"/>
+        <property name="crmContactDAO" ref="crmContactdao"/>
+        <property name="crmTargetDAO" ref="crmTargetdao"/>
+        <property name="crmProductDAO" ref="crmProductdao"/>
+    </bean>
+
+    <bean id = "importHandler" class = "com.krawler.spring.importFunctionality.ImportHandler" singleton="false">
+        <property name="importDAO">
+            <ref bean="importDao"/>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+         <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+        </property>
+        <property name="masterTables">
+            <list>
+                <value>DefaultMasterItem</value>
+                <value>com.krawler.crm.database.tables.DefaultMasterItem</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id = "importThreadExecutor" class = "com.krawler.spring.importFunctionality.ImportThreadExecutor">
+    </bean>
+    
+    <!-- Import Data Beans-->
+
+    <bean id = "importcontroller" class = "com.krawler.spring.importFunctionality.ImportController">
+        <property name="importDAO">
+            <ref bean="importDao"/>
+        </property>
+        <property name="importHandler">
+            <ref bean="importHandler"/>
+        </property>
+        <property name="fieldManagerDAO">
+            <ref bean="fieldmanagerdao"/>
+        </property>
+        <property name="importThreadExecutor">
+            <ref bean="importThreadExecutor"/>
+        </property> 
+    </bean>
+        <bean id="errorMessagecontroller" class="com.krawler.spring.crm.common.errorMessageController">
+            <property name="authHandlerDAO">
+                <ref bean="authHandlerdao"/>
+            </property>
+            <property name="sessionHandlerImpl">
+                <ref bean="sessionHandlerdao"/>
+            </property>
+            <property name="companyDetailsDAO">
+                <ref bean="companyDetailsdao"/>
+            </property>
+    </bean>
+
+    <!-- Auth Handler -->
+    <bean id="authHandlerdao" class="com.krawler.spring.authHandler.authHandlerDAOImpl">
+      <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+      <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+      </property>
+    </bean>
+    <bean id="authHandlercontroller" class="com.krawler.spring.authHandler.authHandlerController">
+         <property name="spreadSheetDAO">
+            <ref bean="spreadSheetdao"/>
+        </property>
+        <property name="authHandlerDAO">
+            <ref bean="authHandlerdao"/>
+        </property>
+        <property name="sessionHandlerImpl">
+            <ref bean="sessionHandlerdao"/>
+        </property>
+         <property name="permissionHandlerDAO">
+            <ref bean="permissionHandlerdao"/>
+        </property>
+        <property name="profileHandlerDAO">
+            <ref bean="profileHandlerdao"/>
+        </property>
+        <property name="companyDetailsDAO">
+            <ref bean="companyDetailsdao"/>
+        </property>
+        <property name="kwlCommonTablesDAO">
+            <ref bean="kwlCommonTablesdao"/>
+        </property>
+    	<property name="apiCallHandlerService">
+    		<ref bean="apiCallHandlerService"/>
+    	</property>    	
+        <property name="cometManagementService">
+            <ref bean="cometManagementService"/>
+        </property>
+        <property name="managerDAO">
+            <ref bean="crmManagerdao"/>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+
+    <!-- Controller to execute database script on all databases -->
+    <bean id = "dbscriptcontroller" class = "com.krawler.spring.crm.dbscripts.DBScriptController">
+        <property name="fieldManagerDAO"><ref bean="fieldmanagerdao"/></property>
+        <property name="routingDataSource"><ref bean="dataSource"/></property>
+        <property name="companyDetailsDAO"><ref bean="companyDetailsdao"/></property>
+        <property name="txnManager"><ref bean="txManager"/></property>
+    </bean>
+    
+</beans>

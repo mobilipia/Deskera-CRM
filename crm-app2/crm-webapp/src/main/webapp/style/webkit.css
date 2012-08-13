@@ -1,0 +1,37 @@
+/* 
+    Document   : webkit
+    Created on : Aug 5, 2010, 4:18:51 PM
+    Author     : Malhari Pawar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.x-form-checkbox {
+    margin-top:4px !important;
+}
+.x-form-radio {
+    margin-top:5px !important;
+}
+
+/*Import Zoho dialog alignment issue */
+table.x-table-layout td.x-table-layout-cell{
+	 vertical-align:bottom;
+}
+.x-grid3-td-checker {
+    background:none !important;
+    width:18px !important;
+}
+
+/*Default Lead routing in master config alignment from line 27 to 37*/
+#rrleadrouting{
+	margin-top: 0px !important
+}
+
+#fcfsleadrouting{
+	margin-top: 0px !important
+}
+
+#defaultleadrouting{
+	margin-top: 0px !important
+}

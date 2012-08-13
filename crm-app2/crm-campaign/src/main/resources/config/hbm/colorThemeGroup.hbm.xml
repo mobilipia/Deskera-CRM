@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.colorThemeGroup" table="colorthemegroup">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+
+    <property name="groupname" type="string">
+      <column name="groupname" length="256" />
+    </property>
+    <property name="deleted" type="integer">
+      <column name="deleted" default="0" length="2"/>
+    </property>
+  </class>
+</hibernate-mapping>

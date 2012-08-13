@@ -1,0 +1,109 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.CrmCampaign" table="crm_campaign" >
+        <id name="campaignid" type="string">
+            <column name="campaignid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usersByUpdatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="updatedbyid"          />
+        </many-to-one>
+        <many-to-one name="usersByCreatedbyid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="createdbyid"          />
+        </many-to-one>
+        <many-to-one name="company" class="com.krawler.common.admin.Company" fetch="select">
+            <column name="companyid"          />
+        </many-to-one>
+        <many-to-one name="crmCombodataByCampaignstatusid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="campaignstatusid"         />
+        </many-to-one>
+        <many-to-one name="usersByUserid" class="com.krawler.common.admin.User" fetch="select">
+            <column name="userid"         />
+        </many-to-one>
+        <many-to-one name="crmCombodataByCampaigntypeid" class="com.krawler.crm.database.tables.DefaultMasterItem" fetch="select">
+            <column name="campaigntypeid"         />
+        </many-to-one>
+        <property name="campaignname" type="string">
+            <column name="campaignname" length="40"         />
+        </property>
+        <property name="description" type="string">
+            <column name="description"         />
+        </property>
+        <property name="active" type="string">
+            <column name="active" length="10"         />
+        </property>
+        <property name="numsent" type="string">
+            <column name="numsent"         />
+        </property>
+        <property name="expectedresponse" type="string">
+            <column name="expectedresponse" length="10"         />
+        </property>
+        <property name="expectedrevenue" type="string">
+            <column name="expectedrevenue"         />
+        </property>
+        <property name="budgetedcost" type="string">
+            <column name="budgetedcost"         />
+        </property>
+        <property name="actualcost" type="string">
+            <column name="actualcost"         />
+        </property>
+        <!--property name="createdon" type="java.util.Date">
+            <column name="createdon" length="19"          />
+        </property>
+        <property name="updatedon" type="timestamp">
+            <column name="updatedon" length="19"         />
+        </property-->
+        <property name="createdOn" type="long">
+            <column name="createdon" />
+        </property>
+        <property name="updatedOn" type="long">
+            <column name="updatedon" />
+        </property>
+        <property name="objective" type="string">
+            <column name="objective"         />
+        </property>
+        <property name="campaignresponse" type="string">
+            <column name="campaignresponse"         />
+        </property>
+        <property name="totalresponse" type="string">
+            <column name="totalresponse"/>
+        </property>
+        <property name="totalleads" type="string">
+            <column name="totalleads"/>
+        </property>
+        <property name="convertedleads" type="string">
+            <column name="convertedleads"/>
+        </property>
+        <property name="totalcontacts" type="string">
+            <column name="totalcontacts"/>
+        </property>
+        <property name="totalopportunity" type="string">
+            <column name="totalopportunity"/>
+        </property>
+        <property name="wonopportunity" type="string">
+            <column name="wonopportunity"/>
+        </property>
+        <property name="isarchive" type="true_false">
+            <column name="isarchive"  default="false" not-null="true"/>
+        </property>
+        <property name="deleteflag" type="integer">
+            <column name="deleteflag"       default='0'/>
+        </property>
+        <property name="startingdate" type="long">
+            <column name="startingdate" />
+        </property>
+         <property name="endingdate" type="long">
+            <column name="endingdate" />
+        </property>
+        <property name="validflag" type="integer">
+            <column name="validflag"     default='0' />
+        </property>
+        <property name="cellstyle" type="string">
+            <column length="2000" name="cellstyle"/>
+        </property>
+
+    </class>
+</hibernate-mapping>

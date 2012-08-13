@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="apiCallHandlerdao" class="com.krawler.esp.handlers.APICallHandlerDAOImpl" parent="baseDAO" />
+    <bean id="apiCallHandlerService" class="com.krawler.esp.handlers.APICallHandlerServiceImpl">
+        <property name="apiCallHandlerDAO" ref="apiCallHandlerdao"/>
+    </bean>
+    <bean id="notificationController" class="com.krawler.crm.notification.web.NotificationController">
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="apiCallHandlerService">
+            <ref bean="apiCallHandlerService"/>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+</beans>

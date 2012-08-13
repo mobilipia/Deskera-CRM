@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.LeadRoutingUsers" table="crm_leadroutingusers" >
+        <id name="id" type="java.lang.String">
+            <generator class="uuid"></generator>
+        </id>
+        <many-to-one name="user" class="com.krawler.common.admin.User" fetch="select" insert="false" update="false">
+            <column name="user" default="' '"/>
+        </many-to-one>
+        <property name="userid" type="string" >
+            <column name="user" default="' '" ></column>
+        </property>
+        <property name="lastused" type="true_false">
+            <column name="lastused" default="false" not-null="true" />
+        </property>
+        <property name="ordernum" type="integer">
+            <column name="ordernum" default="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

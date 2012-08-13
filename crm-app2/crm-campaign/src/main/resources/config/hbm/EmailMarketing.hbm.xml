@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.EmailMarketing" table="emailmarketing">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+    <property name="name" type="string">
+      <column length="255" name="name"/>
+    </property>
+    <property name="fromname" type="string">
+      <column length="100" name="fromname"/>
+    </property>
+    <property name="fromaddress" type="string">
+      <column length="100" name="fromaddress"/>
+    </property>
+    <property name="replytoname" type="string">
+      <column length="100" name="replytoname"/>
+    </property>
+    <property name="replytoaddress" type="string">
+      <column length="100" name="replytoaddress"/>
+    </property>
+    <property name="inboundemailid" type="string">
+      <column length="36" name="inboundemailid"/>
+    </property>
+    <property name="lastRunStatus" type="integer">
+      <column default="0" length="2" name="lastrunstatus"/>
+    </property>
+    <property name="lastRunOn" type="long">
+      <column name="lastrunon"/>
+    </property>
+    <!--property name="createdon" type="timestamp">
+      <column length="50" name="createdon"/>
+    </property>
+    <property name="modifiedon" type="timestamp">
+      <column length="50" name="modifiedon"/>
+    </property-->
+    <property name="createdOn" type="long">
+      <column name="createdon"/>
+    </property>
+    <property name="modifiedOn" type="long">
+      <column name="modifiedon"/>
+    </property>
+    <property name="htmltext" type="text">
+      <column name="htmltext"/>
+    </property>
+    <property name="plaintext" type="text">
+      <column name="plaintext"/>
+    </property>
+    <property name="unsubscribelink" type="string">
+      <column length="256" name="unsubscribelink"/>
+    </property>
+    <property name="fwdfriendlink" type="string">
+      <column length="256" name="fwdfriendlink"/>
+    </property>
+    <property name="updateprofilelink" type="string">
+      <column length="256" name="updateprofilelink"/>
+    </property>
+    <property name="archivelink" type="string">
+      <column length="256" name="archivelink"/>
+    </property>
+    <property name="deleted" type="integer">
+      <column default="0" length="2" name="deleted"/>
+    </property>
+    <property name="canSpamAccepted" type="true_false">
+      <column name="cs_accepted"/>
+    </property>
+    <property name="captureLead" type="true_false">
+      <column name="capturelead"/>
+    </property>
+    <many-to-one class="com.krawler.common.admin.User" name="creator" not-null="true"/>
+    <many-to-one class="com.krawler.crm.database.tables.CrmCampaign" name="campaignid" not-null="true"/>
+    <many-to-one class="com.krawler.crm.database.tables.EmailTemplate" name="templateid" not-null="true"/>
+    <many-to-one class="com.krawler.crm.database.tables.templateColorTheme" name="colortheme" not-null="true"/>
+    <property name="subject" type="string">
+      <column length="255" name="subject"/>
+    </property>
+  </class>
+</hibernate-mapping>

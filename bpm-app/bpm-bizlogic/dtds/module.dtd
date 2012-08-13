@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/module.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE modules SYSTEM "module.dtd">
+
+    <modules>
+    ...
+    </modules>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT modules (module)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT module (property-list)*>
+<!ATTLIST module
+    class CDATA #IMPLIED
+    type (simple|pojo|map|json) #IMPLIED
+    id ID #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT property-list (property)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+    multi (list|set|array|jsonarray) #IMPLIED
+    name CDATA #IMPLIED
+    type CDATA #IMPLIED
+  >

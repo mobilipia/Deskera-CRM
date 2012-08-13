@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="accountEventService" class="com.krawler.spring.calendar.eventmodule.bizservice.AccountEventService">
+    	<property name="activityDao"  ref="crmActivitydao"/>
+    </bean>
+    <bean id="campaignEventService" class="com.krawler.spring.calendar.eventmodule.bizservice.CampaignEventService">
+    	<property name="activityDao"  ref="crmActivitydao"/>
+    </bean>
+    <bean id="leadEventService" class="com.krawler.spring.calendar.eventmodule.bizservice.LeadEventService">
+    	<property name="activityDao"  ref="crmActivitydao"/>
+    </bean>
+    
+    <bean id="crmCalendarExportcontroller" class="com.krawler.spring.calendar.calendarmodule.crmExportICSController">
+         <property name="calendarEventService">
+            <ref bean="calendareventservice"/>
+        </property>
+         <property name="calendarService">
+            <ref bean="calendaruserservice"/>
+        </property>
+         <property name="calendarUserService">
+            <ref bean="calendaruserservice"/>
+        </property>
+        <property name="crmManagerDAO">
+             <ref bean="crmManagerdao"/>
+        </property>
+        <property name="moduleEventServices">
+        	<list>
+        		<ref bean="leadEventService"/>
+        		<ref bean="accountEventService"/>
+        		<ref bean="campaignEventService"/>
+        	</list>
+        </property>
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+    </bean>
+</beans>

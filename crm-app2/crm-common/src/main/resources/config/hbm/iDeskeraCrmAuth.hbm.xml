@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.iDeskeraCrmAuth" table="ideskeracrm_auth">
+    <id name="appid" type="string">
+      <column name="appid"/>
+      <generator class="assigned" />
+    </id>
+    <many-to-one name="user" class="com.krawler.common.admin.User" fetch="select">
+            <column name="user"   />
+    </many-to-one>
+    <property name="deviceid" type="string">
+      <column length="255" name="deviceid"/>
+    </property>
+  </class>
+</hibernate-mapping>

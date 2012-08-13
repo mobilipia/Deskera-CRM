@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.esp.hibernate.impl.pm_derivationtriggermap" table="pm_derivationtriggermap">
+    <id column="id" name="id" type="string">
+      <generator class="uuid"/>
+    </id>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.pm_taskderivationmap" column="taskderid" name="taskderid"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.pm_triggermaster" column="triggerid" name="triggerid"/>
+    <property name="triggertype" type="java.lang.Integer" />
+  </class>
+</hibernate-mapping>

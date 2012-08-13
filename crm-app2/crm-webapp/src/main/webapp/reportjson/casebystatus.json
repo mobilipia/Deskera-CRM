@@ -1,0 +1,9 @@
+{
+
+        data: [
+          {'casename':'Lack of Information','casestatus':'Pending','accountname':'Krawler','caseowner':'John','datecreated':'13-06-2009','priority':'High'},
+          {'casename':'System Problem','casestatus':'Escalated','accountname':'Google','caseowner':'Alice','datecreated':'14-06-2009','priority':'Medium'},
+          {'casename':'Network Problem','casestatus':'Work in progress','accountname':'Apple','caseowner':'Diana','datecreated':'15-06-2009','priority':'Low'}
+        ]
+
+}

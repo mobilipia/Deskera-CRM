@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.krawler.pom</groupId>
+		<artifactId>deskera-shared-pom</artifactId>
+		<version>1.1.1</version>
+	</parent>
+    
+	<modelVersion>4.0.0</modelVersion>
+    <groupId>com.krawler.baseline</groupId>
+    <artifactId>crm-baseline</artifactId>
+    <version>2.29-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+  <name>Deskera Builder for CRM Modules</name>
+  <description>Deskera Builder for CRM Modules</description>
+
+    <modules>
+		<module>crm-account</module>
+        <module>crm-activity</module>
+		<module>crm-campaign</module>
+		<module>crm-case</module>
+		<module>crm-common</module>
+		<module>crm-contact</module>
+		<module>crm-lead</module>
+		<module>crm-opportunity</module>
+		<module>crm-product</module>
+		<module>crm-product-web</module>
+		<module>crm-webapp</module>
+   </modules>
+   
+    <dependencies>
+		<dependency>
+			<groupId>com.krawler.common</groupId>
+			<artifactId>core-common-lib</artifactId>
+			<version>2.29-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.krawler.common</groupId>
+			<artifactId>deskera-core-biz</artifactId>
+			<version>2.29-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.krawler.common</groupId>
+			<artifactId>deskera-common-lib</artifactId>
+			<version>2.29-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.krawler.common</groupId>
+			<artifactId>deskera-calendar-lib</artifactId>
+			<version>3.00-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.krawler.common</groupId>
+			<artifactId>deskera-common-comet</artifactId>
+			<version>2.29-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.krawler.common</groupId>
+			<artifactId>deskera-notification-lib</artifactId>
+			<version>2.29-SNAPSHOT</version>
+		</dependency>
+    </dependencies>
+
+ </project>

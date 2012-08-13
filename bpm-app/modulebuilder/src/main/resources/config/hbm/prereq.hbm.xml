@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.prereq" table="mb__prereq">
+    <id name="ruleid" type="string">
+      <generator class="uuid"/>
+    </id>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_reportlist" column="moduleid" name="moduleid"/>
+    <property name="attribute" type="java.lang.String"/>
+    <property name="attributename" type="java.lang.String"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_gridconfig" name="attributeid"/>
+    <property name="ruletype" type="java.lang.Integer"/>
+    <property name="value1" type="java.lang.String"/>
+    <property name="value2" type="java.lang.String"/>
+    <property name="filterflag" type="java.lang.Integer"/>
+    <property name="xtype" type="java.lang.String"/>
+    <property name="seq" type="java.lang.Integer"/>
+  </class>
+</hibernate-mapping>

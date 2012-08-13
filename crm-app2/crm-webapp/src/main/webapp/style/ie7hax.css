@@ -1,0 +1,204 @@
+/*view.css*/
+#pmessage {
+    float: left;
+}
+
+#calpanel {
+    float: left;
+}
+
+#docpanel {
+    float: left;
+}
+/* Help content */
+#dashhelp .helpHeader {
+    color:#35332a;
+}
+#dashhelp .helpContent {
+    color:#676655;
+    padding-left: 0% !important;    
+    font-size:10px;
+}
+
+.wtf-ie .x-fieldset{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.checkboxtext{
+    float: left;
+    width: 195px;
+    padding-top:1px;
+    padding-left: 75% !important;
+}
+#fcue-close{
+    visibility:visible !important;
+}
+
+/*projChart.css
+.x-grid3-row {
+    height: 19px;
+    border:1px;
+}*/
+
+.radContainer {
+/*    padding-left: 5px;*/
+/*    margin-left: 25px;*/
+    margin-top: 9px;
+}
+
+.x-panel-tl {
+    display: none;
+}
+
+.centerCalDview {
+    height: 100% !important;
+}
+
+.labelAlign{
+    font-size:11px;
+    margin-left:3px;
+}
+
+.padd {
+    margin-top: 0;
+    margin-right: 110px;
+}
+
+
+.calevtPanel {
+    position: relative;
+}
+
+.searchleftbutton {
+    margin-top: 2px !important;
+}
+
+.searchInput {
+    margin-top: 1px !important;
+}
+
+.daycompCell {
+    height: 28px;
+}
+
+.OneDayPanel {
+    width: 14.2%;
+}
+
+.innerDiv {
+    width: 14.2%;
+}
+
+.dportlet {
+    width: 49.9%;
+}
+.dportletfull {
+    width: 99.9%;
+}
+
+/*fix for field lable and input */
+.x-form-element {
+        position:static !important;
+}
+ .x-form-element div , .x-form-text  {
+        position:static !important;
+}
+.x-form-item label,
+.x-form-item input {
+    position:static !important;
+}
+.x-form-field-wrap img {
+    position:static !important;
+    vertical-align:middle;
+    
+}
+.x-panel-tbar .x-btn button{
+    width:16px !important;  /*changed by shri to fix buttons with icons*/
+    text-align:left !important;
+}
+.x-panel-tbar .x-btn-center{
+    text-align:left !important;
+}
+/* fix for datre picker image appearing misaligned  */
+.x-form-trigger{
+        position:fixed !important;
+        vertical-align:top !important;
+        top: -3;
+}
+.x-form-arrow-trigger{
+        position:fixed !important;
+        vertical-align:top !important;
+        top: -3;
+}
+.x-form-date-trigger{
+        position:fixed !important;
+        vertical-align:top !important;
+        top: -3;
+}
+.dpanellinks {
+    height:30px !important;
+}
+
+div.block a.details_icon, div#head_block a.details_icon {
+    margin-left: -10px  !important;
+}
+
+div.block a.edit_icon, div#head_block a.edit_icon {
+    margin-left: -50px !important;
+}
+
+div.block a.unmap_icon, div#head_block a.unmap_icon {
+    margin-left: 30px !important;
+}
+
+div.blockUnMapped a.map_icon, div#head_block a.map_icon {
+     margin-left: -10px !important;
+}
+.txt {
+    position: absolute !important;
+    bottom: 10px;
+    right: 80px;
+}
+.outboundConfig {
+    margin: 0 0 0 5px !important;
+    position:absolute !important;
+}
+.x-menu-list .x-color-palette {
+    width: 135px;
+    height: auto;
+}
+.tagTextBox{
+    margin-right: 0px !important;
+    position: absolute !important;
+    bottom: 10px !important;
+    right: 90px !important;
+}
+#tabdashboard .x-column-inner {
+    width: 98.5% !important;
+}
+.stop{
+    height: 10px;display:none;margin-right:5px;margin-top:-10px;float:right;
+}
+.mygoaltable{
+	width:380px !important;
+	cellspacing: 8px !important;
+}
+.mygoalTD{
+	width:80% !important;
+	align:center;	
+}	
+.x-btn-text-icon .x-btn-center .x-btn-text {
+    padding: 3px 0 2px 20px;
+}
+
+#x-form-el-userimage{
+	height:0px;
+}
+
+.x-hide-label{
+	height:0px !important;
+}
+
+#searchBar{
+	width:225px !important;
+}

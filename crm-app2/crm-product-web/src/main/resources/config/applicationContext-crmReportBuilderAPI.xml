@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <!--Report Builder Controller-->
+    <bean id="reportBuilderdao" class="com.krawler.crm.reportBuilder.dao.ReportBuilderDaoImpl" parent="baseDAO"/>
+    <bean id="crmReportBuilderController" class="com.krawler.crm.reportBuilder.CrmReportBuilderController">
+        <property name="reportBuilderService">
+            <ref bean="reportBuilderService"/>
+        </property>
+        <!--property name="leadManagementService">
+            <ref bean="leadManagementService"/>
+        </property-->        
+        <property name="successView">
+            <value>jsonView</value>
+        </property>
+        <property name="exportDAOImpl">
+            <ref bean="exportdao"/>
+        </property>
+        <property name="txnManager">
+            <ref bean="txManager"/>
+        </property>
+    </bean>
+
+    <bean id="reportBuilderService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.krawler.crm.reportBuilder.bizservice.ReportBuilderServiceImpl">
+                <property name="reportBuilderDao">
+                    <ref bean="reportBuilderdao"/>
+                </property>
+                <property name="fieldManagerDAO">
+                    <ref bean="fieldmanagerdao"/>
+                </property>
+                <property name="crmCommonDAO">
+                    <ref bean="crmCommondao"/>
+                </property>
+                <property name="crmLeadDAO">
+                    <ref bean="crmLeaddao"/>
+                </property>
+                <property name="crmAccountDAO">
+                    <ref bean="crmAccountdao"/>
+                </property>
+                <property name="crmCaseDAO">
+                    <ref bean="crmCasedao"/>
+                </property>
+                <property name="crmOpportunityDAO">
+                    <ref bean="crmOpportunitydao"/>
+                </property>
+                <property name="kwlCommonTablesDAO">
+                    <ref bean="kwlCommonTablesdao"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

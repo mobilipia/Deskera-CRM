@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.EmailMarkteingTargetList" table="emailmarkteing_targetlist">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+    <!--property name="modifiedon" type="timestamp">
+      <column length="50" name="modifiedon"/>
+    </property-->
+    <property name="modifiedOn" type="long">
+      <column name="modifiedon"/>
+    </property>
+    <property name="deleted" type="integer">
+      <column default="0" length="2" name="deleted"/>
+    </property>
+    <many-to-one class="com.krawler.crm.database.tables.TargetList" name="targetlistid" not-null="true"/>
+    <many-to-one class="com.krawler.crm.database.tables.EmailMarketing" name="emailmarketingid" not-null="true"/>
+  </class>
+</hibernate-mapping>

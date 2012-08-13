@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.CrmCaseActivity" table="crm_case_activity" >
+        <id name="rid" type="string">
+            <column name="rid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="crmActivityMaster" class="com.krawler.crm.database.tables.CrmActivityMaster" fetch="select">
+            <column name="activityid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="crmCase" class="com.krawler.crm.database.tables.CrmCase" fetch="select">
+            <column name="caseid" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

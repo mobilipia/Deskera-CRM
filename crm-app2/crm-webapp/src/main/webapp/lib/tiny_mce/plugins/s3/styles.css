@@ -1,0 +1,27 @@
+body, html, form {
+	margin: 0;
+}
+body, html {
+	height: 100%;
+    font-family: Tahoma,Verdana,Arial,Helvetica,sans-sarif;
+    font-size: 11px;
+}
+
+a.dir  { font-size: 12px; font-weight: bold; color: #000000; }
+a.file  { font-size: 12px; color: #222222; vertical-align: top;}
+a.back  { font-size: 12px; color: #FFFFFF; }
+.td_close  { padding: 5px; background-color: #444444; height: 12px; text-align: right; }
+.td_main  { padding: 5px; height: 320px; overflow: auto; border-bottom: 1px solid #919B9C; background-color: #ffffff; }
+.upload { padding: 5px; font-size: 12px; background:#F0F0EE none repeat scroll 0 0; }
+.notice { padding: 5px; font-size: 12px; height: 36px; }
+
+#submit, #cancel {
+    background:transparent url(../../themes/advanced/skins/default/img/buttons.png) repeat scroll 0 0;
+    border: 0 none;
+    width: 94px;
+    height: 24px;
+    font-size: 11px;
+}
+#uploaded_file, #uploaded_file1, #uploaded_file2, #uploaded_file3, #uploaded_file4 {
+    font-size: 12px;
+}

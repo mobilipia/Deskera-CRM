@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2009 7:57:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.krawler.crm.database.tables.CrmCombodata" table="crm_combodata" >
+        <id name="valueid" type="string">
+            <column name="valueid" />
+            <generator class="assigned" />
+        </id>
+        <property name="rawvalue" type="string">
+            <column name="rawvalue" length="50"     default="' '"/>
+        </property>
+        <many-to-one name="crmCombomaster" class="com.krawler.crm.database.tables.CrmCombomaster" fetch="select">
+            <column name="comboid"     default="' '"/>
+        </many-to-one>
+        <property name="parentid" type="string">
+            <column name="parentid" length="36"  default="' '" />
+        </property>
+        <!--property name="aliasname" type="string">
+            <column name="aliasname"    default="' '"/>
+        </property-->
+        <property name="isEdit" type="integer">
+            <column name="isEdit" default="1" not-null="true" />
+       </property>
+       <property name="itemsequence" type="integer">
+            <column name="itemsequence" default="0"/>
+       </property>
+       <property name="percentStage" type="string">
+          <column name="percentStage" length="50"/>
+      </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.CampaignTarget" table="campaign_target">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+    <many-to-one class="com.krawler.crm.database.tables.TargetList" name="targetlist" not-null="true"/>
+    <many-to-one class="com.krawler.crm.database.tables.CrmCampaign" name="campaign" not-null="true"/>
+    <many-to-one class="com.krawler.common.admin.User" name="creator" not-null="true"/>
+    <property name="deleted" type="integer">
+      <column default="0" length="2" name="deleted"/>
+    </property>
+    <!--property name="createdon" type="timestamp">
+      <column length="50" name="createdon"/>
+    </property-->
+    <property name="createdOn" type="long">
+      <column name="createdon"/>
+    </property>
+  </class>
+</hibernate-mapping>

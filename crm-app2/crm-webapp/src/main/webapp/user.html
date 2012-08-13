@@ -1,0 +1,15 @@
+<script type="text/javascript">
+    //<![CDATA[
+    var tab = userTabs.shift();
+    var tabid = tab.id.substr(3);    
+    var profile = new Wtf.ProfileView({
+        id: "subtabpro" + tabid,
+        uid: new Wtf.common.Uid(tabid, Wtf.etype.user),
+        layout: 'fit',
+        profiletitle: tab.title,
+        border: false
+    });
+    tab.add(profile);
+    tab.doLayout();
+    //]]>
+</script>

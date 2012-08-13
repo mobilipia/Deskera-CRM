@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 19, 2009 11:17:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="com.krawler.crm.database.tables.EmailMarketingDefault" table="em_defaults">
+    <id name="id" type="string">
+      <column name="id"/>
+      <generator class="uuid"/>
+    </id>
+
+    <many-to-one class="com.krawler.crm.database.tables.EmailMarketing" name="emailMarketing" column="email_marketing" not-null="true" unique-key="em_var"/>
+
+    <property name="variableName" type="string" unique-key="em_var">
+      <column name="var_name" length="50"/>
+    </property>
+    <property name="defaultValue" type="string">
+      <column name="default_value" length="255" />
+    </property>
+   </class>
+</hibernate-mapping>

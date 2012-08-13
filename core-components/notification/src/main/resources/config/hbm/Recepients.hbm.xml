@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.krawler.common.notification.dm.Recepients" table="notification_recepients">
+    <id name="id" type="long">
+      <generator class="increment"/>
+    </id>
+    <many-to-one class="com.krawler.common.admin.User" fetch="select" name="userid">
+      <column name="userid" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.krawler.common.notification.dm.NotificationRequest" fetch="select" name="requestid">
+      <column name="requestid" not-null="true"/>
+    </many-to-one>
+    <property name="sendstatus" type="long">
+        <column name="sendstatus"  default='0'/>
+    </property>
+    <many-to-one class="com.krawler.common.notification.dm.NotificationStatus" insert="false" name="refsendstatus" update="false">
+        <column name="sendstatus"/>
+    </many-to-one>
+
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.krawler.esp.hibernate.impl.renderer" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="mb__renderer">
+    <id column="id" name="id" type="string">
+      <generator class="assigned"/>
+    </id>
+    <!--set name="children" inverse="true" cascade="all,delete-orphan" >
+        <key column="renderer" on-delete="cascade" />
+        <one-to-many class="com.krawler.esp.hibernate.impl.mb_gridconfig"  />
+    </set-->
+    <property name="name">
+      <column name="name"/>
+    </property>
+    <property name="rendererValue">
+      <column name="rendererValue"/>
+    </property>
+    <property name="isstatic" type="boolean">
+      <column name="isstatic"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.krawler.esp.hibernate.impl.mb_gridconfig" table="mb_gridconfig">
+    <id name="id" type="java.lang.String">
+      <generator class="uuid"/>
+    </id>
+    <property name="columnindex" type="java.lang.Integer"/>
+    <property name="hidden" type="java.lang.Boolean"/>
+    <property name="filter" type="java.lang.String"/>
+    <property name="reftable" type="java.lang.String"/>
+    <property name="xtype" type="java.lang.String"/>
+    <property name="displayfield" type="java.lang.String"/>
+    <property name="name" type="java.lang.String"/>
+    <property name="combogridconfig" type="java.lang.String"/>
+    <property name="countflag" type="java.lang.Boolean"/>
+    <property name="summaryType" type="java.lang.String"/>
+    <property name="defaultValue" type="java.lang.String"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.mb_reportlist" column="reportid" name="reportid"/>
+    <many-to-one cascade="delete" class="com.krawler.esp.hibernate.impl.renderer" column="renderer" name="renderer"/>
+  </class>
+</hibernate-mapping>

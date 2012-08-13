@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.krawler.pom</groupId>
+		<artifactId>deskera-shared-pom</artifactId>
+		<version>1.1.1</version>
+	</parent>
+	
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.krawler.baseline</groupId>
+    <artifactId>product-core-components</artifactId>
+    <version>2.29-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+  <name>Deskera Builder for Core Components</name>
+  <description>Deskera Builder for Core Components</description>
+
+    <modules>
+		<module>lucene-search</module>
+	    <module>core-common</module>
+		<module>common</module>
+        <module>calendar</module>
+		<module>CoreBizServices</module>
+        <module>common-comet</module>
+        <module>notification</module>
+  </modules>
+
+    </project>
